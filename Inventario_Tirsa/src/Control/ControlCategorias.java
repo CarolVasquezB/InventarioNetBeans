@@ -131,18 +131,5 @@ public class ControlCategorias {
         return data;
     }
     
-    public static void main(String[] args) {
-        ControlCategorias cc = new ControlCategorias(); 
-        //cc.insertarCategoria(10, "Prueba");
-        //cc.eliminarCategoriaNombre("prueba");
-        //Object[][] dato = cc.consultarCategoriaCodigo(2);
-        //System.out.println("Codigo: "+ dato[0][0]+ " Nombre: "+dato[0][1]); 
-        //Object[][] dato1 = cc.consultarCategoriaNombre("Buso");
-        //System.out.println("Codigo: "+ dato1[0][0]+ " Nombre: "+dato1[0][1]); 
-        
-//        Object[][] dato = cc.consultarCategoria();        
-//        for (int i = 0; i < cc.contarCategorias(); i++) {
-//            System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);
-//        }
-    }
+    
 }
