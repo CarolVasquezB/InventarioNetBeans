@@ -25,7 +25,7 @@ public class ControlProducto {
         boolean inserto = false;
         String sql = "Insert into producto (cod_producto, nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,cod_categoria,valor_venta_min,fecha_compra"
                 + "cantidad,cod_categoria,valor_venta) "
-                + "values ("+cod_producto+", '"+nombre+"','"+descr_producto+"',"+val_compra+","+val_venta_max+","+stock+","+cod_categoria+","+val_venta_min+",'"+fecha+")";
+                + "values ("+cod_producto+", '"+nombre+"','"+descr_producto+"',"+val_compra+","+val_venta_max+","+stock+","+cod_categoria+","+val_venta_min+",'"+fecha+"')";
         inserto = p.ejecutarDML(sql);
         return inserto;        
     } 
@@ -133,7 +133,15 @@ public class ControlProducto {
     }
     
     public static void main(String[] args) {
-        ControlCategorias cc = new ControlCategorias(); 
+        ControlProducto cp = new ControlProducto(); 
+        boolean inserto=cp.insertarProducto(123,"reloj" ,"", 150000, 170000,10, 1, 160000,"2017/05/20");
+        if (inserto) {
+            System.out.println("inserto...");
+        }
+        else{
+            System.out.println("error...");
+    }
+        
         //cc.insertarCategoria(10, "Prueba");
         //cc.eliminarCategoriaNombre("prueba");
         //Object[][] dato = cc.consultarCategoriaCodigo(2);
@@ -141,9 +149,9 @@ public class ControlProducto {
         //Object[][] dato1 = cc.consultarCategoriaNombre("Buso");
         //System.out.println("Codigo: "+ dato1[0][0]+ " Nombre: "+dato1[0][1]); 
         
-        Object[][] dato = cc.consultarCategoria();        
-        for (int i = 0; i < cc.contarCategorias(); i++) {
-            System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);
-        }
+//        Object[][] dato = cc.consultarCategoria();        
+//        for (int i = 0; i < cc.contarCategorias(); i++) {
+//            System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);
+//        }
     }
 }
