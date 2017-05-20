@@ -160,4 +160,6 @@ public class ControlProducto {
 //            System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);
 //        }
     }
+    
+    //nnnn
 }
