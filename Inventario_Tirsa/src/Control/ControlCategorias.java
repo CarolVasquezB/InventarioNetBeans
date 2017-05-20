@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  *
  * @author CarolVasquez
  */
+//autores: carol vasquez ,david joaqui
 public class ControlCategorias {
     
     Persistencia p = new Persistencia();
