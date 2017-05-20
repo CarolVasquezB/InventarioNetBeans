@@ -145,5 +145,7 @@ public class ControlProducto {
         for (int i = 0; i < cc.contarCategorias(); i++) {
             System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);
         }
+        
+        //Prueba
     }
 }
