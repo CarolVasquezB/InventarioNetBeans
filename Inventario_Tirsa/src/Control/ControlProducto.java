@@ -20,11 +20,12 @@ public class ControlProducto {
     
     Persistencia p = new Persistencia();
     
-    public boolean insertarCategoria(int codigoCategoria, String nombreCategoria){
+    public boolean insertarProducto(int cod_producto,String nombre,String descr_producto,float val_compra,float val_venta_max,int stock,int cod_categoria,float val_venta_min,String fecha){
         
         boolean inserto = false;
-        String sql = "Insert into categoria (cod_categoria, nombre_categoria) "
-                + "values ("+codigoCategoria+", '"+nombreCategoria+"')";
+        String sql = "Insert into producto (cod_producto, nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,cod_categoria,valor_venta_min,fecha_compra"
+                + "cantidad,cod_categoria,valor_venta) "
+                + "values ("+cod_producto+", '"+nombre+"','"+descr_producto+"',"+val_compra+","+val_venta_max+","+stock+","+cod_categoria+","+val_venta_min+",'"+fecha+")";
         inserto = p.ejecutarDML(sql);
         return inserto;        
     } 
