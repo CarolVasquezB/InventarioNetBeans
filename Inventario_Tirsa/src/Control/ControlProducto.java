@@ -23,9 +23,9 @@ public class ControlProducto {
     public boolean insertarProducto(int cod_producto,String nombre,String descr_producto,float val_compra,float val_venta_max,int stock,int cod_categoria,float val_venta_min,String fecha){
         
         boolean inserto = false;
-        String sql = "Insert into producto (cod_producto, nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,cod_categoria,valor_venta_min,fecha_compra"
-                + "cantidad,cod_categoria,valor_venta) "
-                + "values ("+cod_producto+", '"+nombre+"','"+descr_producto+"',"+val_compra+","+val_venta_max+","+stock+","+cod_categoria+","+val_venta_min+",'"+fecha+"')";
+        String sql = "Insert into producto(cod_producto,nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,cod_categoria,valor_venta_min,fecha_compra,"
+                + "cantidad,cod_categoria,valor_venta,fecha_compra)"
+                + "values("+cod_producto+",'"+nombre+"','"+descr_producto+"',"+val_compra+","+val_venta_max+","+stock+","+cod_categoria+","+val_venta_min+",'"+fecha+"')";
         inserto = p.ejecutarDML(sql);
         return inserto;        
     } 
@@ -134,7 +134,7 @@ public class ControlProducto {
     
     public static void main(String[] args) {
         ControlProducto cp = new ControlProducto(); 
-        boolean inserto=cp.insertarProducto(123,"reloj" ,"", 150000, 170000,10, 1, 160000,"2017/05/20");
+        boolean inserto=cp.insertarProducto(123,"reloj","prueba descripcion",150000,170000,10,1,160000,"2017-05-20");
         if (inserto) {
             System.out.println("inserto...");
         }
