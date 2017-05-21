@@ -182,7 +182,8 @@ public class ControlProducto {
         
         
        Object[][] dato = cp.consultarproductoCodigo(123);
-        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+"descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "); 
+        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+"descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
+        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]); 
         //Object[][] dato1 = cc.consultarCategoriaNombre("Buso");
         //System.out.println("Codigo: "+ dato1[0][0]+ " Nombre: "+dato1[0][1]); 
 
