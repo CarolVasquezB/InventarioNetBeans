@@ -43,7 +43,7 @@ public class ControlCategorias {
         return elimino;
     }    
     
-    public boolean actualizarPais(int codigoCategoria,String nombreCategoria){
+    public boolean actualizarCategoria(int codigoCategoria,String nombreCategoria){
         boolean actualizo = false;
         String sql = "Update categoria set "
                 + "nombre_categoria = " + "'"+nombreCategoria +                  

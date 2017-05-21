@@ -23,28 +23,30 @@ public class ControlProducto {
     public boolean insertarProducto(int cod_producto,String nombre,String descr_producto,float val_compra,float val_venta_max,int stock,int cod_categoria,float val_venta_min,String fecha){
         
         boolean inserto = false;
-        String sql = "Insert into producto(cod_producto,nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,cod_categoria,valor_venta_min,fecha_compra,"
-                + "cantidad,cod_categoria,valor_venta,fecha_compra)"
-                + "values("+cod_producto+",'"+nombre+"','"+descr_producto+"',"+val_compra+","+val_venta_max+","+stock+","+cod_categoria+","+val_venta_min+",'"+fecha+"')";
+
+        String sql = "Insert into producto(cod_producto,nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,"
+                + "cod_categoria,valor_venta_min,fecha_compra) "
+                + "values("+cod_producto+",'"+nombre+"','"+descr_producto+"',"+val_compra+","+val_venta_max+","+stock+","+cod_categoria+","+val_venta_min+",'"+fecha+"');";
+
         inserto = p.ejecutarDML(sql);
         return inserto;        
     } 
     
-    public boolean eliminarCategoriaCodigo(int codigoCategoria){
+    public boolean eliminarProducto(int codigoproducto){
         boolean elimino = false;
-        String sql = "Delete from categoria where cod_categoria = " + codigoCategoria;
+        String sql = "Delete from producto where cod_producto = " + codigoproducto;
         elimino = p.ejecutarDML(sql);
         return elimino;
     }    
     
-    public boolean eliminarCategoriaNombre(String nombreCategoria){
+    public boolean eliminarproductoxNombre(String nombreproducto){
         boolean elimino = false;
-        String sql = "Delete from categoria where nombre_categoria = '" + nombreCategoria + "'";
+        String sql = "Delete from producto where nombre_producto = '" + nombreproducto + "'";
         elimino = p.ejecutarDML(sql);
         return elimino;
     }    
     
-    public boolean actualizarPais(int codigoCategoria,String nombreCategoria){
+    public boolean actualizarProducto(int codigoproducto,String nombre,String descr_producto){
         boolean actualizo = false;
         String sql = "Update categoria set "
                 + "nombre_categoria = " + "'"+nombreCategoria +                  
@@ -134,13 +136,29 @@ public class ControlProducto {
     
     public static void main(String[] args) {
         ControlProducto cp = new ControlProducto(); 
-        boolean inserto=cp.insertarProducto(123,"reloj","prueba descripcion",150000,170000,10,1,160000,"2017-05-20");
-        if (inserto) {
-            System.out.println("inserto...");
-        }
-        else{
-            System.out.println("error...");
-    }
+
+//        boolean inserto=cp.insertarProducto(123,"reloj","prueba descripcion",150000,170000,10,1,160000,"2017/05/20");
+//        if (inserto) {
+//            System.out.println("inserto...");
+//        }
+//        else{
+//            System.out.println("error...");
+//    }
+//        boolean elimino=cp.eliminarProducto(123);
+//        if (elimino) {
+//            System.out.println("eliminado");
+//        }else{
+//            System.out.println("error...");
+//        }
+
+        
+//       boolean eliminoXnombre=cp.eliminarproductoxNombre("reloj");
+//        if (eliminoXnombre) {
+//            System.out.println("elimino por nombre");
+//        }else{
+//            System.out.println("error...");
+//        }
+        
         
         //cc.insertarCategoria(10, "Prueba");
         //cc.eliminarCategoriaNombre("prueba");
