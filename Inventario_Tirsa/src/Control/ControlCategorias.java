@@ -80,8 +80,8 @@ public class ControlCategorias {
         try {
             int i = 0;
             while(datos.next()){
-                data[0][0] = datos.getInt("cod_categoria");
-                data[0][1] = datos.getString("nombre_categoria");
+                data[i][0] = datos.getInt("cod_categoria");
+                data[i][1] = datos.getString("nombre_categoria");
                 i++;
             }
         } catch (SQLException ex) {

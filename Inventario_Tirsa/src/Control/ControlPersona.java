@@ -51,10 +51,10 @@ public class ControlPersona {
         return actualizo;
     }   
 
-    public int contarCategorias(){
+    public int contarPersonas(){
         
         int numero = 0;
-        String sql = "Select count(cod_categoria) num from categoria";
+        String sql = "Select count(cod_persona) num from persona";
         ResultSet res = p.ejecutarConsulta(sql);
         
         try {
@@ -68,19 +68,24 @@ public class ControlPersona {
         return numero;
     }
     
-    public Object[][] consultarCategoriaCodigo(int codigo){
+    public Object[][] consultarPersonaDocumento(int numDocumento){
 
-        Object data[][] = new Object[this.contarCategorias()][2];
+        Object data[][] = new Object[this.contarPersonas()][6];
         ResultSet datos = null;
-        String sql = "Select cod_categoria, nombre_categoria from categoria "
-                + "where cod_categoria = "+codigo;
+        String sql = "Select cod_persona, num_documento, nombres_persona, apellidos_persona,"
+                + "correo_persona, fecha_nac_persona from persona "
+                + "where num_documento = "+numDocumento;
         datos = p.ejecutarConsulta(sql);
 
         try {
             int i = 0;
             while(datos.next()){
-                data[0][0] = datos.getInt("cod_categoria");
-                data[0][1] = datos.getString("nombre_categoria");
+                data[i][0] = datos.getInt("cod_persona");
+                data[i][1] = datos.getInt("num_documento");
+                data[i][2] = datos.getString("nombres_persona");
+                data[i][3] = datos.getString("apellidos_persona");
+                data[i][4] = datos.getString("correo_persona");       
+                data[i][5] = datos.getString("fecha_nac_persona");                   
                 i++;
             }
         } catch (SQLException ex) {
@@ -88,40 +93,23 @@ public class ControlPersona {
         }
         return data;
     }     
-      
-    public Object[][] consultarCategoriaNombre(String nombre){
-
-        Object data[][] = new Object[this.contarCategorias()][2];
-        ResultSet datos = null;
-        String sql = "Select cod_categoria, nombre_categoria from categoria "
-                + "where nombre_categoria = '"+nombre+"'";
-        datos = p.ejecutarConsulta(sql);
-
-        try {
-            int i = 0;
-            while(datos.next()){
-                data[0][0] = datos.getInt("cod_categoria");
-                data[0][1] = datos.getString("nombre_categoria");
-                i++;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return data;
-    }
     
-    public Object[][] consultarCategoria(){
+    public Object[][] consultarPersonas(){
 
-        Object data[][] = new Object[this.contarCategorias()][2];
+        Object data[][] = new Object[this.contarPersonas()][6];
         ResultSet datos = null;
-        String sql = "Select * from categoria";
+        String sql = "Select * from persona";
         datos = p.ejecutarConsulta(sql);
 
         try {
             int i = 0;
             while(datos.next()){
-                data[i][0] = datos.getInt("cod_categoria");
-                data[i][1] = datos.getString("nombre_categoria");
+                data[i][0] = datos.getInt("cod_persona");
+                data[i][1] = datos.getInt("num_documento");
+                data[i][2] = datos.getString("nombres_persona");
+                data[i][3] = datos.getString("apellidos_persona");
+                data[i][4] = datos.getString("correo_persona");       
+                data[i][5] = datos.getString("fecha_nac_persona");    
                 i++;
             }
         } catch (SQLException ex) {
