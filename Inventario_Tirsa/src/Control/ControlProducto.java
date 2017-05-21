@@ -46,11 +46,12 @@ public class ControlProducto {
         return elimino;
     }    
     
-    public boolean actualizarProducto(int codigoproducto,String nombre,String descr_producto){
+    public boolean actualizarProducto(int cod_producto,String nombre_producto,String descr_producto,float val_compra,float val_venta_max,int stock,int cod_categoria,float val_venta_min,String fecha){
         boolean actualizo = false;
-        String sql = "Update categoria set "
-                + "nombre_categoria = " + "'"+nombreCategoria +                  
-                "' where cod_categoria = "+codigoCategoria;
+        String sql = "Update producto set "
+                + "nombre_producto = " + "'"+nombre_producto +",descr_producto="+descr_producto+",valor_compra="+val_compra+",valor_venta_max="+val_venta_max+
+                ",stock_producto="+stock+",cod_categoria="+cod_categoria+",valor_venta_min="+val_venta_min+",fecha_compra="+fecha+
+                "' where cod_producto = "+cod_producto;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }   
@@ -158,7 +159,12 @@ public class ControlProducto {
 //        }else{
 //            System.out.println("error...");
 //        }
-        
+        boolean actualizo=cp.actualizarProducto(123,"pulsera","material plata,tejido nuevo",80000,100000,5,1,90000, "2017/05/20");
+        if(actualizo){
+            System.out.println("actualizo...");
+        }else{
+            System.out.println("error...");
+        }
         
         //cc.insertarCategoria(10, "Prueba");
         //cc.eliminarCategoriaNombre("prueba");
