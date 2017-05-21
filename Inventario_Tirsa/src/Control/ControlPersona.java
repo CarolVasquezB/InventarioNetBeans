@@ -41,8 +41,12 @@ public class ControlPersona {
             String correoPersona, String fechaNacimiento){
         boolean actualizo = false;
         String sql = "Update persona set "
-                + "num_documento = "+numDocumento+                  
-                " where cod_persona = "+codigoPersona;
+                + "num_documento = "+numDocumento
+                + "nombres_persona = '"+nombresPersona
+                + "', apellidos_persona = '"+apellidosPersona
+                + "', correo_persona = '"+correoPersona   
+                + "', fecha_nac_persona = '"+fechaNacimiento                 
+                + " where cod_persona = "+codigoPersona;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }   
