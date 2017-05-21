@@ -49,17 +49,17 @@ public class ControlProducto {
     public boolean actualizarProducto(int cod_producto,String nombre_producto,String descr_producto,float val_compra,float val_venta_max,int stock,int cod_categoria,float val_venta_min,String fecha){
         boolean actualizo = false;
         String sql = "Update producto set "
-                + "nombre_producto = " + "'"+nombre_producto +",descr_producto="+descr_producto+",valor_compra="+val_compra+",valor_venta_max="+val_venta_max+
-                ",stock_producto="+stock+",cod_categoria="+cod_categoria+",valor_venta_min="+val_venta_min+",fecha_compra="+fecha+
+                + "nombre_producto = " + "'"+nombre_producto +"',descr_producto= '"+descr_producto+"',valor_compra="+val_compra+",valor_venta_max="+val_venta_max+
+                ",stock_producto="+stock+",cod_categoria="+cod_categoria+",valor_venta_min="+val_venta_min+",fecha_compra= '"+fecha+
                 "' where cod_producto = "+cod_producto;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }   
 
-    public int contarCategorias(){
+    public int contarproductos(){
         
         int numero = 0;
-        String sql = "Select count(cod_categoria) num from categoria";
+        String sql = "Select count(cod_producto) num from producto";
         ResultSet res = p.ejecutarConsulta(sql);
         
         try {
@@ -68,14 +68,14 @@ public class ControlProducto {
                 numero = res.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
         }       
         return numero;
     }
-    
+    /*
     public Object[][] consultarCategoriaCodigo(int codigo){
 
-        Object data[][] = new Object[this.contarCategorias()][2];
+       // Object data[][] = new Object[this.contarCategorias()][2];
         ResultSet datos = null;
         String sql = "Select cod_categoria, nombre_categoria from categoria "
                 + "where cod_categoria = "+codigo;
@@ -94,9 +94,9 @@ public class ControlProducto {
         return data;
     }     
       
-    public Object[][] consultarCategoriaNombre(String nombre){
+    /*public Object[][] consultarCategoriaNombre(String nombre){
 
-        Object data[][] = new Object[this.contarCategorias()][2];
+        //Object data[][] = new Object[this.contarCategorias()][2];
         ResultSet datos = null;
         String sql = "Select cod_categoria, nombre_categoria from categoria "
                 + "where nombre_categoria = '"+nombre+"'";
@@ -113,8 +113,8 @@ public class ControlProducto {
             Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
-    }
-    
+    }*/
+    /*
     public Object[][] consultarCategoria(){
 
         Object data[][] = new Object[this.contarCategorias()][2];
@@ -134,7 +134,7 @@ public class ControlProducto {
         }
         return data;
     }
-    
+    */
     public static void main(String[] args) {
         ControlProducto cp = new ControlProducto(); 
 
@@ -159,12 +159,18 @@ public class ControlProducto {
 //        }else{
 //            System.out.println("error...");
 //        }
-        boolean actualizo=cp.actualizarProducto(123,"pulsera","material plata,tejido nuevo",80000,100000,5,1,90000, "2017/05/20");
-        if(actualizo){
-            System.out.println("actualizo...");
-        }else{
-            System.out.println("error...");
-        }
+//        boolean actualizo=cp.actualizarProducto(123,"pulsera","material plata tejido nuevo",80000,100000,5,1,90000, "2017/05/20");
+//        if(actualizo){
+//            System.out.println("actualizo...");
+//        }else{
+//            System.out.println("error...");
+//        }
+        
+        
+        int aux=cp.contarproductos();
+        System.out.println("el numero de productos es : "+aux);
+        
+        
         
         //cc.insertarCategoria(10, "Prueba");
         //cc.eliminarCategoriaNombre("prueba");
