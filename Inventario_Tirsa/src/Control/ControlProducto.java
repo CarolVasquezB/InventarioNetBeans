@@ -72,24 +72,32 @@ public class ControlProducto {
         }       
         return numero;
     }
-    /*
-    public Object[][] consultarCategoriaCodigo(int codigo){
+    
+    public Object[][] consultarproductoCodigo(int codigo){
 
-       // Object data[][] = new Object[this.contarCategorias()][2];
+        Object data[][] = new Object[this.contarproductos()][9];
         ResultSet datos = null;
-        String sql = "Select cod_categoria, nombre_categoria from categoria "
-                + "where cod_categoria = "+codigo;
+        String sql = "Select cod_producto, nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,"
+                + "cod_categoria,valor_venta_min,fecha_compra from producto "
+                + "where cod_producto = "+codigo;
         datos = p.ejecutarConsulta(sql);
 
         try {
             int i = 0;
             while(datos.next()){
-                data[0][0] = datos.getInt("cod_categoria");
-                data[0][1] = datos.getString("nombre_categoria");
+                data[0][0] = datos.getInt("cod_producto");
+                data[0][1] = datos.getString("nombre_producto");
+                data[0][2] = datos.getString("descr_producto");
+                data[0][3] = datos.getFloat("valor_compra");
+                data[0][4] = datos.getFloat("valor_venta_max");
+                data[0][5] = datos.getInt("stock_producto");
+                data[0][6] = datos.getInt("cod_categoria");
+                data[0][7] = datos.getFloat("valor_venta_min");
+                data[0][8] = datos.getString("fecha_compra");
                 i++;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
     }     
