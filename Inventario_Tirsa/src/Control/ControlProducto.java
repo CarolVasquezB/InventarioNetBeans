@@ -73,7 +73,7 @@ public class ControlProducto {
         return numero;
     }
     
-    public Object[][] consultarCategoriaCodigo(int codigo){
+    public Object[][] consultarproductoCodigo(int codigo){
 
         Object data[][] = new Object[this.contarproductos()][9];
         ResultSet datos = null;
