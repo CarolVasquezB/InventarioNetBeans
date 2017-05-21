@@ -19,42 +19,34 @@ public class ControlFactura {
     
     Persistencia p = new Persistencia();
     
-    public boolean insertarFactura(int codigoFactura, float valorFactura, String ){
+    public boolean insertarFactura(int codigoFactura, float valorFactura, String fechaFactura, int codigoCliente,
+        int codigoEmpleado, int codigoAbono){
         
         boolean inserto = false;
-        String sql = "Insert into categoria (cod_categoria, nombre_categoria) "
-                + "values ("+codigoCategoria+", '"+nombreCategoria+"')";
+        String sql = "Insert into categoria (cod_factura, valor_factura, fecha_factura, cod_cliente, cod_empleado, cod_abono) "
+                + "values ("+codigoFactura+", "+valorFactura+", '"+fechaFactura+"', "+codigoCliente+", "+codigoEmpleado+","+codigoAbono+")";
         inserto = p.ejecutarDML(sql);
         return inserto;        
     } 
     
-    public boolean eliminarCategoriaCodigo(int codigoCategoria){
-        boolean elimino = false;
-        String sql = "Delete from categoria where cod_categoria = " + codigoCategoria;
-        elimino = p.ejecutarDML(sql);
-        return elimino;
-    }    
-    
-    public boolean eliminarCategoriaNombre(String nombreCategoria){
-        boolean elimino = false;
-        String sql = "Delete from categoria where nombre_categoria = '" + nombreCategoria + "'";
-        elimino = p.ejecutarDML(sql);
-        return elimino;
-    }    
-    
-    public boolean actualizarPais(int codigoCategoria,String nombreCategoria){
+    public boolean actualizarFactura(int codigoFactura, float valorFactura, String fechaFactura, int codigoCliente,
+        int codigoEmpleado, int codigoAbono){
         boolean actualizo = false;
         String sql = "Update categoria set "
-                + "nombre_categoria = " + "'"+nombreCategoria +                  
-                "' where cod_categoria = "+codigoCategoria;
+                + "valor_factura = " +valorFactura 
+                + ", fecha_factura = '"+valorFactura  
+                + ", cod_cliente = "+codigoCliente   
+                + ", cod_empleado = "+codigoCliente       
+                + ", cod_abono = "+codigoAbono                   
+                + " where cod_categoria = "+codigoFactura;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }   
 
-    public int contarCategorias(){
+    public int contarFacturas(){
         
         int numero = 0;
-        String sql = "Select count(cod_categoria) num from categoria";
+        String sql = "Select count(cod_factura) num from factura";
         ResultSet res = p.ejecutarConsulta(sql);
         
         try {
@@ -68,19 +60,23 @@ public class ControlFactura {
         return numero;
     }
     
-    public Object[][] consultarCategoriaCodigo(int codigo){
+    public Object[][] consultarFactura(int codigo){
 
-        Object data[][] = new Object[this.contarCategorias()][2];
+        Object data[][] = new Object[this.contarFacturas()][5];
         ResultSet datos = null;
-        String sql = "Select cod_categoria, nombre_categoria from categoria "
-                + "where cod_categoria = "+codigo;
+        String sql = "Select cod_factura, valor_factura, fecha_factura, cod_cliente, cod_empleado, cod_abono"
+                + " from factura where cod_factura = "+codigo;
         datos = p.ejecutarConsulta(sql);
 
         try {
             int i = 0;
             while(datos.next()){
-                data[0][0] = datos.getInt("cod_categoria");
-                data[0][1] = datos.getString("nombre_categoria");
+                data[i][0] = datos.getInt("cod_factura");
+                data[i][1] = datos.getFloat("valor_factura");
+                data[i][2] = datos.getString("fecha_factura");
+                data[i][3] = datos.getInt("cod_cliente");
+                data[i][4] = datos.getInt("cod_empleado");
+                data[i][5] = datos.getInt("cod_abono");
                 i++;
             }
         } catch (SQLException ex) {
@@ -88,31 +84,10 @@ public class ControlFactura {
         }
         return data;
     }     
-      
-    public Object[][] consultarCategoriaNombre(String nombre){
+         
+    public Object[][] consultarFacturas(){
 
-        Object data[][] = new Object[this.contarCategorias()][2];
-        ResultSet datos = null;
-        String sql = "Select cod_categoria, nombre_categoria from categoria "
-                + "where nombre_categoria = '"+nombre+"'";
-        datos = p.ejecutarConsulta(sql);
-
-        try {
-            int i = 0;
-            while(datos.next()){
-                data[0][0] = datos.getInt("cod_categoria");
-                data[0][1] = datos.getString("nombre_categoria");
-                i++;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return data;
-    }
-    
-    public Object[][] consultarCategoria(){
-
-        Object data[][] = new Object[this.contarCategorias()][2];
+        Object data[][] = new Object[this.contarFacturas()][5];
         ResultSet datos = null;
         String sql = "Select * from categoria";
         datos = p.ejecutarConsulta(sql);
@@ -120,8 +95,12 @@ public class ControlFactura {
         try {
             int i = 0;
             while(datos.next()){
-                data[i][0] = datos.getInt("cod_categoria");
-                data[i][1] = datos.getString("nombre_categoria");
+                data[i][0] = datos.getInt("cod_factura");
+                data[i][1] = datos.getFloat("valor_factura");
+                data[i][2] = datos.getString("fecha_factura");
+                data[i][3] = datos.getInt("cod_cliente");
+                data[i][4] = datos.getInt("cod_empleado");
+                data[i][5] = datos.getInt("cod_abono");
                 i++;
             }
         } catch (SQLException ex) {
