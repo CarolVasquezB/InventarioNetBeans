@@ -175,15 +175,14 @@ public class ControlProducto {
 //        }
         
         
-        int aux=cp.contarproductos();
-        System.out.println("el numero de productos es : "+aux);
+//        int aux=cp.contarproductos();
+//        System.out.println("el numero de productos es : "+aux);
+//        
         
         
         
-        //cc.insertarCategoria(10, "Prueba");
-        //cc.eliminarCategoriaNombre("prueba");
-        //Object[][] dato = cc.consultarCategoriaCodigo(2);
-        //System.out.println("Codigo: "+ dato[0][0]+ " Nombre: "+dato[0][1]); 
+       Object[][] dato = cp.consultarproductoCodigo(123);
+        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+"descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "); 
         //Object[][] dato1 = cc.consultarCategoriaNombre("Buso");
         //System.out.println("Codigo: "+ dato1[0][0]+ " Nombre: "+dato1[0][1]); 
 
