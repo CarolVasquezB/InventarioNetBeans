@@ -19,11 +19,13 @@ public class ControlPersona {
     
     Persistencia p = new Persistencia();
     
-    public boolean insertarPersona(int codigoCategoria, String nombreCategoria){
+    public boolean insertarPersona(int codigoPersona, int numDocumento, String nombresPersona, String apellidosPersona,
+            String correoPersona, String fechaNacimiento){
         
         boolean inserto = false;
-        String sql = "Insert into categoria (cod_categoria, nombre_categoria) "
-                + "values ("+codigoCategoria+", '"+nombreCategoria+"')";
+        String sql = "Insert into persona (cod_persona, num_documento, nombres_persona, apellidos_persona,"
+                + "correo_persona, fecha_nac_persona) values ("+codigoPersona+", "+numDocumento+", "
+                + "'"+nombresPersona+"', '"+apellidosPersona+"', '"+correoPersona+"', '"+fechaNacimiento+"')";
         inserto = p.ejecutarDML(sql);
         return inserto;        
     } 

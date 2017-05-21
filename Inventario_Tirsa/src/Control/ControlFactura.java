@@ -23,7 +23,7 @@ public class ControlFactura {
         int codigoEmpleado, int codigoAbono){
         
         boolean inserto = false;
-        String sql = "Insert into categoria (cod_factura, valor_factura, fecha_factura, cod_cliente, cod_empleado, cod_abono) "
+        String sql = "Insert into factura (cod_factura, valor_factura, fecha_factura, cod_cliente, cod_empleado, cod_abono) "
                 + "values ("+codigoFactura+", "+valorFactura+", '"+fechaFactura+"', "+codigoCliente+", "+codigoEmpleado+","+codigoAbono+")";
         inserto = p.ejecutarDML(sql);
         return inserto;        
@@ -32,13 +32,13 @@ public class ControlFactura {
     public boolean actualizarFactura(int codigoFactura, float valorFactura, String fechaFactura, int codigoCliente,
         int codigoEmpleado, int codigoAbono){
         boolean actualizo = false;
-        String sql = "Update categoria set "
+        String sql = "Update factura set "
                 + "valor_factura = " +valorFactura 
                 + ", fecha_factura = '"+valorFactura  
                 + ", cod_cliente = "+codigoCliente   
                 + ", cod_empleado = "+codigoCliente       
                 + ", cod_abono = "+codigoAbono                   
-                + " where cod_categoria = "+codigoFactura;
+                + " where cod_factura = "+codigoFactura;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }   
@@ -89,7 +89,7 @@ public class ControlFactura {
 
         Object data[][] = new Object[this.contarFacturas()][5];
         ResultSet datos = null;
-        String sql = "Select * from categoria";
+        String sql = "Select * from factura";
         datos = p.ejecutarConsulta(sql);
 
         try {
