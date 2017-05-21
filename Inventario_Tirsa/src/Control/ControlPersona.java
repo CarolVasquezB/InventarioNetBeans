@@ -30,25 +30,19 @@ public class ControlPersona {
         return inserto;        
     } 
     
-    public boolean eliminarCategoriaCodigo(int codigoCategoria){
+    public boolean eliminarPersonaDocumento(int documentoPersona){
         boolean elimino = false;
-        String sql = "Delete from categoria where cod_categoria = " + codigoCategoria;
+        String sql = "Delete from persona where num_documento = " + documentoPersona;
         elimino = p.ejecutarDML(sql);
         return elimino;
     }    
     
-    public boolean eliminarCategoriaNombre(String nombreCategoria){
-        boolean elimino = false;
-        String sql = "Delete from categoria where nombre_categoria = '" + nombreCategoria + "'";
-        elimino = p.ejecutarDML(sql);
-        return elimino;
-    }    
-    
-    public boolean actualizarCategoria(int codigoCategoria,String nombreCategoria){
+    public boolean actualizarPersona(int codigoPersona, int numDocumento, String nombresPersona, String apellidosPersona,
+            String correoPersona, String fechaNacimiento){
         boolean actualizo = false;
-        String sql = "Update categoria set "
-                + "nombre_categoria = " + "'"+nombreCategoria +                  
-                "' where cod_categoria = "+codigoCategoria;
+        String sql = "Update persona set "
+                + "num_documento = "+numDocumento+                  
+                " where cod_persona = "+codigoPersona;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }   
