@@ -135,7 +135,7 @@ public class ControlProducto {
 
         Object data[][] = new Object[this.contarproductos()][9];
         ResultSet datos = null;
-        String sql = "Select * from productos";
+        String sql = "Select * from producto";
         datos = p.ejecutarConsulta(sql);
 
         try {
@@ -211,10 +211,12 @@ public class ControlProducto {
 //        }
         
         //Prueba
-//        Object[][] dato = cc.consultarCategoria();        
-//        for (int i = 0; i < cc.contarCategorias(); i++) {
-//            System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);
-//        }
+//        Object[][] dato = cp.consultarProductos();        
+//        for (int i = 0; i < cp.contarproductos(); i++) {
+//                System.out.println("Codigo: "+ dato[i][0]+ " Nombre_producto: "+dato[i][1]+" descripcion: "+dato[i][2]+"valor compra: "+dato[i][3]+" valor venta max: "
+//        +dato[0][4]+" cantidad: "+dato[i][5]+" cod_categoria "+dato[i][6]+" valor venta min: "+dato[i][7]+" fecha compra "+dato[i][8]);
+
+       // }
     }
     
     //nnnn
