@@ -116,8 +116,8 @@ public class ControlAbonos {
         return data;
     }
     
-    public static void main(String[] args) {
-        ControlAbonos ca = new ControlAbonos(); 
+//    public static void main(String[] args) {
+//        ControlAbonos ca = new ControlAbonos(); 
 
 //        boolean inserto=ca.insertarAbono(654,30000);
 //        if (inserto) {
@@ -134,12 +134,6 @@ public class ControlAbonos {
 //        }
 
         
-//       boolean eliminoXnombre=cp.eliminarproductoxNombre("reloj");
-//        if (eliminoXnombre) {
-//            System.out.println("elimino por nombre");
-//        }else{
-//            System.out.println("error...");
-//        }
 //        boolean actualizo=ca.actualizarAbono(654,20000);
 //        if(actualizo){
 //            System.out.println("actualizo...");
@@ -147,31 +141,18 @@ public class ControlAbonos {
 //            System.out.println("error...");
 //        }
         
-        
-//        int aux=cp.contarproductos();
-//        System.out.println("el numero de productos es : "+aux);
 //        
-        
-        
-        
-//       Object[][] dato = cp.consultarproductoCodigo(123);
-//        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
-//        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]); 
+//        int aux=ca.contarAbonos();
+//        System.out.println("el numero de abonos es : "+aux);
 //        
-//Object[][] dato = cp.consultarproductoXNombre("pulsera");
-//        System.out.println("por nombre: ");
-//        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
-//        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]);
-
-//        Object[][] dato = cc.consultarCategoria();        
-//        for (int i = 0; i < cc.contarCategorias(); i++) {
-//            System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);
-//        }
+//        
+ 
         
         //Prueba
-        Object[][] dato = ca.consultarAbonos();        
-        for (int i = 0; i < ca.contarAbonos(); i++) {
-                System.out.println("Codigo abono: "+ dato[i][0]+ " valor : "+dato[i][1]);
-        }
-    }
+//        Object[][] dato = ca.consultarAbonos();        
+//        for (int i = 0; i < ca.contarAbonos(); i++) {
+//                System.out.println("Codigo abono: "+ dato[i][0]+ " valor : "+dato[i][1]);
+//        }
+//    }
+    //}
 }
