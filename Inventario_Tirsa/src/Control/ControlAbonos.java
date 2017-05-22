@@ -9,6 +9,9 @@ package Control;
 import Modelo.Persistencia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,12 +22,12 @@ import java.util.logging.Logger;
 public class ControlAbonos {
  Persistencia p = new Persistencia();
     
-    public boolean insertarAbono(int cod_abono,float valor_abono){
+    public boolean insertarAbono(int cod_abono,float valor_abono,String fecha_abono){
         
         boolean inserto = false;
 
-        String sql = "Insert into abonos(cod_abono,valor_abono "+")"
-                + " values("+cod_abono+","+valor_abono+");";
+        String sql = "Insert into abonos(cod_abono,valor_abono,fecha_abono "+")"
+                + " values("+cod_abono+","+valor_abono+",'"+fecha_abono+"');";
 
         inserto = p.ejecutarDML(sql);
         return inserto;        
@@ -116,16 +119,20 @@ public class ControlAbonos {
         return data;
     }
     
-   // public static void main(String[] args) {
-     //   ControlAbonos ca = new ControlAbonos(); 
+    public static void main(String[] args) {
+        ControlAbonos ca = new ControlAbonos(); 
+        Date date = new Date();
 
-//        boolean inserto=ca.insertarAbono(3454,30000);
-//        if (inserto) {
-//            System.out.println("inserto...");
-//        }
-//        else{
-//            System.out.println("error...");
-//    }
+    DateFormat fecha_hora = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+    String fechayhora=fecha_hora.format(date);
+        boolean inserto=ca.insertarAbono(344,30000,fechayhora);
+        if (inserto) {
+            System.out.println("inserto...");
+        }
+        else{
+            System.out.println("error...");
+    }
+}
     
 //        boolean elimino=ca.eliminarAbono(654);
 //        if (elimino) {
