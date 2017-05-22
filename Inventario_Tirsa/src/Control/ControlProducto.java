@@ -158,8 +158,8 @@ public class ControlProducto {
         return data;
     }
     
-    public static void main(String[] args) {
-        ControlProducto cp = new ControlProducto(); 
+//    public static void main(String[] args) {
+//        ControlProducto cp = new ControlProducto(); 
 
 //        boolean inserto=cp.insertarProducto(123,"reloj","prueba descripcion",150000,170000,10,1,160000,"2017/05/20");
 //        if (inserto) {
@@ -217,7 +217,7 @@ public class ControlProducto {
 //        +dato[0][4]+" cantidad: "+dato[i][5]+" cod_categoria "+dato[i][6]+" valor venta min: "+dato[i][7]+" fecha compra "+dato[i][8]);
 
        // }
-    }
+   // }
     
     //nnnn
 }

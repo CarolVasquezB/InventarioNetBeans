@@ -1,0 +1,177 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Control;
+
+import Modelo.Persistencia;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author DavidJP
+ */
+public class ControlAbonos {
+ Persistencia p = new Persistencia();
+    
+    public boolean insertarAbono(int cod_abono,float valor_abono){
+        
+        boolean inserto = false;
+
+        String sql = "Insert into abonos(cod_abono,valor_abono "+")"
+                + " values("+cod_abono+","+valor_abono+");";
+
+        inserto = p.ejecutarDML(sql);
+        return inserto;        
+    } 
+    
+    public boolean eliminarAbono(int codigo_abono){
+        boolean elimino = false;
+        String sql = "Delete from abonos where cod_abono = " + codigo_abono;
+        elimino = p.ejecutarDML(sql);
+        return elimino;
+    }    
+    
+     
+    
+    public boolean actualizarAbono(int cod_abono,float valor_abono){
+        boolean actualizo = false;
+        float acum_total=0;
+        float valor_abono_antiguo=0;
+        Object[][]data=this.consultarAbono(cod_abono);        
+                  
+                valor_abono_antiguo=(float)data[0][1]; 
+                acum_total=(valor_abono_antiguo+valor_abono);
+                  
+        String sql = "Update abonos set "
+                + "valor_abono = "+acum_total +"where cod_abono = "+cod_abono;
+        actualizo = p.ejecutarDML(sql);
+        return actualizo;
+    }   
+
+    public int contarAbonos(){
+        
+        int numero = 0;
+        String sql = "Select count(cod_abono) num from abonos";
+        ResultSet res = p.ejecutarConsulta(sql);
+        
+        try {
+          
+            while(res.next()){
+                numero = res.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        return numero;
+    }
+    
+    public Object[][] consultarAbono(int codigo){
+
+        Object data[][] = new Object[this.contarAbonos()][2];
+        ResultSet datos = null;
+        String sql = "Select cod_abono,valor_abono from abonos "
+                + "where cod_abono = "+codigo;
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while(datos.next()){
+                data[0][0] = datos.getInt("cod_abono");
+                data[0][1] = datos.getFloat("valor_abono");
+                
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlAbonos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }     
+      
+    
+    
+    public Object[][] consultarAbonos(){
+
+        Object data[][] = new Object[this.contarAbonos()][2];
+        ResultSet datos = null;
+        String sql = "Select * from abonos";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while(datos.next()){
+                data[0][0] = datos.getInt("cod_abono");
+                data[0][1] = datos.getFloat("valor_abono");
+                
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
+    
+    public static void main(String[] args) {
+        ControlAbonos ca = new ControlAbonos(); 
+
+//        boolean inserto=ca.insertarAbono(654,30000);
+//        if (inserto) {
+//            System.out.println("inserto...");
+//        }
+//        else{
+//            System.out.println("error...");
+//    }
+//        boolean elimino=ca.eliminarAbono(654);
+//        if (elimino) {
+//            System.out.println("eliminado");
+//        }else{
+//            System.out.println("error...");
+//        }
+
+        
+//       boolean eliminoXnombre=cp.eliminarproductoxNombre("reloj");
+//        if (eliminoXnombre) {
+//            System.out.println("elimino por nombre");
+//        }else{
+//            System.out.println("error...");
+//        }
+//        boolean actualizo=ca.actualizarAbono(654,20000);
+//        if(actualizo){
+//            System.out.println("actualizo...");
+//        }else{
+//            System.out.println("error...");
+//        }
+        
+        
+//        int aux=cp.contarproductos();
+//        System.out.println("el numero de productos es : "+aux);
+//        
+        
+        
+        
+//       Object[][] dato = cp.consultarproductoCodigo(123);
+//        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
+//        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]); 
+//        
+//Object[][] dato = cp.consultarproductoXNombre("pulsera");
+//        System.out.println("por nombre: ");
+//        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
+//        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]);
+
+//        Object[][] dato = cc.consultarCategoria();        
+//        for (int i = 0; i < cc.contarCategorias(); i++) {
+//            System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);
+//        }
+        
+        //Prueba
+        Object[][] dato = ca.consultarAbonos();        
+        for (int i = 0; i < ca.contarAbonos(); i++) {
+                System.out.println("Codigo abono: "+ dato[i][0]+ " valor : "+dato[i][1]);
+        }
+    }
+}
