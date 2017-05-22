@@ -130,27 +130,34 @@ public class ControlProducto {
         }
         return data;
     }
-    /*
-    public Object[][] consultarCategoria(){
+    
+    public Object[][] consultarProductos(){
 
-        Object data[][] = new Object[this.contarCategorias()][2];
+        Object data[][] = new Object[this.contarproductos()][9];
         ResultSet datos = null;
-        String sql = "Select * from categoria";
+        String sql = "Select * from productos";
         datos = p.ejecutarConsulta(sql);
 
         try {
             int i = 0;
             while(datos.next()){
-                data[i][0] = datos.getInt("cod_categoria");
-                data[i][1] = datos.getString("nombre_categoria");
+                data[i][0] = datos.getInt("cod_producto");
+                data[i][1] = datos.getString("nombre_producto");
+                data[i][2] = datos.getString("descr_producto");
+                data[i][3] = datos.getFloat("valor_compra");
+                data[i][4] = datos.getFloat("valor_venta_max");
+                data[i][5] = datos.getInt("stock_producto");
+                data[i][6] = datos.getInt("cod_categoria");
+                data[i][7] = datos.getFloat("valor_venta_min");
+                data[i][8] = datos.getString("fecha_compra");
                 i++;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
     }
-    */
+    
     public static void main(String[] args) {
         ControlProducto cp = new ControlProducto(); 
 
@@ -193,10 +200,10 @@ public class ControlProducto {
 //        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
 //        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]); 
 //        
-Object[][] dato = cp.consultarproductoXNombre("pulsera");
-        System.out.println("por nombre: ");
-        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
-        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]);
+//Object[][] dato = cp.consultarproductoXNombre("pulsera");
+//        System.out.println("por nombre: ");
+//        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
+//        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]);
 
 //        Object[][] dato = cc.consultarCategoria();        
 //        for (int i = 0; i < cc.contarCategorias(); i++) {
