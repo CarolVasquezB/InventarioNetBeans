@@ -119,20 +119,20 @@ public class ControlAbonos {
         return data;
     }
     
-    public static void main(String[] args) {
-        ControlAbonos ca = new ControlAbonos(); 
-        Date date = new Date();
-
-    DateFormat fecha_hora = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-    String fechayhora=fecha_hora.format(date);
-        boolean inserto=ca.insertarAbono(344,30000,fechayhora);
-        if (inserto) {
-            System.out.println("inserto...");
-        }
-        else{
-            System.out.println("error...");
-    }
-}
+//    public static void main(String[] args) {
+//        ControlAbonos ca = new ControlAbonos(); 
+//        Date date = new Date();
+//
+//    DateFormat fecha_hora = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+//    String fechayhora=fecha_hora.format(date);
+//        boolean inserto=ca.insertarAbono(344,30000,fechayhora);
+//        if (inserto) {
+//            System.out.println("inserto...");
+//        }
+//        else{
+//            System.out.println("error...");
+//    }
+//}
     
 //        boolean elimino=ca.eliminarAbono(654);
 //        if (elimino) {
