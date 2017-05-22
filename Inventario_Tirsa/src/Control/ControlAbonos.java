@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  *
  * @author DavidJP
  */
+//modificado hoy lunes 22 de mayo 2017
 public class ControlAbonos {
  Persistencia p = new Persistencia();
     
