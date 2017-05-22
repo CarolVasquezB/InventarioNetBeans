@@ -66,7 +66,7 @@ public class ControlAbonos {
                 numero = res.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlAbonos.class.getName()).log(Level.SEVERE, null, ex);
         }       
         return numero;
     }
@@ -82,8 +82,8 @@ public class ControlAbonos {
         try {
             int i = 0;
             while(datos.next()){
-                data[0][0] = datos.getInt("cod_abono");
-                data[0][1] = datos.getFloat("valor_abono");
+                data[i][0] = datos.getInt("cod_abono");
+                data[i][1] = datos.getFloat("valor_abono");
                 
                 i++;
             }
@@ -105,27 +105,28 @@ public class ControlAbonos {
         try {
             int i = 0;
             while(datos.next()){
-                data[0][0] = datos.getInt("cod_abono");
-                data[0][1] = datos.getFloat("valor_abono");
+                data[i][0] = datos.getInt("cod_abono");
+                data[i][1] = datos.getFloat("valor_abono");
                 
                 i++;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlAbonos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
     }
     
-//    public static void main(String[] args) {
-//        ControlAbonos ca = new ControlAbonos(); 
+   // public static void main(String[] args) {
+     //   ControlAbonos ca = new ControlAbonos(); 
 
-//        boolean inserto=ca.insertarAbono(654,30000);
+//        boolean inserto=ca.insertarAbono(3454,30000);
 //        if (inserto) {
 //            System.out.println("inserto...");
 //        }
 //        else{
 //            System.out.println("error...");
 //    }
+    
 //        boolean elimino=ca.eliminarAbono(654);
 //        if (elimino) {
 //            System.out.println("eliminado");
@@ -154,5 +155,5 @@ public class ControlAbonos {
 //                System.out.println("Codigo abono: "+ dato[i][0]+ " valor : "+dato[i][1]);
 //        }
 //    }
-    //}
+    
 }
