@@ -15,6 +15,8 @@ import java.util.logging.Logger;
  *
  * @author CarolVasquez
  */
+
+//prueba 
 public class ControlFactura {
     
     Persistencia p = new Persistencia();
