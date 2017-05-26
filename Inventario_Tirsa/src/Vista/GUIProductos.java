@@ -15,80 +15,77 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author 1061792939
  */
-
 public class GUIProductos extends javax.swing.JFrame {
-   ControlProducto cp=new ControlProducto();    
-   ControlCategorias ca=new ControlCategorias();
-    DefaultTableModel dtm; 
+
+    ControlProducto cp = new ControlProducto();
+    ControlCategorias ca = new ControlCategorias();
+    DefaultTableModel dtm;
     DefaultComboBoxModel cbx;
-    
-    
-     String nombresColumnas[]={"Codigo Producto","Nombre","Descripcion","valor Compra","valor VentaMax","Categoria","Sock",
-        "valor VentaMin","Fecha Compra"};
- 
-   /**
-     * 
+
+    String nombresColumnas[] = {"Codigo Producto", "Nombre", "Descripcion", "valor Compra", "valor VentaMax", "Categoria", "Sock",
+        "valor VentaMin", "Fecha Compra"};
+
+    /**
+     *
      * Creates new form GUIProductos
      */
     public GUIProductos() {
-    Object[][]data=cp.consultarProductos();
-    Object[][]categorias=ca.consultarCategoria();
-    
-        int num_categorias=ca.contarCategorias();
-        int i=0;
-       String aux[]=new String[num_categorias];
-          
-         while (i!=num_categorias) { 
-              
-                aux[i]=String.valueOf(categorias[i][1]);
-                
-           i++;
-            
+        Object[][] data = cp.consultarProductos();
+        Object[][] categorias = ca.consultarCategoria();
+
+        int num_categorias = ca.contarCategorias();
+        int i = 0;
+        String aux[] = new String[num_categorias];
+
+        while (i != num_categorias) {
+
+            aux[i] = String.valueOf(categorias[i][1]);
+
+            i++;
+
         }
-           cbx=new DefaultComboBoxModel(aux);
-           
-        //cbxcategoria.setModel();
-                  
-        dtm=new DefaultTableModel(data,nombresColumnas); 
+        cbx = new DefaultComboBoxModel(aux);
+        dtm = new DefaultTableModel(data, nombresColumnas);
         initComponents();
-        
-;    }
-   
-     
+        ;
+    }
+
     /**
      * Creates new form GUIRegion
      */
     public void GUIProductos() {
-        
-        Object[][]data=cp.consultarProductos();
-        dtm=new DefaultTableModel(data,nombresColumnas);  
-        
+
+        Object[][] data = cp.consultarProductos();
+        dtm = new DefaultTableModel(data, nombresColumnas);
+
         initComponents();
-        
-        
+
     }
 
-        public void actualizarTabla(){
-            Object data[][]=cp.consultarProductos();
-            dtm=new DefaultTableModel(data,nombresColumnas);
-            tblproductos.setModel(dtm);
+    public void actualizarTabla() {
+        Object data[][] = cp.consultarProductos();
+        dtm = new DefaultTableModel(data, nombresColumnas);
+        tblproductos.setModel(dtm);
             //validate();
-            //repaint();
-        }
-         public void actualizarTabla(int codigo){
-            Object data[][]=cp.consultarproductoCodigo(codigo);
-            dtm=new DefaultTableModel(data,nombresColumnas);
-            tblproductos.setModel(dtm);
+        //repaint();
+    }
+
+    public void actualizarTabla(int codigo) {
+        Object data[][] = cp.consultarproductoCodigo(codigo);
+        dtm = new DefaultTableModel(data, nombresColumnas);
+        tblproductos.setModel(dtm);
             //validate();
-            //repaint();
-        }
-             public void actualizarTabla(String letra){
-            Object data[][]=cp.consultarproductoXNombre(letra);
-            dtm=new DefaultTableModel(data,nombresColumnas);
-            tblproductos.setModel(dtm);
+        //repaint();
+    }
+
+    public void actualizarTabla(String letra) {
+        Object data[][] = cp.consultarproductoXNombre(letra);
+        dtm = new DefaultTableModel(data, nombresColumnas);
+        tblproductos.setModel(dtm);
             //validate();
-            //repaint();
-        }
+        //repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -359,14 +356,14 @@ public class GUIProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       int cod_producto=Integer.parseInt(txtcodproducto.getText());
-       String nomre_producto=txtnombreProducto.getText();
-       String desc_producto=txtdescripcion.getText();
-       float valor_compra=Float.parseFloat(txtvalorCompra.getText());
-       float valor_ventaMax=Float.parseFloat(txtvalorMax.getText());
-       int stock=Integer.parseInt(txtstock.getText());
-       
-       
+        int cod_producto = Integer.parseInt(txtcodproducto.getText());
+        String nomre_producto = txtnombreProducto.getText();
+        String desc_producto = txtdescripcion.getText();
+        float valor_compra = Float.parseFloat(txtvalorCompra.getText());
+        float valor_ventaMax = Float.parseFloat(txtvalorMax.getText());
+        int stock = Integer.parseInt(txtstock.getText());
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
