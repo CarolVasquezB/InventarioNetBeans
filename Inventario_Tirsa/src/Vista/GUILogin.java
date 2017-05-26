@@ -69,10 +69,10 @@ public class GUILogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 0, 102));
         jLabel5.setText("TIRSA");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 110, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 440, 10));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/fondoLogin.jpg"))); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(650, 440));
