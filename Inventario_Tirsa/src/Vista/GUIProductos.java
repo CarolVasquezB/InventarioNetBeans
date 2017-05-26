@@ -5,7 +5,10 @@
  */
 package Vista;
 
+import Control.ControlCategorias;
 import Control.ControlProducto;
+import javafx.scene.control.ComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,10 +17,14 @@ import javax.swing.table.DefaultTableModel;
  */
 
 public class GUIProductos extends javax.swing.JFrame {
-   ControlProducto cp=new ControlProducto();      
+   ControlProducto cp=new ControlProducto();    
+   ControlCategorias ca=new ControlCategorias();
     DefaultTableModel dtm; 
-     String nombresColumnas[]={"Codigo Producto","Nombre","Descripcion","valor Compra","valor VentaMax","valor VentaMin","Sock",
-        "Categoria","Fecha Compra"};
+    DefaultComboBoxModel cbx;
+    
+    
+     String nombresColumnas[]={"Codigo Producto","Nombre","Descripcion","valor Compra","valor VentaMax","Categoria","Sock",
+        "valor VentaMin","Fecha Compra"};
  
    /**
      * 
@@ -25,7 +32,23 @@ public class GUIProductos extends javax.swing.JFrame {
      */
     public GUIProductos() {
     Object[][]data=cp.consultarProductos();
-        
+    Object[][]categorias=ca.consultarCategoria();
+    
+        int num_categorias=ca.contarCategorias();
+        int i=0;
+       String aux[]=new String[num_categorias];
+          
+         while (i!=num_categorias) { 
+              
+                aux[i]=String.valueOf(categorias[i][1]);
+                
+           i++;
+            
+        }
+           cbx=new DefaultComboBoxModel(aux);
+           
+        //cbxcategoria.setModel();
+                  
         dtm=new DefaultTableModel(data,nombresColumnas); 
         initComponents();
         
@@ -39,7 +62,7 @@ public class GUIProductos extends javax.swing.JFrame {
         
         Object[][]data=cp.consultarProductos();
         dtm=new DefaultTableModel(data,nombresColumnas);  
-              
+        
         initComponents();
         
         
@@ -89,7 +112,7 @@ public class GUIProductos extends javax.swing.JFrame {
         txtnombreProducto = new javax.swing.JTextField();
         txtvalorCompra = new javax.swing.JTextField();
         txtvalorMax = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtstock = new javax.swing.JTextField();
         txtvalorMin = new javax.swing.JTextField();
         cbxcategoria = new javax.swing.JComboBox();
         btnGuardar = new javax.swing.JButton();
@@ -132,7 +155,8 @@ public class GUIProductos extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel10.setText("Fecha Compra");
 
-        cbxcategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxcategoria.setModel(cbx);
+        cbxcategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnGuardar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon("F:\\guardar5.png")); // NOI18N
@@ -173,7 +197,7 @@ public class GUIProductos extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtstock, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -280,7 +304,7 @@ public class GUIProductos extends javax.swing.JFrame {
                                     .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtstock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addGap(66, 66, 66))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -335,7 +359,14 @@ public class GUIProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+       int cod_producto=Integer.parseInt(txtcodproducto.getText());
+       String nomre_producto=txtnombreProducto.getText();
+       String desc_producto=txtdescripcion.getText();
+       float valor_compra=Float.parseFloat(txtvalorCompra.getText());
+       float valor_ventaMax=Float.parseFloat(txtvalorMax.getText());
+       int stock=Integer.parseInt(txtstock.getText());
+       
+       
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
@@ -391,13 +422,13 @@ public class GUIProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JScrollPane jscrollpanel;
     private javax.swing.JTable tblproductos;
     private javax.swing.JTextField txtcodproducto;
     private javax.swing.JTextPane txtdescripcion;
     private com.toedter.calendar.JDateChooser txtfecha;
     private javax.swing.JTextField txtnombreProducto;
+    private javax.swing.JTextField txtstock;
     private javax.swing.JTextField txtvalorCompra;
     private javax.swing.JTextField txtvalorMax;
     private javax.swing.JTextField txtvalorMin;
