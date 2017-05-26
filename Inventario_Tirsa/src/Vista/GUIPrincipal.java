@@ -76,6 +76,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(51, 0, 51));
@@ -94,10 +95,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
         jPanel1.add(txtFactNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 350, -1));
 
+        btnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarCliente.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnBuscarCliente.setForeground(new java.awt.Color(51, 0, 102));
         btnBuscarCliente.setText("Buscar");
-        jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 117, -1, 20));
+        btnBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 80, 30));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,7 +137,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnBuscarProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, -1, -1));
+        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, -1, -1));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
