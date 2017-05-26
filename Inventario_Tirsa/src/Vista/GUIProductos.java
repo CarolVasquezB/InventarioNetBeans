@@ -37,7 +37,7 @@ public class GUIProductos extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtcodproducto = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
@@ -92,15 +92,19 @@ public class GUIProductos extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton1.setText("Guardar");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         jButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton2.setText("Actualizar");
+        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         jButton3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton3.setText("Eliminar");
+        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         jButton4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton4.setText("Consultar");
+        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -152,7 +156,7 @@ public class GUIProductos extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(43, 43, 43)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                                    .addComponent(txtcodproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                     .addComponent(jTextField2))
                                 .addGap(36, 36, 36)
                                 .addComponent(jLabel4)
@@ -168,7 +172,7 @@ public class GUIProductos extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtcodproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -309,12 +313,12 @@ public class GUIProductos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtcodproducto;
     // End of variables declaration//GEN-END:variables
 }
