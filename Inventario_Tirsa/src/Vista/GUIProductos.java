@@ -9,6 +9,7 @@ import Control.ControlCategorias;
 import Control.ControlProducto;
 import javafx.scene.control.ComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -357,12 +358,24 @@ public class GUIProductos extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         int cod_producto = Integer.parseInt(txtcodproducto.getText());
-        String nomre_producto = txtnombreProducto.getText();
+        String nombre_producto = txtnombreProducto.getText();
         String desc_producto = txtdescripcion.getText();
         float valor_compra = Float.parseFloat(txtvalorCompra.getText());
         float valor_ventaMax = Float.parseFloat(txtvalorMax.getText());
         int stock = Integer.parseInt(txtstock.getText());
-
+        
+        Object[][]data=cp.consultarproductoXNombre(cbxcategoria.getSelectedItem().toString());
+        int cod_categoria=Integer.parseInt(String.valueOf(data[0][0]));
+        float valor_ventamin=Float.parseFloat(txtvalorMin.getText());
+        //String fecha=String.valueOf( txtfecha.getDate());
+        
+        boolean inserto=cp.insertarProducto(cod_producto,nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, cod_categoria, valor_ventamin,"");
+        if (inserto) {
+            JOptionPane.showMessageDialog(this,"Guardado Exitosamente!","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+            actualizarTabla();
+        }else{
+        JOptionPane.showMessageDialog(this,"No se Guardado Exitosamente!","Confirmacion",JOptionPane.ERROR_MESSAGE);    
+        }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
