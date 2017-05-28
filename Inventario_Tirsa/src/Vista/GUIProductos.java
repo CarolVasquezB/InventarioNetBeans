@@ -8,12 +8,8 @@ package Vista;
 import Control.ControlCategorias;
 import Control.ControlProducto;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import javafx.scene.control.ComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -91,6 +87,13 @@ public class GUIProductos extends javax.swing.JFrame {
         tblproductos.setModel(dtm);
         //validate();
         //repaint();
+    }
+
+  
+    public int convertir_a_entero(){
+        Object data[][]=ca.consultarCategoriaNombre(cbxcategoria.getSelectedItem().toString());
+        int numero=Integer.parseInt(String.valueOf(data[0][0].toString()));
+        return numero;
     }
 
     /**
@@ -369,23 +372,19 @@ public class GUIProductos extends javax.swing.JFrame {
         float valor_compra = Float.parseFloat(txtvalorCompra.getText());
         float valor_ventaMax = Float.parseFloat(txtvalorMax.getText());
         int stock = Integer.parseInt(txtstock.getText());
-
-        Object[][] data1 = cp.consultarproductoXNombre((String) cbxcategoria.getSelectedItem());
-//       
         float valor_ventamin = Float.parseFloat(txtvalorMin.getText());
-//       String aux=data1[0][6].toString();
-//       int cod=Integer.parseInt(aux);
-        Date date = new Date();
 
+        int codigocategoria=this.convertir_a_entero();
+        Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String fecha = dateFormat.format(txtfecha.getDate());
-       
-        boolean inserto = cp.insertarProducto(cod_producto, nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, 5, valor_ventamin, fecha);
+
+        boolean inserto = cp.insertarProducto(cod_producto, nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, codigocategoria, valor_ventamin, fecha);
         if (inserto) {
             JOptionPane.showMessageDialog(this, "Guardado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
             actualizarTabla();
         } else {
-            JOptionPane.showMessageDialog(this, "No se Guardado Exitosamente!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El registro nose ha guardado!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
