@@ -29,7 +29,7 @@ public class GUIProductos extends javax.swing.JFrame {
     DefaultTableModel dtm;
     DefaultComboBoxModel cbx;
 
-    String nombresColumnas[] = {"Codigo Producto", "Nombre", "Descripcion", "valor Compra", "valor VentaMax", "Categoria", "Sock",
+    String nombresColumnas[] = {"Codigo Producto", "Nombre", "Descripcion", "valor Compra", "valor VentaMax", "Sock", "Categoria",
         "valor VentaMin", "Fecha Compra"};
 
     /**
