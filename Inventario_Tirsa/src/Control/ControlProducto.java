@@ -158,16 +158,16 @@ public class ControlProducto {
         return data;
     }
     
-//    public static void main(String[] args) {
-//        ControlProducto cp = new ControlProducto(); 
+    public static void main(String[] args) {
+        ControlProducto cp = new ControlProducto(); 
 
-//        boolean inserto=cp.insertarProducto(123,"reloj","prueba descripcion",150000,170000,10,1,160000,"2017/05/20");
-//        if (inserto) {
-//            System.out.println("inserto...");
-//        }
-//        else{
-//            System.out.println("error...");
-//    }
+        boolean inserto=cp.insertarProducto(432,"reloj","prueba descripcion",150000,170000,10,1,160000,"2017/05/20");
+        if (inserto) {
+            System.out.println("inserto...");
+        }
+        else{
+            System.out.println("error...");
+    }
 //        boolean elimino=cp.eliminarProducto(123);
 //        if (elimino) {
 //            System.out.println("eliminado");
@@ -200,11 +200,11 @@ public class ControlProducto {
 //        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
 //        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]); 
 //        
-//Object[][] dato = cp.consultarproductoXNombre("pulsera");
-//        System.out.println("por nombre: ");
-//        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
-//        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]);
-
+Object[][] dato = cp.consultarproductoXNombre("pulsera");
+        System.out.println("por nombre: ");
+        System.out.println("Codigo: "+ dato[0][0]+ " Nombre_producto: "+dato[0][1]+" descripcion: "+dato[0][2]+"valor compra: "+dato[0][3]+" valor venta max: "
+        +dato[0][4]+" cantidad: "+dato[0][5]+" cod_categoria "+dato[0][6]+" valor venta min: "+dato[0][7]+" fecha compra "+dato[0][8]);
+}
 //        Object[][] dato = cc.consultarCategoria();        
 //        for (int i = 0; i < cc.contarCategorias(); i++) {
 //            System.out.println("Nombre: "+dato[i][1]+" Codigo: "+dato[i][0]);

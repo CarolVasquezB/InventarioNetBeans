@@ -7,6 +7,12 @@ package Vista;
 
 import Control.ControlCategorias;
 import Control.ControlProducto;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javafx.scene.control.ComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -67,7 +73,7 @@ public class GUIProductos extends javax.swing.JFrame {
         Object data[][] = cp.consultarProductos();
         dtm = new DefaultTableModel(data, nombresColumnas);
         tblproductos.setModel(dtm);
-            //validate();
+        //validate();
         //repaint();
     }
 
@@ -75,7 +81,7 @@ public class GUIProductos extends javax.swing.JFrame {
         Object data[][] = cp.consultarproductoCodigo(codigo);
         dtm = new DefaultTableModel(data, nombresColumnas);
         tblproductos.setModel(dtm);
-            //validate();
+        //validate();
         //repaint();
     }
 
@@ -83,7 +89,7 @@ public class GUIProductos extends javax.swing.JFrame {
         Object data[][] = cp.consultarproductoXNombre(letra);
         dtm = new DefaultTableModel(data, nombresColumnas);
         tblproductos.setModel(dtm);
-            //validate();
+        //validate();
         //repaint();
     }
 
@@ -363,18 +369,23 @@ public class GUIProductos extends javax.swing.JFrame {
         float valor_compra = Float.parseFloat(txtvalorCompra.getText());
         float valor_ventaMax = Float.parseFloat(txtvalorMax.getText());
         int stock = Integer.parseInt(txtstock.getText());
-        
-        Object[][]data=cp.consultarproductoXNombre(cbxcategoria.getSelectedItem().toString());
-        int cod_categoria=Integer.parseInt(String.valueOf(data[0][0]));
-        float valor_ventamin=Float.parseFloat(txtvalorMin.getText());
-        //String fecha=String.valueOf( txtfecha.getDate());
-        
-        boolean inserto=cp.insertarProducto(cod_producto,nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, cod_categoria, valor_ventamin,"");
+
+        Object[][] data1 = cp.consultarproductoXNombre((String) cbxcategoria.getSelectedItem());
+//       
+        float valor_ventamin = Float.parseFloat(txtvalorMin.getText());
+//       String aux=data1[0][6].toString();
+//       int cod=Integer.parseInt(aux);
+        Date date = new Date();
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String fecha = dateFormat.format(txtfecha.getDate());
+       
+        boolean inserto = cp.insertarProducto(cod_producto, nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, 5, valor_ventamin, fecha);
         if (inserto) {
-            JOptionPane.showMessageDialog(this,"Guardado Exitosamente!","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Guardado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
             actualizarTabla();
-        }else{
-        JOptionPane.showMessageDialog(this,"No se Guardado Exitosamente!","Confirmacion",JOptionPane.ERROR_MESSAGE);    
+        } else {
+            JOptionPane.showMessageDialog(this, "No se Guardado Exitosamente!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
