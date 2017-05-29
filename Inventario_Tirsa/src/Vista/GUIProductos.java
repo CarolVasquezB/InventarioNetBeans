@@ -42,7 +42,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
         while (i != num_categorias) {
 
-            aux[i] = String.valueOf(categorias[i][1]);
+            aux[i] = String.valueOf(categorias[i][0]+"-"+categorias[i][1]);
 
             i++;
 
@@ -97,9 +97,13 @@ public class GUIProductos extends javax.swing.JFrame {
             //repaint();
         }
 
-    public int convertir_a_entero() {
-        Object data[][] = ca.consultarCategoriaNombre(cbxcategoria.getSelectedItem().toString());
-        int numero = Integer.parseInt(String.valueOf(data[0][0].toString()));
+    public int Conseguir_cod_categoria() {
+        int aux=cbxcategoria.getSelectedItem().toString().indexOf("-");
+        Object data[][] = ca.consultarCategoriaNombre(cbxcategoria.getSelectedItem().toString().substring(aux+1,cbxcategoria.getSelectedItem().toString().length()));
+        ;
+       
+       String cadena=String.valueOf(cbxcategoria.getSelectedItem().toString().substring(0, aux));
+        int numero = Integer.parseInt(cadena);
         return numero;
     }
     public void limpiar(){
@@ -170,7 +174,6 @@ public class GUIProductos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
@@ -357,17 +360,14 @@ public class GUIProductos extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtvalorMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel9))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtvalorMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtvalorMin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(11, 11, 11)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtstock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(txtstock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,7 +405,7 @@ public class GUIProductos extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jscrollpanel, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE))
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -440,7 +440,7 @@ public class GUIProductos extends javax.swing.JFrame {
         int stock = Integer.parseInt(txtstock.getText());
         float valor_ventamin = Float.parseFloat(txtvalorMin.getText());
 
-        int codigocategoria = this.convertir_a_entero();
+        int codigocategoria = this.Conseguir_cod_categoria();
        
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
          String fecha="";
@@ -467,7 +467,7 @@ public class GUIProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
-        
+        if(validar_ingreso_insercion()){
         int cod_producto = Integer.parseInt(txtcodproducto.getText());
         String nombre_producto = txtnombreProducto.getText();
         String desc_producto = txtdescripcion.getText();
@@ -476,7 +476,7 @@ public class GUIProductos extends javax.swing.JFrame {
         int stock = Integer.parseInt(txtstock.getText());
         float valor_ventamin = Float.parseFloat(txtvalorMin.getText());
 
-        int codigocategoria = this.convertir_a_entero();
+        int codigocategoria = this.Conseguir_cod_categoria();
        
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String fecha="";
@@ -492,7 +492,10 @@ public class GUIProductos extends javax.swing.JFrame {
             actualizarTabla();
             limpiar();
         } else {
-            JOptionPane.showMessageDialog(this, "El registro no se ha NO se actualizo Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El registro NO se actualizo Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+        }
+        }else{
+            JOptionPane.showMessageDialog(this,"Consulta primero la informacion ingresando el codigo del producto!","Advertencia",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnactualizarActionPerformed
 
