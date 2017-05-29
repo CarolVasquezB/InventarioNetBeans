@@ -111,6 +111,26 @@ public class ControlCategorias {
         return data;
     }
     
+    public Object[][] consultarCategoriaLetras(String letras){
+
+        Object data[][] = new Object[this.contarCategorias()][2];
+        ResultSet datos = null;
+        String sql = "Select cod_categoria, nombre_categoria from categoria "
+                + "where nombre_categoria like '"+letras+"'%";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while(datos.next()){
+                data[0][0] = datos.getInt("cod_categoria");
+                data[0][1] = datos.getString("nombre_categoria");
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
     public Object[][] consultarCategoria(){
 
         Object data[][] = new Object[this.contarCategorias()][2];
