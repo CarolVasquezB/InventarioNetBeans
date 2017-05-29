@@ -74,7 +74,7 @@ public class GUILogin extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 440, 10));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/fondoLogin.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/fondoLogin.jpg"))); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(650, 440));
         jLabel3.setMinimumSize(new java.awt.Dimension(650, 440));
         jLabel3.setPreferredSize(new java.awt.Dimension(650, 440));

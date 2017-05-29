@@ -58,7 +58,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFacturacion = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        btnInventario = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -205,9 +205,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jMenuBar1.add(jMenu2);
 
-        jMenu4.setText("Inventario");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuBar1.add(jMenu4);
+        btnInventario.setText("Inventario");
+        btnInventario.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        btnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInventarioMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(btnInventario);
 
         jMenu5.setText("Reportes");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -260,6 +265,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenu7MouseClicked
 
+    private void btnInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInventarioMouseClicked
+        GUIProductos gp=new GUIProductos();
+        this.setVisible(false);
+        gp.setVisible(true);
+    }//GEN-LAST:event_btnInventarioMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -298,6 +309,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProducto;
+    private javax.swing.JMenu btnInventario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -308,7 +320,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;

@@ -173,6 +173,7 @@ public class GUIProductos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jscrollpanel = new javax.swing.JScrollPane();
         tblproductos = new javax.swing.JTable();
+        btnvolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 600));
@@ -400,27 +401,43 @@ public class GUIProductos extends javax.swing.JFrame {
         tblproductos.setModel(dtm);
         jscrollpanel.setViewportView(tblproductos);
 
+        btnvolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnvolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/arrow_left.png"))); // NOI18N
+        btnvolver.setText("Volver");
+        btnvolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jscrollpanel, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(156, 156, 156))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnvolver, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(156, 156, 156))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jscrollpanel, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 747, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(btnvolver, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jscrollpanel, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
@@ -579,6 +596,12 @@ public class GUIProductos extends javax.swing.JFrame {
         actualizarTabla();
     }//GEN-LAST:event_btntodoActionPerformed
 
+    private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
+       GUIPrincipal gpr=new GUIPrincipal();
+       this.setVisible(false);
+       gpr.setVisible(true);
+    }//GEN-LAST:event_btnvolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -620,6 +643,7 @@ public class GUIProductos extends javax.swing.JFrame {
     private javax.swing.JButton btnconsultar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btntodo;
+    private javax.swing.JButton btnvolver;
     private javax.swing.JComboBox cbxcategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
