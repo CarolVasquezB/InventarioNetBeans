@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Control.ControlEmpleado;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author CarolVasquez
@@ -33,7 +36,7 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         txtUsuarioLogin = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         PswContraseñaLogin = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,18 +59,40 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
         getContentPane().add(PswContraseñaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 120, -1));
 
-        jButton1.setBackground(new java.awt.Color(102, 0, 102));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(102, 0, 102));
-        jButton1.setText("Entrar");
-        jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
+        btnEntrar.setBackground(new java.awt.Color(102, 0, 102));
+        btnEntrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(102, 0, 102));
+        btnEntrar.setText("Entrar");
+        btnEntrar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/FondoLogin.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        ControlEmpleado ce = new ControlEmpleado();        
+        Object dato[][] = ce.consultarEmpleadoLogin(txtUsuarioLogin.getText());
+        if(dato[0][0]==null){
+            JOptionPane.showMessageDialog(this, "El usuario no existe");
+        }else{
+            
+            if(dato[0][1]==PswContraseñaLogin.getText()){
+                GUIPrincipal facturacion = new GUIPrincipal();
+                facturacion.setVisible(true);
+                this.setVisible(false);    
+            }else{
+                JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");               
+            }
+        }
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,7 +131,7 @@ public class GUILoginUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PswContraseñaLogin;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

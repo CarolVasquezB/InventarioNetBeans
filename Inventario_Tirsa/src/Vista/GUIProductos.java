@@ -156,7 +156,6 @@ public class GUIProductos extends javax.swing.JFrame {
         btnactualizar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         btnconsultar = new javax.swing.JButton();
-        txtfecha = new com.toedter.calendar.JDateChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtdescripcion = new javax.swing.JTextPane();
         btntodo = new javax.swing.JButton();
@@ -314,13 +313,10 @@ public class GUIProductos extends javax.swing.JFrame {
                                 .addComponent(btnactualizar))
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btneliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btntodo)))
-                        .addGap(56, 56, 56))))
+                        .addComponent(btneliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btntodo)
+                        .addGap(68, 68, 68))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,9 +324,7 @@ public class GUIProductos extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(164, 164, 164)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)))
+                        .addComponent(jLabel10))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -652,7 +646,6 @@ public class GUIProductos extends javax.swing.JFrame {
     private javax.swing.JTable tblproductos;
     private javax.swing.JTextField txtcodproducto;
     private javax.swing.JTextPane txtdescripcion;
-    private com.toedter.calendar.JDateChooser txtfecha;
     private javax.swing.JTextField txtnombreProducto;
     private javax.swing.JTextField txtstock;
     private javax.swing.JTextField txtvalorCompra;

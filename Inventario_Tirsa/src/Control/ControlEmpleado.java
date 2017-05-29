@@ -6,10 +6,12 @@
 package Control;
 
 import Modelo.Persistencia;
+import Vista.GUIPrincipal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,7 +83,28 @@ public class ControlEmpleado {
         return data;
     }     
     
-    public Object[][] consultarCategoria(){
+    public Object[][] consultarEmpleadoLogin(String login){
+
+        Object data[][] = new Object[this.contarEmpleados()][2];
+        ResultSet datos = null;
+        String sql = "Select login_empleado, password_empleado from empleado "
+                + "where login_empleado = "+login;
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while(datos.next()){
+                data[i][0] = datos.getString("login_empleado");
+                data[i][1] = datos.getString("password_empleado");                
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }  
+    
+    public Object[][] consultarEmpleado(){
 
         Object data[][] = new Object[this.contarEmpleados()][3];
         ResultSet datos = null;
@@ -101,4 +124,12 @@ public class ControlEmpleado {
         }
         return data;
     }    
+      
+    public static void main(String[] args) {
+        ControlEmpleado ce = new ControlEmpleado();        
+        Object dato[][] = ce.consultarEmpleadoLogin("carolvasquezb");
+        if(dato[0][0]==null){
+            System.out.println("El usuario no existe");
+        }         
+    }
 }
