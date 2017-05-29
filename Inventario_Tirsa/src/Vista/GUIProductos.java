@@ -42,7 +42,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
         while (i != num_categorias) {
 
-            aux[i] = String.valueOf(categorias[i][0]+"-"+categorias[i][1]);
+            aux[i] = String.valueOf(categorias[i][0] + "-" + categorias[i][1]);
 
             i++;
 
@@ -81,32 +81,32 @@ public class GUIProductos extends javax.swing.JFrame {
         //repaint();
     }
 
-   
-        public void actualizarTabla(String letras){
-            Object data[][]=cp.consultarProductos(letras);
-            dtm=new DefaultTableModel(data,nombresColumnas);
-            tblproductos.setModel(dtm);
+    public void actualizarTabla(String letras) {
+        Object data[][] = cp.consultarProductos(letras);
+        dtm = new DefaultTableModel(data, nombresColumnas);
+        tblproductos.setModel(dtm);
             //validate();
-            //repaint();
-        }
-         public void actualizarTabla_codigo(int numeros){
-            Object data[][]=cp.consultarProductos(numeros);
-            dtm=new DefaultTableModel(data,nombresColumnas);
-            tblproductos.setModel(dtm);
+        //repaint();
+    }
+
+    public void actualizarTabla_codigo(int numeros) {
+        Object data[][] = cp.consultarProductos(numeros);
+        dtm = new DefaultTableModel(data, nombresColumnas);
+        tblproductos.setModel(dtm);
             //validate();
-            //repaint();
-        }
+        //repaint();
+    }
 
     public int Conseguir_cod_categoria() {
-        int aux=cbxcategoria.getSelectedItem().toString().indexOf("-");
-        Object data[][] = ca.consultarCategoriaNombre(cbxcategoria.getSelectedItem().toString().substring(aux+1,cbxcategoria.getSelectedItem().toString().length()));
-        ;
-       
-       String cadena=String.valueOf(cbxcategoria.getSelectedItem().toString().substring(0, aux));
+        int aux = cbxcategoria.getSelectedItem().toString().indexOf("-");
+        Object data[][] = ca.consultarCategoriaNombre(cbxcategoria.getSelectedItem().toString().substring(aux + 1, cbxcategoria.getSelectedItem().toString().length()));;
+
+        String cadena = String.valueOf(cbxcategoria.getSelectedItem().toString().substring(0, aux));
         int numero = Integer.parseInt(cadena);
         return numero;
     }
-    public void limpiar(){
+
+    public void limpiar() {
         txtcodproducto.setText("");
         txtnombreProducto.setText("");
         txtdescripcion.setText("");
@@ -117,22 +117,25 @@ public class GUIProductos extends javax.swing.JFrame {
         txtstock.setText("");
         cbxcategoria.setSelectedIndex(0);
     }
-   public boolean validar_ingreso_insercion(){
-       boolean bandera=false;
-        if(!txtcodproducto.getText().isEmpty() || !txtnombreProducto.getText().isEmpty() || !txtvalorCompra.getText().isEmpty() || !txtvalorMax.getText().isEmpty() || !txtstock.getText().isEmpty() || !txtvalorMin.getText().isEmpty()){
-          
-            bandera=true; 
-           
+
+    public boolean validar_ingreso_insercion() {
+        boolean bandera = false;
+        if (!txtcodproducto.getText().isEmpty() && !txtnombreProducto.getText().isEmpty() && !txtvalorCompra.getText().isEmpty() && !txtvalorMax.getText().isEmpty() && !txtstock.getText().isEmpty() && !txtvalorMin.getText().isEmpty()) {
+
+            bandera = true;
+
         }
         return bandera;
     }
-  public boolean validar_ingreso_consulta(){
-      boolean bandera=false;
-      if((!txtnombreProducto.getText().isEmpty() && txtcodproducto.getText().isEmpty()) ||(txtnombreProducto.getText().isEmpty() && !txtcodproducto.getText().isEmpty())){
-          bandera=true;
-      }
-      return bandera;
-  }
+
+    public boolean validar_ingreso_consulta() {
+        boolean bandera = false;
+        if ((!txtnombreProducto.getText().isEmpty() && txtcodproducto.getText().isEmpty()) || (txtnombreProducto.getText().isEmpty() && !txtcodproducto.getText().isEmpty())) {
+            bandera = true;
+        }
+        return bandera;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -428,129 +431,152 @@ public class GUIProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if(validar_ingreso_insercion()){
-        int cod_producto = Integer.parseInt(txtcodproducto.getText());
-        String nombre_producto = txtnombreProducto.getText();
-        String desc_producto="";
-        if(!txtdescripcion.getText().isEmpty()){
-        desc_producto = txtdescripcion.getText();
-        }
-        float valor_compra = Float.parseFloat(txtvalorCompra.getText());
-        float valor_ventaMax = Float.parseFloat(txtvalorMax.getText());
-        int stock = Integer.parseInt(txtstock.getText());
-        float valor_ventamin = Float.parseFloat(txtvalorMin.getText());
+        if (validar_ingreso_insercion()) {
+            int cod_producto = Integer.parseInt(txtcodproducto.getText());
+            String nombre_producto = txtnombreProducto.getText();
+            String desc_producto = "";
+            if (!txtdescripcion.getText().isEmpty()) {
+                desc_producto = txtdescripcion.getText();
+            }
+            float valor_compra = Float.parseFloat(txtvalorCompra.getText());
+            float valor_ventaMax = Float.parseFloat(txtvalorMax.getText());
+            int stock = Integer.parseInt(txtstock.getText());
+            float valor_ventamin = Float.parseFloat(txtvalorMin.getText());
 
-        int codigocategoria = this.Conseguir_cod_categoria();
-       
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-         String fecha="";
-        if(txtfecha.getDate()!=null){
-            fecha = dateFormat.format(txtfecha.getDate());
-        }else{
-            JOptionPane.showMessageDialog(this,"Ingrese la fecha compra!","Advertencia",JOptionPane.WARNING_MESSAGE);
-        }
-        
+            int codigocategoria = this.Conseguir_cod_categoria();
 
-        boolean inserto = cp.insertarProducto(cod_producto, nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, codigocategoria, valor_ventamin, fecha);
-        if (inserto) {
-            JOptionPane.showMessageDialog(this, "Guardado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
-            actualizarTabla();
-            limpiar();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            String fecha = "";
+            if (txtfecha.getDate() != null) {
+                fecha = dateFormat.format(txtfecha.getDate());
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingrese la fecha compra!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+
+            boolean inserto = cp.insertarProducto(cod_producto, nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, codigocategoria, valor_ventamin, fecha);
+            if (inserto) {
+                JOptionPane.showMessageDialog(this, "Guardado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+                actualizarTabla();
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(this, "El registro NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "El registro NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
-        }
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Por favor ingrese los datos que son obligatorios (*)!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor ingrese los datos que son obligatorios (*)!", "Confirmacion", JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
-        if(validar_ingreso_insercion()){
-        int cod_producto = Integer.parseInt(txtcodproducto.getText());
-        String nombre_producto = txtnombreProducto.getText();
-        String desc_producto = txtdescripcion.getText();
-        float valor_compra = Float.parseFloat(txtvalorCompra.getText());
-        float valor_ventaMax = Float.parseFloat(txtvalorMax.getText());
-        int stock = Integer.parseInt(txtstock.getText());
-        float valor_ventamin = Float.parseFloat(txtvalorMin.getText());
+        if (validar_ingreso_insercion()) {
+            
+            if (txtnombreProducto.getText().isEmpty() || txtcodproducto.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Consulta y luego actualiza los campos");
+            } else {
+                int cod_producto = Integer.parseInt(txtcodproducto.getText());
+                String nombre_producto = txtnombreProducto.getText();
+                String desc_producto = txtdescripcion.getText();
+                float valor_compra = Float.parseFloat(txtvalorCompra.getText());
+                float valor_ventaMax = Float.parseFloat(txtvalorMax.getText());
+                int stock = Integer.parseInt(txtstock.getText());
+                float valor_ventamin = Float.parseFloat(txtvalorMin.getText());
 
-        int codigocategoria = this.Conseguir_cod_categoria();
-       
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        String fecha="";
-        
-        if(txtfecha.getDate()!=null){
-            fecha = dateFormat.format(txtfecha.getDate());
-        }else{
-            JOptionPane.showMessageDialog(this,"Ingrese la fecha compra!","Advertencia",JOptionPane.WARNING_MESSAGE);
-        }
-        boolean actualizo = cp.actualizarProducto(cod_producto, nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, codigocategoria, valor_ventamin, fecha);
-        if (actualizo) {
-            JOptionPane.showMessageDialog(this, "Se ha actualizado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
-            actualizarTabla();
-            limpiar();
+                int codigocategoria = this.Conseguir_cod_categoria();
+
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                String fecha = "";
+
+                if (txtfecha.getDate() != null) {
+                    fecha = dateFormat.format(txtfecha.getDate());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ingrese la fecha compra!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+                boolean actualizo = cp.actualizarProducto(cod_producto, nombre_producto, desc_producto, valor_compra, valor_ventaMax, stock, codigocategoria, valor_ventamin, fecha);
+                if (actualizo) {
+                    JOptionPane.showMessageDialog(this, "Se ha actualizado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+                    actualizarTabla();
+                    limpiar();
+                } else {
+                    JOptionPane.showMessageDialog(this, "El registro NO se actualizo Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "El registro NO se actualizo Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
-        }
-        }else{
-            JOptionPane.showMessageDialog(this,"Consulta primero la informacion ingresando el codigo del producto!","Advertencia",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Consulta primero la informacion ingresando el codigo del producto!", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnactualizarActionPerformed
 
     private void btnconsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultarActionPerformed
-        if (validar_ingreso_consulta()) {        
+        if (validar_ingreso_consulta()) {
             Object data[][];
-        
-        if(!txtnombreProducto.getText().isEmpty() && txtcodproducto.getText().isEmpty()){
-        data= cp.consultarproductoXNombre(txtnombreProducto.getText());
-        }else{
-           data = cp.consultarproductoCodigo(Integer.parseInt(txtcodproducto.getText())); 
-        }
-        if (data[0][0] != null) {
-            txtcodproducto.setText(data[0][0].toString());
-            txtnombreProducto.setText(data[0][1].toString());
-            txtdescripcion.setText(data[0][2].toString());
-            txtvalorCompra.setText(data[0][3].toString());
-            txtvalorMax.setText(data[0][4].toString());
-            txtstock.setText(data[0][5].toString());
-            Object data_consulta[][] = ca.consultarCategoriaCodigo(Integer.parseInt(data[0][6].toString()));
-            cbxcategoria.setSelectedItem(data_consulta[0][1].toString());
-            txtvalorMin.setText(data[0][7].toString());
-                    
-                     
-            
-        }else{
-            JOptionPane.showMessageDialog(this,"No se Encontraron registros!","Confirmacion",JOptionPane.ERROR_MESSAGE);
-        }
-        }else{
-            JOptionPane.showMessageDialog(this,"Ingrese el codigo o nombre del Producto","Advertencia",JOptionPane.WARNING_MESSAGE);
+
+            if (!txtnombreProducto.getText().isEmpty() && txtcodproducto.getText().isEmpty()) {
+                data = cp.consultarproductoXNombre(txtnombreProducto.getText());
+            } else {
+                data = cp.consultarproductoCodigo(Integer.parseInt(txtcodproducto.getText()));
+            }
+            if (data[0][0] != null) {
+                txtcodproducto.setText(data[0][0].toString());
+                txtnombreProducto.setText(data[0][1].toString());
+                txtdescripcion.setText(data[0][2].toString());
+                txtvalorCompra.setText(data[0][3].toString());
+                txtvalorMax.setText(data[0][4].toString());
+                txtstock.setText(data[0][5].toString());
+               
+                
+                Object data_consulta[][] = ca.consultarCategoriaCodigo(Integer.parseInt(String.valueOf(data[0][6].toString())));
+                cbxcategoria.setSelectedItem(data_consulta[0][0].toString() + "-" + data_consulta[0][1].toString());
+                txtvalorMin.setText(data[0][7].toString());
+
+            } else {
+                JOptionPane.showMessageDialog(this, "No se Encontraron registros!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese el codigo o nombre del Producto", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnconsultarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-        boolean elimino=cp.eliminarProducto(Integer.parseInt(txtcodproducto.getText()));
-        if (elimino) {
-            JOptionPane.showMessageDialog(this,"El registro se ha eliminado correctamente!","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
-            actualizarTabla();
-        }else{
-            JOptionPane.showMessageDialog(this,"El registro no se Encontro!","Advertencia!",JOptionPane.ERROR_MESSAGE);
+        if (validar_ingreso_consulta()) {
+
+            if (!txtnombreProducto.getText().isEmpty() && txtcodproducto.getText().isEmpty()) {
+                if (cp.eliminarproductoxNombre(txtnombreProducto.getText())) {
+                    actualizarTabla();
+
+                    int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar el registro del producto: " + txtnombreProducto.getText(), "Confirmacion", JOptionPane.WARNING_MESSAGE);
+                    if (res == JOptionPane.YES_OPTION) {
+
+                        JOptionPane.showMessageDialog(this, "Eliminado!", "confirmacion!", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "NO se encontro el registro!", "confirmacion!", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else if (cp.eliminarProducto(Integer.parseInt(txtcodproducto.getText()))) {
+                int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar el registro del producto: " + txtcodproducto.getText(), "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+                if (res == JOptionPane.YES_OPTION) {
+
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "NO se encontro el registro!", "confirmacion!", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el Nombre o Codigo del producto", "Advertencia!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void txtnombreProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreProductoKeyReleased
-        String letra=txtnombreProducto.getText();
+        String letra = txtnombreProducto.getText();
         actualizarTabla(letra);
     }//GEN-LAST:event_txtnombreProductoKeyReleased
 
     private void txtcodproductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodproductoKeyReleased
-        int numero=Integer.parseInt(txtcodproducto.getText());
+        int numero = Integer.parseInt(txtcodproducto.getText());
         actualizarTabla_codigo(numero);
     }//GEN-LAST:event_txtcodproductoKeyReleased
 
     private void btntodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntodoActionPerformed
-     actualizarTabla();
+        actualizarTabla();
     }//GEN-LAST:event_btntodoActionPerformed
 
     /**
