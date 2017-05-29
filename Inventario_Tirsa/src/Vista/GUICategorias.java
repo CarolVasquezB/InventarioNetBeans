@@ -18,27 +18,35 @@ public class GUICategorias extends javax.swing.JFrame {
 
     ControlCategorias ca = new ControlCategorias();
     DefaultTableModel dtm;
-    
 
-    String nombresColumnas[] = {"codigo Categoria","nombre Categoria"};
+    String nombresColumnas[] = {"codigo Categoria", "nombre Categoria"};
 
     /**
      * Creates new form GUICategorias
      */
     public GUICategorias() {
-        
-        Object[][] categorias = ca.consultarCategoria(); 
+
+        Object[][] categorias = ca.consultarCategoria();
         dtm = new DefaultTableModel(categorias, nombresColumnas);
         initComponents();
     }
 
-   public void actualizarTabla() {
+    public void actualizarTabla() {
         Object data[][] = ca.consultarCategoria();
         dtm = new DefaultTableModel(data, nombresColumnas);
         tblcategorias.setModel(dtm);
         //validate();
         //repaint();
     }
+
+    public void actualizarTabla(int codigo) {
+        Object data[][] = ca.consultarCategoriaCodigo(codigo);
+        dtm = new DefaultTableModel(data, nombresColumnas);
+        tblcategorias.setModel(dtm);
+        //validate();
+        //repaint();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,12 +63,20 @@ public class GUICategorias extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblcategorias = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        btnvolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(734, 430));
         setMinimumSize(new java.awt.Dimension(734, 430));
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Informacion Categorias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(0, 102, 204))); // NOI18N
+
+        txtcod_categoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtcod_categoriaKeyReleased(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel1.setText("Codigo Categoria");
@@ -78,9 +94,19 @@ public class GUICategorias extends javax.swing.JFrame {
 
         btnconsultar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnconsultar.setText("Consultar");
+        btnconsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnconsultarActionPerformed(evt);
+            }
+        });
 
         btnactualizar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnactualizar.setText("Actualizar");
+        btnactualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactualizarActionPerformed(evt);
+            }
+        });
 
         btneliminar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btneliminar.setText("Eliminar");
@@ -138,6 +164,14 @@ public class GUICategorias extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 204));
         jLabel3.setText("Administracion categorias");
 
+        btnvolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/arrow_left.png"))); // NOI18N
+        btnvolver.setText("Volver");
+        btnvolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,24 +179,25 @@ public class GUICategorias extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(150, 150, 150))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnvolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(btnvolver, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .addGap(15, 15, 15))
         );
 
@@ -170,15 +205,64 @@ public class GUICategorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-     int cod_categoria=Integer.parseInt(txtcod_categoria.getText());
-     String nom_categoria=txtnombrecategoria.getText();
-     if(ca.insertarCategoria(cod_categoria, nom_categoria)){
-         JOptionPane.showMessageDialog(this,"Guardado correctamente!","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
-         actualizarTabla();
-     }else{
-               JOptionPane.showMessageDialog(this,"No se pudo Guardar!\nRevisa la Informacion Ingresada","Confirmacion",JOptionPane.ERROR_MESSAGE);  
-     }
+        if (!txtcod_categoria.getText().isEmpty() && !txtnombrecategoria.getText().isEmpty()) {
+            int cod_categoria = Integer.parseInt(txtcod_categoria.getText());
+            String nom_categoria = txtnombrecategoria.getText();
+            if (ca.insertarCategoria(cod_categoria, nom_categoria)) {
+                JOptionPane.showMessageDialog(this, "Guardado correctamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+                actualizarTabla();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo Guardar!\nRevisa la Informacion Ingresada", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar Codigo y Nombre de la Categoria!", "Advertencia",JOptionPane.WARNING_MESSAGE);
+
+        }
     }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void btnconsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultarActionPerformed
+        if (!txtcod_categoria.getText().isEmpty()) {
+            int cod_categoria = Integer.parseInt(txtcod_categoria.getText());
+            Object[][] data = ca.consultarCategoriaCodigo(cod_categoria);
+            if (data[0][0] != null) {
+                txtnombrecategoria.setText(data[0][1].toString());
+
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontro el registro", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                txtnombrecategoria.setText("");
+                txtcod_categoria.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el codigo de la Categoria!","Error",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnconsultarActionPerformed
+
+    private void txtcod_categoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcod_categoriaKeyReleased
+        int numero = Integer.parseInt(txtcod_categoria.getText());
+        actualizarTabla(numero);
+    }//GEN-LAST:event_txtcod_categoriaKeyReleased
+
+    private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
+       GUIPrincipal gpr=new GUIPrincipal();
+        this.setVisible(false);
+       gpr.setVisible(true);
+       
+    }//GEN-LAST:event_btnvolverActionPerformed
+
+    private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
+        if (!txtcod_categoria.getText().isEmpty() && !txtnombrecategoria.getText().isEmpty()) {
+            int cod_categoria = Integer.parseInt(txtcod_categoria.getText());
+            String nom_categoria = txtnombrecategoria.getText();
+        if(ca.actualizarCategoria(cod_categoria, nom_categoria)){
+        JOptionPane.showMessageDialog(this,"Se actulizo el registro correctamente!","Informacion",JOptionPane.INFORMATION_MESSAGE);
+        actualizarTabla();
+        }else{
+        JOptionPane.showMessageDialog(this,"No se Encontro el Registro! "+cod_categoria,"Error!",JOptionPane.ERROR_MESSAGE);    
+        }
+        }else{
+            JOptionPane.showMessageDialog(this,"Debe Consultar la Informacion de la Categoria! ","Error!",JOptionPane.WARNING_MESSAGE);    
+        }
+    }//GEN-LAST:event_btnactualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,6 +304,7 @@ public class GUICategorias extends javax.swing.JFrame {
     private javax.swing.JButton btnconsultar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnvolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

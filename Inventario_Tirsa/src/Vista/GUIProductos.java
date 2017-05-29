@@ -159,6 +159,7 @@ public class GUIProductos extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtdescripcion = new javax.swing.JTextPane();
         btntodo = new javax.swing.JButton();
+        txtfecha = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jscrollpanel = new javax.swing.JScrollPane();
         tblproductos = new javax.swing.JTable();
@@ -312,19 +313,21 @@ public class GUIProductos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnactualizar))
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btneliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btntodo)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btneliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btntodo))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(68, 68, 68))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel10))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +366,12 @@ public class GUIProductos extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cbxcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))))))
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jLabel10)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -646,6 +654,7 @@ public class GUIProductos extends javax.swing.JFrame {
     private javax.swing.JTable tblproductos;
     private javax.swing.JTextField txtcodproducto;
     private javax.swing.JTextPane txtdescripcion;
+    private com.toedter.calendar.JDateChooser txtfecha;
     private javax.swing.JTextField txtnombreProducto;
     private javax.swing.JTextField txtstock;
     private javax.swing.JTextField txtvalorCompra;

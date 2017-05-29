@@ -228,9 +228,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu6.add(jMenuItem2);
 
         btncategorias.setText("Categorías");
-        btncategorias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btncategoriasMouseClicked(evt);
+        btncategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncategoriasActionPerformed(evt);
             }
         });
         jMenu6.add(btncategorias);
@@ -276,9 +276,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         gp.setVisible(true);
     }//GEN-LAST:event_btnInventarioMouseClicked
 
-    private void btncategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncategoriasMouseClicked
-        
-    }//GEN-LAST:event_btncategoriasMouseClicked
+    private void btncategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncategoriasActionPerformed
+        GUICategorias gc=new GUICategorias();
+        this.setVisible(false);
+        gc.setVisible(true);
+    }//GEN-LAST:event_btncategoriasActionPerformed
 
     /**
      * @param args the command line arguments
