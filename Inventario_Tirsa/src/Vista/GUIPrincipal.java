@@ -63,7 +63,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        btncategorias = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
 
         jMenu3.setText("jMenu3");
@@ -227,8 +227,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuItem2.setText("Empleados");
         jMenu6.add(jMenuItem2);
 
-        jMenuItem3.setText("Categorías");
-        jMenu6.add(jMenuItem3);
+        btncategorias.setText("Categorías");
+        btncategorias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncategoriasMouseClicked(evt);
+            }
+        });
+        jMenu6.add(btncategorias);
 
         jMenuBar1.add(jMenu6);
 
@@ -271,6 +276,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         gp.setVisible(true);
     }//GEN-LAST:event_btnInventarioMouseClicked
 
+    private void btncategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncategoriasMouseClicked
+        
+    }//GEN-LAST:event_btncategoriasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -310,6 +319,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JMenu btnInventario;
+    private javax.swing.JMenuItem btncategorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -326,7 +336,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

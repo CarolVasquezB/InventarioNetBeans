@@ -66,10 +66,13 @@
                 <Property name="text" type="java.lang.String" value="Empleados"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="btncategorias">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Categor&#xed;as"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btncategoriasMouseClicked"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
