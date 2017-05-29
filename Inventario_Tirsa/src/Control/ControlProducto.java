@@ -130,7 +130,60 @@ public class ControlProducto {
         }
         return data;
     }
-    
+    public Object[][] consultarProductos(String letras){
+        Object data[][]=new Object[this.contarproductos()][9];
+        ResultSet datos=null;
+        String sql="select cod_producto,nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,cod_categoria,valor_venta_min,fecha_compra from producto where nombre_producto like '"+letras+"%'";
+        datos=p.ejecutarConsulta(sql);
+        
+        try {
+              int i=0;
+            while(datos.next()){
+                data[i][0] = datos.getInt("cod_producto");
+                data[i][1] = datos.getString("nombre_producto");
+                data[i][2] = datos.getString("descr_producto");
+                data[i][3] = datos.getFloat("valor_compra");
+                data[i][4] = datos.getFloat("valor_venta_max");
+                data[i][5] = datos.getInt("stock_producto");
+                data[i][6] = datos.getInt("cod_categoria");
+                data[i][7] = datos.getFloat("valor_venta_min");
+                data[i][8] = datos.getString("fecha_compra");
+              
+                i++;
+            }} catch (SQLException ex) {
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return data;
+        
+    }
+    public Object[][] consultarProductos(int numeros){
+        Object data[][]=new Object[this.contarproductos()][9];
+        ResultSet datos=null;
+        String sql="select cod_producto,nombre_producto,descr_producto,valor_compra,valor_venta_max,stock_producto,cod_categoria,valor_venta_min,fecha_compra from producto where cod_producto like '"+numeros+"%'";
+        datos=p.ejecutarConsulta(sql);
+        
+        try {
+              int i=0;
+            while(datos.next()){
+                data[i][0] = datos.getInt("cod_producto");
+                data[i][1] = datos.getString("nombre_producto");
+                data[i][2] = datos.getString("descr_producto");
+                data[i][3] = datos.getFloat("valor_compra");
+                data[i][4] = datos.getFloat("valor_venta_max");
+                data[i][5] = datos.getInt("stock_producto");
+                data[i][6] = datos.getInt("cod_categoria");
+                data[i][7] = datos.getFloat("valor_venta_min");
+                data[i][8] = datos.getString("fecha_compra");
+              
+                i++;
+            }} catch (SQLException ex) {
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return data;
+        
+    }
     public Object[][] consultarProductos(){
 
         Object data[][] = new Object[this.contarproductos()][9];
