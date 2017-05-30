@@ -19,6 +19,7 @@ public class GUILoginUsuario extends javax.swing.JFrame {
      */
     public GUILoginUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -36,11 +37,11 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         PswContraseñaLogin = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(570, 350));
+        setMinimumSize(new java.awt.Dimension(570, 350));
+        setPreferredSize(new java.awt.Dimension(570, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
@@ -56,7 +57,7 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
         getContentPane().add(PswContraseñaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 120, -1));
 
-        btnEntrar.setBackground(new java.awt.Color(102, 0, 102));
+        btnEntrar.setBackground(new java.awt.Color(204, 204, 204));
         btnEntrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(102, 0, 102));
         btnEntrar.setText("Entrar");
@@ -68,30 +69,28 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoTirsa.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 140, 130));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/FondoLogin.jpg"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 350));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        ControlEmpleado ce = new ControlEmpleado();        
-        Object dato[][] = ce.consultarEmpleadoLogin(txtUsuarioLogin.getText());
-        if(dato[0][0]==null){
-            JOptionPane.showMessageDialog(this, "El usuario no existe");
-        }else{
-            
-            if(dato[0][1]==PswContraseñaLogin.getText()){
-                GUIPrincipal facturacion = new GUIPrincipal();
-                facturacion.setVisible(true);
-                this.setVisible(false);    
+        if(txtUsuarioLogin.getText().length()>0 & PswContraseñaLogin.getText().length()>0){
+            ControlEmpleado ce = new ControlEmpleado();
+            GUIPrincipal facturacion = new GUIPrincipal();
+            Object dato[][] = ce.consultarEmpleadoLogin(txtUsuarioLogin.getText());
+            if(dato[0][0]==null){
+                JOptionPane.showMessageDialog(this, "El usuario no existe");
             }else{
-                JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");               
-            }
-        }
+                if(dato[0][2].equals(PswContraseñaLogin.getText())){
+                    facturacion.setVisible(true);
+                    facturacion.obtenerEmpleado(dato[0][0].toString());
+                    this.setVisible(false);    
+                }else{
+                    JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");               
+                }
+            }            
+        }else{
+            JOptionPane.showMessageDialog(this, "Ingrese Usuario y Contraseña");
+        }        
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
@@ -133,9 +132,7 @@ public class GUILoginUsuario extends javax.swing.JFrame {
     private javax.swing.JPasswordField PswContraseñaLogin;
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtUsuarioLogin;
     // End of variables declaration//GEN-END:variables

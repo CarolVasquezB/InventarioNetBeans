@@ -5,17 +5,23 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 1061785255
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 
+    public void obtenerEmpleado(String codEmpleado){
+        lblEmpleado.setText(codEmpleado);
+    }
     /**
      * Creates new form GUIPrincipal
      */
     public GUIPrincipal() {
         initComponents();
+        
     }
 
     /**
@@ -43,7 +49,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         txtFactCodProducto = new javax.swing.JTextField();
         txtFactNomProducto = new javax.swing.JTextField();
         btnBuscarProducto = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
@@ -55,6 +60,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         txtPagoTotal = new javax.swing.JTextField();
+        lblEmpleado = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFacturacion = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -101,6 +107,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 80, 30));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
@@ -111,7 +122,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 0, 102));
         jLabel5.setText("Facturación");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 220, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 220, -1));
 
         jLabel4.setBackground(new java.awt.Color(51, 0, 51));
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -121,7 +132,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel6.setText("Total:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel7.setText("Nombre:");
@@ -138,10 +149,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, -1, -1));
-
-        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 10));
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,7 +202,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         txtPagoTotal.setEditable(false);
-        jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 140, -1));
+        jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 140, -1));
+        jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(614, 10, 100, 20));
 
         mnuFacturacion.setText("Facturación ");
         mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -282,6 +290,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         gc.setVisible(true);
     }//GEN-LAST:event_btncategoriasActionPerformed
 
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+     
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,7 +354,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
@@ -350,6 +361,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblEmpleado;
     private javax.swing.JMenu mnuFacturacion;
     private javax.swing.JTextField txtFactCliente;
     private javax.swing.JTextField txtFactCodProducto;
