@@ -97,7 +97,6 @@ public class GUICategorias extends javax.swing.JFrame {
         jLabel2.setText("Nombre Categoria");
 
         btnguardar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/guardar5.png"))); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +105,6 @@ public class GUICategorias extends javax.swing.JFrame {
         });
 
         btnconsultar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnconsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/address_book.png"))); // NOI18N
         btnconsultar.setText("Consultar");
         btnconsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +113,6 @@ public class GUICategorias extends javax.swing.JFrame {
         });
 
         btnactualizar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnactualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/db_update.png"))); // NOI18N
         btnactualizar.setText("Actualizar");
         btnactualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +121,6 @@ public class GUICategorias extends javax.swing.JFrame {
         });
 
         btneliminar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/erase.png"))); // NOI18N
         btneliminar.setText("Eliminar");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,7 +181,6 @@ public class GUICategorias extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 204));
         jLabel3.setText("Administracion categorias");
 
-        btnvolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/arrow_left.png"))); // NOI18N
         btnvolver.setText("Volver");
         btnvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +213,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addGap(15, 15, 15))
         );
 
