@@ -123,10 +123,10 @@ public class ControlEmpleado {
         }
         return data;
     }    
-//      
+      
 //    public static void main(String[] args) {
 //        ControlEmpleado ce = new ControlEmpleado();        
 //        Object[][] dato = ce.consultarEmpleadoLogin("CarolVasquezB");
-//        System.out.println("Login "+ dato[0][0]+ "Contraseña "+dato[0][1]);       
+//        System.out.println("Login "+ dato[0][1]+ "Contraseña "+dato[0][2]);       
 //    }
 }
