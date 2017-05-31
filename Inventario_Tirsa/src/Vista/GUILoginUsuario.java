@@ -43,7 +43,6 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(570, 350));
         setMinimumSize(new java.awt.Dimension(570, 350));
-        setPreferredSize(new java.awt.Dimension(570, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
@@ -70,11 +69,7 @@ public class GUILoginUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoTirsa.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 140, 160));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/FondoLogin.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 350));
 
         pack();
