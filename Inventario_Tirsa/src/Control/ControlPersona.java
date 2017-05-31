@@ -117,4 +117,78 @@ public class ControlPersona {
         }
         return data;
     }
+    
+    public Object[][] consultarPersonaTodos(int numDocumento, String nombres, String apellidos){
+        Object data[][] = new Object[this.contarPersonas()][6];
+        ResultSet datos = null;
+        String sql = "Select cod_persona, num_documento, nombres_persona, apellidos_persona, correo_persona, "
+                + "fecha_nac_persona from persona where num_documento = "+numDocumento+"&& nombres_persona='"+nombres+"' "
+                + "&& apellidos_persona='"+apellidos+"'";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while(datos.next()){
+                data[i][0] = datos.getInt("cod_persona");
+                data[i][1] = datos.getInt("num_documento");
+                data[i][2] = datos.getString("nombres_persona");
+                data[i][3] = datos.getString("apellidos_persona");
+                data[i][4] = datos.getString("correo_persona");       
+                data[i][5] = datos.getString("fecha_nac_persona");                   
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;        
+    }
+    
+    public Object[][] consultarPersonaNombres(String nombres){
+        Object data[][] = new Object[this.contarPersonas()][6];
+        ResultSet datos = null;
+        String sql = "Select cod_persona, num_documento, nombres_persona, apellidos_persona, correo_persona, "
+                + "fecha_nac_persona from persona where nombres_persona='"+nombres+"'";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while(datos.next()){
+                data[i][0] = datos.getInt("cod_persona");
+                data[i][1] = datos.getInt("num_documento");
+                data[i][2] = datos.getString("nombres_persona");
+                data[i][3] = datos.getString("apellidos_persona");
+                data[i][4] = datos.getString("correo_persona");       
+                data[i][5] = datos.getString("fecha_nac_persona");                   
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;        
+    } 
+    
+    public Object[][] consultarPersonaDocNombres(int numDocumento, String nombres){
+        Object data[][] = new Object[this.contarPersonas()][6];
+        ResultSet datos = null;
+        String sql = "Select cod_persona, num_documento, nombres_persona, apellidos_persona, correo_persona, "
+                + "fecha_nac_persona from persona where num_documento = "+numDocumento+"&& nombres_persona='"+nombres+"'";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while(datos.next()){
+                data[i][0] = datos.getInt("cod_persona");
+                data[i][1] = datos.getInt("num_documento");
+                data[i][2] = datos.getString("nombres_persona");
+                data[i][3] = datos.getString("apellidos_persona");
+                data[i][4] = datos.getString("correo_persona");       
+                data[i][5] = datos.getString("fecha_nac_persona");                   
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;        
+    }      
+    
 }

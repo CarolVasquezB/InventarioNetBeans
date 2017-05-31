@@ -5,6 +5,12 @@
  */
 package Vista;
 
+import Control.ControlCategorias;
+import Control.ControlPersona;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,10 +43,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtFactCliente = new javax.swing.JTextField();
+        txtFactDocCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtFactNombre = new javax.swing.JTextField();
+        txtFactNomCliente = new javax.swing.JTextField();
         btnBuscarCliente = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
@@ -62,6 +68,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtPagoTotal = new javax.swing.JTextField();
         lblEmpleado = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtFactApeCliente = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFacturacion = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -91,16 +99,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Producto");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-        jPanel1.add(txtFactCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 145, -1));
+        jPanel1.add(txtFactDocCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 145, -1));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel2.setText("Código:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jLabel3.setText("Nombre:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
-        jPanel1.add(txtFactNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 350, -1));
+        jLabel3.setText("Apellido:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
+        jPanel1.add(txtFactNomCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 140, -1));
 
         btnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarCliente.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
@@ -138,12 +146,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel7.setText("Nombre:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
-        jPanel1.add(txtFactCodProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 140, -1));
+        jPanel1.add(txtFactCodProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 150, -1));
         jPanel1.add(txtFactNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 340, -1));
 
         btnBuscarProducto.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnBuscarProducto.setForeground(new java.awt.Color(51, 0, 102));
         btnBuscarProducto.setText("Buscar");
+        btnBuscarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarProductoActionPerformed(evt);
@@ -205,6 +214,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         txtPagoTotal.setEditable(false);
         jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 140, -1));
         jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 100, 20));
+
+        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jLabel9.setText("Nombre:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+        jPanel1.add(txtFactApeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 140, -1));
 
         mnuFacturacion.setText("Facturación ");
         mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -292,7 +306,33 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btncategoriasActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-     
+       ControlPersona cp = new ControlPersona();
+       Object dato[][] = null;
+       if(txtFactDocCliente.getText().length()>0 || txtFactNomCliente.getText().length()>0 || txtFactApeCliente.getText().length()>0){
+            if(txtFactDocCliente.getText().length()>0 && txtFactNomCliente.getText().length()>0 && txtFactApeCliente.getText().length()>0){
+                dato = cp.consultarPersonaTodos(Integer.parseInt(txtFactDocCliente.getText()), 
+                        txtFactNomCliente.getText(), txtFactApeCliente.getText());
+            }else{
+                if(txtFactDocCliente.getText().length()==0 && txtFactNomCliente.getText().length()>0 && txtFactApeCliente.getText().length()==0){
+                    dato= cp.consultarPersonaNombres(txtFactNomCliente.getText());
+                }else{
+                    if(txtFactDocCliente.getText().length()>0 && txtFactNomCliente.getText().length()==0 && txtFactApeCliente.getText().length()==0){
+                        dato = cp.consultarPersonaDocumento(Integer.parseInt(txtFactDocCliente.getText()));
+                    }else{
+                        if(txtFactDocCliente.getText().length()>0 && txtFactNomCliente.getText().length()>0 && txtFactApeCliente.getText().length()==0){
+                            dato = cp.consultarPersonaDocNombres(Integer.parseInt(txtFactDocCliente.getText()), txtFactNomCliente.getText());
+                        }
+                    }
+                }
+            }           
+       }else{
+                JOptionPane.showMessageDialog(this, "Ingrese un parámetro de búsqueda");           
+       }
+      
+       if(dato[0][0]==null){
+           
+       }
+       
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     /**
@@ -343,6 +383,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
@@ -364,10 +405,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblEmpleado;
     private javax.swing.JMenu mnuFacturacion;
-    private javax.swing.JTextField txtFactCliente;
+    private javax.swing.JTextField txtFactApeCliente;
     private javax.swing.JTextField txtFactCodProducto;
+    private javax.swing.JTextField txtFactDocCliente;
+    private javax.swing.JTextField txtFactNomCliente;
     private javax.swing.JTextField txtFactNomProducto;
-    private javax.swing.JTextField txtFactNombre;
     private javax.swing.JTextField txtPagoTotal;
     // End of variables declaration//GEN-END:variables
 }
