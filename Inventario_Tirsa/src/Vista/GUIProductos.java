@@ -215,7 +215,6 @@ public class GUIProductos extends javax.swing.JFrame {
         cbxcategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnGuardar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/guardar5.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(new javax.swing.border.SoftBevelBorder(0));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +224,6 @@ public class GUIProductos extends javax.swing.JFrame {
         });
 
         btnactualizar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnactualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/db_update.png"))); // NOI18N
         btnactualizar.setText("Actualizar");
         btnactualizar.setBorder(new javax.swing.border.SoftBevelBorder(0));
         btnactualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -235,7 +233,6 @@ public class GUIProductos extends javax.swing.JFrame {
         });
 
         btneliminar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/erase.png"))); // NOI18N
         btneliminar.setText("Eliminar");
         btneliminar.setBorder(new javax.swing.border.SoftBevelBorder(0));
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +242,6 @@ public class GUIProductos extends javax.swing.JFrame {
         });
 
         btnconsultar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnconsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/address_book.png"))); // NOI18N
         btnconsultar.setText("Consultar");
         btnconsultar.setBorder(new javax.swing.border.SoftBevelBorder(0));
         btnconsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -394,7 +390,6 @@ public class GUIProductos extends javax.swing.JFrame {
         jscrollpanel.setViewportView(tblproductos);
 
         btnvolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnvolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/arrow_left.png"))); // NOI18N
         btnvolver.setText("Volver");
         btnvolver.setBorder(new javax.swing.border.SoftBevelBorder(0));
         btnvolver.addActionListener(new java.awt.event.ActionListener() {
@@ -433,7 +428,7 @@ public class GUIProductos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jscrollpanel, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addComponent(jscrollpanel, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
