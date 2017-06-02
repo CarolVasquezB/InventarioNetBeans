@@ -43,7 +43,6 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(570, 350));
         setMinimumSize(new java.awt.Dimension(570, 350));
-        setPreferredSize(new java.awt.Dimension(570, 350));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
