@@ -42,11 +42,11 @@ public class ControlPersona {
         boolean actualizo = false;
         String sql = "Update persona set "
                 + "num_documento = "+numDocumento
-                + "nombres_persona = '"+nombresPersona
+                + ", nombres_persona = '"+nombresPersona
                 + "', apellidos_persona = '"+apellidosPersona
                 + "', correo_persona = '"+correoPersona   
                 + "', fecha_nac_persona = '"+fechaNacimiento                 
-                + " where cod_persona = "+codigoPersona;
+                + "' where cod_persona = "+codigoPersona+";";
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }   
