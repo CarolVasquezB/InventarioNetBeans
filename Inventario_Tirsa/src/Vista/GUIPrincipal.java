@@ -42,12 +42,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
        
         if(txtFactCodProducto.getText().length()>0 & txtFactDocCliente.getText().length()>0 && txtCantidad.getText().length()>0){
             productosAgregados[i][0] = datosProducto[0][0];
-            productosAgregados[i][1] = datosProducto[0][1];           
+            productosAgregados[i][1] = datosProducto[0][1];   
+            productosAgregados[i][3] = txtCantidad.getText();
             if(rbtnMaximo.isSelected() || rbtnMinimo.isSelected()){
                 if(rbtnMaximo.isSelected()){
-                    productosAgregados[i][1] = datosProducto[0][4];
+                    productosAgregados[i][2] = datosProducto[0][4];
                 }else{
-                    productosAgregados[i][1] = datosProducto[0][7];
+                    productosAgregados[i][2] = datosProducto[0][7];
                 }
             }else{
                 JOptionPane.showMessageDialog(this, "Debe selecionar el tipo de valor");           
@@ -56,8 +57,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese todos los campos obligatorios (*)");
         }
 
-    //                "Codigo Producto", "Nombre", "Valor venta", "Stock", "Categoria",
-    //        "valor VentaMin"};
+    //                "Codigo Producto", "Nombre", "Valor venta", "Stock"
 
     }    
     
