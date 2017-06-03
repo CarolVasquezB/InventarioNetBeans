@@ -86,6 +86,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     productosAgregados[i][3] = txtCantidad.getText(); 
                     datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
                     productosAgregados[i][4] = datosCategoria[0][1]; 
+                    btnAgregarProd.setEnabled(true);
                     i++;
                 }else{
                     if(rbtnMinimo.isSelected()){       
@@ -95,7 +96,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
                         productosAgregados[i][2] = datosProducto[0][7];                   
                         productosAgregados[i][3] = txtCantidad.getText();
                         datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
-                        productosAgregados[i][4] = datosCategoria[0][1];    
+                        productosAgregados[i][4] = datosCategoria[0][1];  
+                        btnAgregarProd.setEnabled(true);
                         i++;
                     }
                 }
@@ -160,7 +162,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         txtValorUnitario = new javax.swing.JTextField();
         calenFechaVenta = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
-        btnAgregarProd1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFacturacion = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -368,16 +370,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel12.setText("Fecha de Venta:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
-        btnAgregarProd1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnAgregarProd1.setForeground(new java.awt.Color(51, 0, 102));
-        btnAgregarProd1.setText("Eliminar");
-        btnAgregarProd1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnAgregarProd1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(51, 0, 102));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarProd1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 120, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 120, -1));
 
         mnuFacturacion.setText("Facturación ");
         mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -557,7 +559,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbtnMinimoMousePressed
 
-    private void btnAgregarProd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProd1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int filaseleccionada;
             try{
                 filaseleccionada= tblProductos.getSelectedRow();
@@ -568,12 +570,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     txtFactCodProducto.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
                     txtFactNomProducto.setText((String) modelotabla.getValueAt(filaseleccionada, 1));
                     txtValorUnitario.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 2)));
-                    txtCantidad.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 3)));   
+                    txtCantidad.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 3))); 
+                    btnAgregarProd.setEnabled(false);
                  }
               }catch (HeadlessException ex){
                     JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
               }     
-    }//GEN-LAST:event_btnAgregarProd1ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void gatitoshMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gatitoshMousePressed
         
@@ -620,9 +623,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProd;
-    private javax.swing.JButton btnAgregarProd1;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProducto;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JMenu btnInventario;
     private javax.swing.JMenuItem btncategorias;
     private com.toedter.calendar.JDateChooser calenFechaVenta;
