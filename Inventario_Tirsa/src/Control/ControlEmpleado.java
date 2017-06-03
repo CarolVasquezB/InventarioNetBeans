@@ -32,7 +32,7 @@ public class ControlEmpleado {
 
     public boolean eliminarEmpleadoCodigo(int codigoEmpleado) {
         boolean elimino = false;
-        String sql = "Delete from empleado where cod_empleado = " + codigoEmpleado;
+        String sql = "Delete from empleado where cod_empleado_persona = " + codigoEmpleado+";";
         elimino = p.ejecutarDML(sql);
         return elimino;
     }

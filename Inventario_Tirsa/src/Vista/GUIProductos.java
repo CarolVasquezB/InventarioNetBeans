@@ -8,8 +8,11 @@ package Vista;
 import Control.ControlCategorias;
 import Control.ControlProducto;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -50,10 +53,8 @@ public class GUIProductos extends javax.swing.JFrame {
         cbx = new DefaultComboBoxModel(aux);
         dtm = new DefaultTableModel(data, nombresColumnas);
         initComponents();
-        
-    }
 
-   
+    }
 
     public void actualizarTabla() {
         Object data[][] = cp.consultarProductos();
@@ -75,7 +76,7 @@ public class GUIProductos extends javax.swing.JFrame {
         Object data[][] = cp.consultarProductos(letras);
         dtm = new DefaultTableModel(data, nombresColumnas);
         tblproductos.setModel(dtm);
-            //validate();
+        //validate();
         //repaint();
     }
 
@@ -83,7 +84,7 @@ public class GUIProductos extends javax.swing.JFrame {
         Object data[][] = cp.consultarProductos(numeros);
         dtm = new DefaultTableModel(data, nombresColumnas);
         tblproductos.setModel(dtm);
-            //validate();
+        //validate();
         //repaint();
     }
 
@@ -170,7 +171,7 @@ public class GUIProductos extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder()), "Informacion del Producto", 0, 0, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder()), "Informacion del Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel2.setText("Codigo Producto  (*)");
@@ -216,7 +217,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
         btnGuardar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnGuardar.setText("Guardar");
-        btnGuardar.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        btnGuardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -225,7 +226,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
         btnactualizar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnactualizar.setText("Actualizar");
-        btnactualizar.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        btnactualizar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnactualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnactualizarActionPerformed(evt);
@@ -234,7 +235,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
         btneliminar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btneliminar.setText("Eliminar");
-        btneliminar.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        btneliminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btneliminarActionPerformed(evt);
@@ -243,7 +244,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
         btnconsultar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnconsultar.setText("Consultar");
-        btnconsultar.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        btnconsultar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnconsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnconsultarActionPerformed(evt);
@@ -254,7 +255,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
         btntodo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btntodo.setText("Ver Todo");
-        btntodo.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        btntodo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btntodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btntodoActionPerformed(evt);
@@ -382,7 +383,7 @@ public class GUIProductos extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("Administracion de Productos");
 
-        jscrollpanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(0), "Registro de Productos", 0, 0, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
+        jscrollpanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Registro de Productos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14))); // NOI18N
         jscrollpanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jscrollpanel.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
 
@@ -391,7 +392,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
         btnvolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnvolver.setText("Volver");
-        btnvolver.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        btnvolver.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnvolverActionPerformed(evt);
@@ -474,7 +475,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         if (validar_ingreso_insercion()) {
-            
+
             if (txtnombreProducto.getText().isEmpty() || txtcodproducto.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Consulta y luego actualiza los campos");
             } else {
@@ -526,11 +527,21 @@ public class GUIProductos extends javax.swing.JFrame {
                 txtvalorCompra.setText(data[0][3].toString());
                 txtvalorMax.setText(data[0][4].toString());
                 txtstock.setText(data[0][5].toString());
-               
-                
+
                 Object data_consulta[][] = ca.consultarCategoriaCodigo(Integer.parseInt(String.valueOf(data[0][6].toString())));
                 cbxcategoria.setSelectedItem(data_consulta[0][0].toString() + "-" + data_consulta[0][1].toString());
+
                 txtvalorMin.setText(data[0][7].toString());
+                 String fecha = data[0][8].toString();
+
+                try {
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fechaDate;
+                    fechaDate = formato.parse(fecha);
+                    txtfecha.setDate(fechaDate);
+                } catch (ParseException ex) {
+                    Logger.getLogger(GUIEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             } else {
                 JOptionPane.showMessageDialog(this, "No se Encontraron registros!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
@@ -571,13 +582,19 @@ public class GUIProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void txtnombreProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreProductoKeyReleased
+       if(!txtnombreProducto.getText().isEmpty()){
         String letra = txtnombreProducto.getText();
         actualizarTabla(letra);
+        }
     }//GEN-LAST:event_txtnombreProductoKeyReleased
 
     private void txtcodproductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodproductoKeyReleased
-        int numero = Integer.parseInt(txtcodproducto.getText());
-        actualizarTabla_codigo(numero);
+       if(!txtcodproducto.getText().isEmpty()){
+          int numero = Integer.parseInt(txtcodproducto.getText());
+        actualizarTabla_codigo(numero); 
+           
+       }
+        
     }//GEN-LAST:event_txtcodproductoKeyReleased
 
     private void btntodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntodoActionPerformed
@@ -585,9 +602,9 @@ public class GUIProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btntodoActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
-       GUIPrincipal gpr=new GUIPrincipal();
-       this.setVisible(false);
-       gpr.setVisible(true);
+        GUIPrincipal gpr = new GUIPrincipal();
+        this.setVisible(false);
+        gpr.setVisible(true);
     }//GEN-LAST:event_btnvolverActionPerformed
 
     /**

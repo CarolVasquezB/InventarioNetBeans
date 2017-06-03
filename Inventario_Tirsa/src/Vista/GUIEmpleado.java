@@ -440,19 +440,30 @@ public class GUIEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnactualizarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        if(!txtcod_empleado.getText().isEmpty()){
+            Object [][]data=ce.consultarEmpleadoPersona(Integer.parseInt(txtcod_empleado.getText()));
+            if(data[0][0]!=null){
+        int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar el registro del empleado: " + txtcod_empleado.getText(), "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+        if (res == JOptionPane.YES_OPTION) {
 
-//        int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar el registro del producto: " + txtnumero_documento.getText(), "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
-//        if (res == JOptionPane.YES_OPTION) {
-//
-//            if(cp.eliminarPersonaDocumento(Integer.parseInt(txtnumero_documento.getText()))){
-//                JOptionPane.showMessageDialog(this, "Eliminado");
-//            }else {
-//                JOptionPane.showMessageDialog(this, "El registro No se Encontro");
-//            }
-//
-//        }else{
-//            JOptionPane.showMessageDialog(this, "El registro No fue Eliminado");
-//        }
+            if(ce.eliminarEmpleadoCodigo(Integer.parseInt(txtcod_empleado.getText()))){
+                JOptionPane.showMessageDialog(this, "Eliminado");
+                txtcod_empleado.setText("");
+                actualizarTabla();
+            }else {
+                JOptionPane.showMessageDialog(this, "El Empleado No se Encontro");
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "El registro No fue Eliminado");
+        }
+        }else{
+                JOptionPane.showMessageDialog(this,"El usuario No existe!");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Debe Ingresar el codigo del empleado!","Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+            
 
     }//GEN-LAST:event_btneliminarActionPerformed
 
