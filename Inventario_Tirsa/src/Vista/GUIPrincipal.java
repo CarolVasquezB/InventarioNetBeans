@@ -28,10 +28,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
     Object datosCliente[][] = null;
     Object datosProducto[][] = null;
     Object datosCategoria[][] = null;
-    Object productosAgregados[][] = null;
-    ArrayList<Object> prodAgreg = new ArrayList<Object>();
+    Object productosAgregados[][] = new Object[20][5];
     DefaultTableModel dtm;
     DefaultComboBoxModel cbx;
+    int j = 1;
     int i = 0;
 
     String nombresColumnas[] = {"Codigo Producto", "Nombre", "Valor venta","Cantidad", "Categoría"};
@@ -41,45 +41,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
         lblEmpleado.setText(codEmpleado);
         
     }
-    
-    
-    public void ensayo(){
-       ControlCategorias cc = new ControlCategorias();
-        if(txtFactCodProducto.getText().length()>0 & txtFactNomProducto.getText().length()>0 && txtCantidad.getText().length()>0){
-            if(rbtnMaximo.isSelected() || rbtnMinimo.isSelected()){
-                if(rbtnMaximo.isSelected()){
-                    productosAgregados[0][0] = datosProducto[0][0];
-                    productosAgregados[0][1] = datosProducto[0][1];
-                    productosAgregados[0][2] = datosProducto[0][4];                   
-                    productosAgregados[0][3] = txtCantidad.getText(); 
-                    datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
-                    productosAgregados[0][4] = datosCategoria[0][1]; 
-                    prodAgreg.add(productosAgregados);                
-                }else{
-                    if(rbtnMinimo.isSelected()){                      
-                        productosAgregados[0][0] = datosProducto[0][0];
-                        productosAgregados[0][1] = datosProducto[0][1];
-                        productosAgregados[0][2] = datosProducto[0][7];                   
-                        productosAgregados[0][3] = txtCantidad.getText();
-                        datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
-                        productosAgregados[0][4] = datosCategoria[0][1];  
-                        prodAgreg.add(productosAgregados);
-                    }
-                }
-            }else{
-                JOptionPane.showMessageDialog(this, "Debe selecionar el tipo de valor");           
-            }            
-        }else{
-            JOptionPane.showMessageDialog(this, "Ingrese todos los campos obligatorios (*)");
-        }        
-    }
 
     public void AgregarProductos(){      
         ControlCategorias cc = new ControlCategorias();
         if(txtFactCodProducto.getText().length()>0 & txtFactNomProducto.getText().length()>0 && txtCantidad.getText().length()>0){
             if(rbtnMaximo.isSelected() || rbtnMinimo.isSelected()){
-                if(rbtnMaximo.isSelected()){
-                    productosAgregados = new Object[100][5];
+                if(rbtnMaximo.isSelected()){                 
                     productosAgregados[i][0] = datosProducto[0][0];
                     productosAgregados[i][1] = datosProducto[0][1];
                     productosAgregados[i][2] = datosProducto[0][4];                   
@@ -87,10 +54,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
                     productosAgregados[i][4] = datosCategoria[0][1]; 
                     btnAgregarProd.setEnabled(true);
-                    i++;
+                    i++;                      
                 }else{
-                    if(rbtnMinimo.isSelected()){       
-                        productosAgregados = new Object[100][5];                        
+                    if(rbtnMinimo.isSelected()){                        
                         productosAgregados[i][0] = datosProducto[0][0];
                         productosAgregados[i][1] = datosProducto[0][1];
                         productosAgregados[i][2] = datosProducto[0][7];                   
@@ -98,7 +64,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                         datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
                         productosAgregados[i][4] = datosCategoria[0][1];  
                         btnAgregarProd.setEnabled(true);
-                        i++;
+                        i++;                      
                     }
                 }
             }else{
@@ -459,11 +425,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
                  txtFactNomProducto.setText((String) datosProducto[0][1]);
                  if(rbtnMaximo.isSelected()){
                     float valorUnitario = (float) datosProducto[0][4];              
-                    txtValorUnitario.setText(String.valueOf(valorUnitario));                    
+                    txtValorUnitario.setText(String.valueOf(valorUnitario));
+                    btnAgregarProd.setEnabled(true);
                  }else{
                      if(rbtnMinimo.isSelected()){
                         float valorUnitario = (float) datosProducto[0][7];              
-                        txtValorUnitario.setText(String.valueOf(valorUnitario));                         
+                        txtValorUnitario.setText(String.valueOf(valorUnitario));    
+                        btnAgregarProd.setEnabled(true);
                      }
                  }
              }             
@@ -574,9 +542,24 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     btnAgregarProd.setEnabled(false);
                     int res = JOptionPane.showConfirmDialog(this, "Está seguro que desea eliminar el producto: " + txtFactNomProducto.getText(), "Advertencia", JOptionPane.INFORMATION_MESSAGE);
                     if(res==JOptionPane.YES_OPTION){
-//                        while{
-//                            
-//                        }do(datos[j][1]);
+                        for(int j=0; j<productosAgregados.length; j++){
+                            if(txtFactCodProducto.getText().equals((String.valueOf(productosAgregados[j][0])))){
+                                productosAgregados[j][0] = productosAgregados[j+1][0];
+                                productosAgregados[j][1] = productosAgregados[j+1][1];
+                                productosAgregados[j][2] = productosAgregados[j+1][2];
+                                productosAgregados[j][3] = productosAgregados[j+1][3];
+                                productosAgregados[j][4] = productosAgregados[j+1][4];
+                                dtm = new DefaultTableModel(productosAgregados, nombresColumnas);
+                                tblProductos.setModel(dtm);
+                                txtFactCodProducto.setText("");
+                                txtFactNomProducto.setText("");
+                                txtCantidad.setText("");
+                                txtValorUnitario.setText("");
+                                rbtnMaximo.setSelected(false);
+                                rbtnMinimo.setSelected(false);
+                                i--;     
+                            }
+                        }
                     }
                     
                  }
