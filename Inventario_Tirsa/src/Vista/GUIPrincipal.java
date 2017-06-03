@@ -6,12 +6,15 @@
 package Vista;
 
 import Control.ControlCategorias;
+import Control.ControlDetalleFactura;
 import Control.ControlFactura;
 import Control.ControlPersona;
 import Control.ControlProducto;
 import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +53,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 if(rbtnMaximo.isSelected()){                 
                     productosAgregados[i][0] = datosProducto[0][0];
                     productosAgregados[i][1] = datosProducto[0][1];
-                    productosAgregados[i][2] = datosProducto[0][4];                   
+                    float cantxvalor = Float.parseFloat(String.valueOf(datosProducto[0][4]))*Integer.parseInt(txtCantidad.getText());
+                    productosAgregados[i][2] = cantxvalor;                   
                     productosAgregados[i][3] = txtCantidad.getText(); 
                     datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
                     productosAgregados[i][4] = datosCategoria[0][1]; 
@@ -60,7 +64,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     if(rbtnMinimo.isSelected()){                        
                         productosAgregados[i][0] = datosProducto[0][0];
                         productosAgregados[i][1] = datosProducto[0][1];
-                        productosAgregados[i][2] = datosProducto[0][7];                   
+                        float cantxvalor = Float.parseFloat(String.valueOf(datosProducto[0][7]))*Integer.parseInt(txtCantidad.getText());
+                        productosAgregados[i][2] = cantxvalor;                         
                         productosAgregados[i][3] = txtCantidad.getText();
                         datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
                         productosAgregados[i][4] = datosCategoria[0][1];  
@@ -267,18 +272,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 630, -1));
 
-        gatitosh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                gatitoshMousePressed(evt);
-            }
-        });
-
         tblProductos.setModel(dtm);
-        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblProductosMousePressed(evt);
-            }
-        });
         gatitosh.setViewportView(tblProductos);
 
         jPanel1.add(gatitosh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 699, 120));
@@ -292,6 +286,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         lblEmpleado.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
         lblEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmpleado.setText("1");
         jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 150, 20));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -341,11 +336,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         txtValorUnitario.setEditable(false);
         jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 90, -1));
-        jPanel1.add(calenFechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 10, 110, -1));
+        jPanel1.add(calenFechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(621, 10, 130, -1));
 
         jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel12.setText("Fecha de Venta:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
 
         btnEliminar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(51, 0, 102));
@@ -645,17 +640,35 @@ public class GUIPrincipal extends javax.swing.JFrame {
               }     
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void gatitoshMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gatitoshMousePressed
-        
-    }//GEN-LAST:event_gatitoshMousePressed
-
-    private void tblProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMousePressed
-       
-    }//GEN-LAST:event_tblProductosMousePressed
-
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
         ControlFactura cf = new ControlFactura();
+        ControlDetalleFactura cdt = new ControlDetalleFactura();
+        Object datos[][] = cf.consultarCodMaxFactura();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String fecha = dateFormat.format(calenFechaVenta.getDate());
+        int cod_fact;
+        String prod = String.valueOf(productosAgregados[0][0]);
         
+        if(datos[0][0]!=null){
+            cod_fact = Integer.parseInt(String.valueOf(datos[0][0]))+1;
+        }else{
+            cod_fact = 1;
+        }
+   
+        if(fecha!=null && lblEmpleado.getText().length()>0 && txtFactDocCliente.getText().length()>0 && prod!=null){        
+            cf.insertarFactura(cod_fact, Float.parseFloat(txtPagoTotal.getText()), fecha, Integer.parseInt(String.valueOf(datosCliente[0][0]))
+                    , Integer.parseInt(lblEmpleado.getText()));  
+            for(int i=0; i<productosAgregados.length; i++){
+                if(productosAgregados[i][0]!=null){
+                    cdt.insertarDetalleFactura(cod_fact, Integer.parseInt(String.valueOf(productosAgregados[i][0])), Integer.parseInt(String.valueOf(productosAgregados[i][3])), Float.parseFloat(String.valueOf(productosAgregados[i][2])));
+                }else{
+                    i=productosAgregados.length;
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Factura realizada exitosamente");
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos obligatorios");           
+        }
     }//GEN-LAST:event_btnFacturarActionPerformed
 
     private void mnuEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEmpleadoActionPerformed

@@ -19,18 +19,18 @@ public class ControlDetalleFactura {
     
     Persistencia p = new Persistencia();
     
-    public boolean insertarDetalleFactura(int codigoDetFactura, int codigoFactura, int codigoProducto, int cantidadProducto){
+    public boolean insertarDetalleFactura(int codigoFactura, int codigoProducto, int cantidadProducto, float valorProducto){
         
         boolean inserto = false;
-        String sql = "Insert into detalle_factura (cod_det_factura, cod_factura, cod_producto, cantidad_producto) "
-                + "values ("+codigoDetFactura+", "+codigoFactura+", "+codigoProducto+", "+cantidadProducto+")";
+        String sql = "Insert into detalle_factura (cod_factura, cod_producto, cantidad_producto, valor_producto) "
+                + "values ("+codigoFactura+", "+codigoProducto+", "+cantidadProducto+", "+ valorProducto +")";
         inserto = p.ejecutarDML(sql);
         return inserto;        
     }  
     
-    public boolean actualizarDetalleFactura(int codigoDetFactura, int codigoFactura, int codigoProducto, int cantidadProducto){
+    public boolean actualizarDetalleFactura(int codigoDetFactura, int codigoFactura, int codigoProducto, int cantidadProducto, float valorProducto){
         boolean actualizo = false;
-        String sql = "Update detalle_factura set cantidad_producto = "+cantidadProducto+" where cod_det_factura = "+codigoDetFactura;
+        String sql = "Update detalle_factura set cantidad_producto = "+cantidadProducto+", valor_producto = "+ valorProducto +" where cod_det_factura = "+codigoDetFactura;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }   
@@ -54,9 +54,9 @@ public class ControlDetalleFactura {
     
     public Object[][] consultarDetFacturaCodigo(int codigo){
 
-        Object data[][] = new Object[this.contarDetalleFactura()][4];
+        Object data[][] = new Object[this.contarDetalleFactura()][5];
         ResultSet datos = null;
-        String sql = "Select cod_det_factura, cod_factura, cod_producto, cantidad_producto from detalle_factura "
+        String sql = "Select cod_det_factura, cod_factura, cod_producto, cantidad_producto, valor_producto from detalle_factura "
                 + "where cod_det_factura = "+codigo;
         datos = p.ejecutarConsulta(sql);
 
@@ -66,7 +66,8 @@ public class ControlDetalleFactura {
                 data[i][0] = datos.getInt("cod_det_factura");
                 data[i][1] = datos.getInt("cod_factura");
                 data[i][2] = datos.getInt("cod_producto");
-                data[i][3] = datos.getInt("cantidad_producto");                
+                data[i][3] = datos.getInt("cantidad_producto"); 
+                data[i][4] = datos.getFloat("valor_producto");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,7 +77,7 @@ public class ControlDetalleFactura {
     
     public Object[][] consultarCategoria(){
 
-        Object data[][] = new Object[this.contarDetalleFactura()][4];
+        Object data[][] = new Object[this.contarDetalleFactura()][5];
         ResultSet datos = null;
         String sql = "Select * from empleado";
         datos = p.ejecutarConsulta(sql);
@@ -88,6 +89,7 @@ public class ControlDetalleFactura {
                 data[i][1] = datos.getInt("cod_factura");
                 data[i][2] = datos.getInt("cod_producto");
                 data[i][3] = datos.getInt("cantidad_producto");   
+                data[i][3] = datos.getInt("valor_producto");  
                 i++;
             }
         } catch (SQLException ex) {
