@@ -688,7 +688,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void btnAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonoActionPerformed
-        // TODO add your handling code here:
+        GUIAbonos abon = new GUIAbonos();
+        abon.setVisible(true);
+        this.setVisible(false);    
     }//GEN-LAST:event_btnAbonoActionPerformed
 
     /**
