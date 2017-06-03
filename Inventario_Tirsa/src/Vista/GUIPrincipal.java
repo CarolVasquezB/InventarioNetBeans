@@ -572,6 +572,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     txtValorUnitario.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 2)));
                     txtCantidad.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 3))); 
                     btnAgregarProd.setEnabled(false);
+                    int res = JOptionPane.showConfirmDialog(this, "Está seguro que desea eliminar el producto: " + txtFactNomProducto.getText(), "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                    if(res==JOptionPane.YES_OPTION){
+//                        while{
+//                            
+//                        }do(datos[j][1]);
+                    }
+                    
                  }
               }catch (HeadlessException ex){
                     JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);

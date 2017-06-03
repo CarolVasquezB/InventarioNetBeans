@@ -343,9 +343,8 @@ public class GUIEmpleado extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de naciminento!", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-
-        if (cp.insertarPersona(codigo, num_doc, nombres, apellidos, correo, fecha)) {
-            if (password.equals(confirmcionPassword)) {
+        if(password.equals(confirmcionPassword)){
+            if (cp.insertarPersona(codigo, num_doc, nombres, apellidos, correo, fecha)) {
                 if (ce.insertarEmpleado(codigo, usuario, password)) {
                     JOptionPane.showMessageDialog(this, "Guardado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
                     actualizarTabla();
@@ -353,12 +352,12 @@ public class GUIEmpleado extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "El registro NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "las contraseñas No coinciden\n Vuelva intentarlo...", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            }
-
+                JOptionPane.showMessageDialog(this, "El registro NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+            }            
         } else {
-            JOptionPane.showMessageDialog(this, "El registro NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "las contraseñas No coinciden\n Vuelva intentarlo...", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnconsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultarActionPerformed
