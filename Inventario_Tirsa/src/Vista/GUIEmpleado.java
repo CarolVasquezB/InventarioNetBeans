@@ -49,6 +49,14 @@ public class GUIEmpleado extends javax.swing.JFrame {
         txtconfirmacionPassword.setText("");
     }
 
+    public boolean validacionIngreso() {
+        boolean bandera = false;
+        if (!txtcod_empleado.getText().isEmpty() && !txtnumero_documento.getText().isEmpty() && !txtnombres.getText().isEmpty() && !txtapellido.getText().isEmpty() && !txtcorreo.getText().isEmpty() && !txtusuario.getText().isEmpty() && !txtpassword.getText().isEmpty() && !txtconfirmacionPassword.getText().isEmpty()) {
+            bandera = true;
+        }
+        return bandera;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -328,40 +336,44 @@ public class GUIEmpleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        int codigo = Integer.parseInt(txtcod_empleado.getText());
-        int num_doc = Integer.parseInt(txtnumero_documento.getText());
-        String nombres = txtnombres.getText();
-        String apellidos = txtapellido.getText();
-        String correo = txtcorreo.getText();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        String fecha = "";
-        String usuario = txtusuario.getText();
-        String password = txtpassword.getText();
-        String confirmcionPassword = txtconfirmacionPassword.getText();
-        if (txtfecha.getDate() != null) {
-            fecha = dateFormat.format(txtfecha.getDate());
-        } else {
-            JOptionPane.showMessageDialog(this, "Ingrese la fecha de naciminento!", "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
-        Object[][] data = ce.consultarEmpleadoLogin(usuario);
-        if (data[0][0] == null) {
-            if (password.equals(confirmcionPassword)) {
-                if (cp.insertarPersona(codigo, num_doc, nombres, apellidos, correo, fecha)) {
-                    if (ce.insertarEmpleado(codigo, usuario, password)) {
-                        JOptionPane.showMessageDialog(this, "Guardado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
-                        limpiar();
-                        actualizarTabla();
+        if (validacionIngreso()) {
+            int codigo = Integer.parseInt(txtcod_empleado.getText());
+            int num_doc = Integer.parseInt(txtnumero_documento.getText());
+            String nombres = txtnombres.getText();
+            String apellidos = txtapellido.getText();
+            String correo = txtcorreo.getText();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            String fecha = "";
+            String usuario = txtusuario.getText();
+            String password = txtpassword.getText();
+            String confirmcionPassword = txtconfirmacionPassword.getText();
+            if (txtfecha.getDate() != null) {
+                fecha = dateFormat.format(txtfecha.getDate());
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingrese la fecha de naciminento!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+            Object[][] data = ce.consultarEmpleadoLogin(usuario);
+            if (data[0][0] == null) {
+                if (password.equals(confirmcionPassword)) {
+                    if (cp.insertarPersona(codigo, num_doc, nombres, apellidos, correo, fecha)) {
+                        if (ce.insertarEmpleado(codigo, usuario, password)) {
+                            JOptionPane.showMessageDialog(this, "Guardado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+                            limpiar();
+                            actualizarTabla();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "El registro NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(this, "El registro NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "El registro de la persona NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(this, "El registro de la persona NO se ha guardado Corrrectamente\nRevise los datos Ingresados!", "Confirmacion", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "las contraseñas No coinciden\n Vuelva intentarlo...", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "las contraseñas No coinciden\n Vuelva intentarlo...", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El Usuario ya Existe", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "El Usuario ya Existe", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "debe ingresar la Informacion Requerida", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
 
 
@@ -400,6 +412,7 @@ public class GUIEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnconsultarActionPerformed
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
+        if(validacionIngreso()){
         int codempleado = Integer.parseInt(txtcod_empleado.getText());
         int num_doc = Integer.parseInt(txtnumero_documento.getText());
         String nombres = txtnombres.getText();
@@ -417,6 +430,8 @@ public class GUIEmpleado extends javax.swing.JFrame {
         }
 
         Object[][] data = ce.consultarEmpleadoLogin(usuario);
+        Object [][]data2=ce.consultarEmpleadoPersona(codempleado);
+        if(data2[0][0]!=null){
         if (data[0][0] == null || data[0][1].equals(usuario)) {
             if (password.equals(confirmcionPassword)) {
                 if (cp.actualizarPersona(codempleado, num_doc, nombres, apellidos, correo, fecha)) {
@@ -437,33 +452,40 @@ public class GUIEmpleado extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "El Usuario ya Existe", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
+        }else{
+          JOptionPane.showMessageDialog(this, "El Usuario No Existe", "Advertencia", JOptionPane.WARNING_MESSAGE);   
+          limpiar();
+        }
+        }else{
+             JOptionPane.showMessageDialog(this, "debe ingresar la Informacion Requerida", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnactualizarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-        if(!txtcod_empleado.getText().isEmpty()){
-            Object [][]data=ce.consultarEmpleadoPersona(Integer.parseInt(txtcod_empleado.getText()));
-            if(data[0][0]!=null){
-        int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar el registro del empleado: " + txtcod_empleado.getText(), "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
-        if (res == JOptionPane.YES_OPTION) {
+        if (!txtcod_empleado.getText().isEmpty()) {
+            Object[][] data = ce.consultarEmpleadoPersona(Integer.parseInt(txtcod_empleado.getText()));
+            if (data[0][0] != null) {
+                int res = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar el registro del empleado: " + txtcod_empleado.getText(), "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+                if (res == JOptionPane.YES_OPTION) {
 
-            if(ce.eliminarEmpleadoCodigo(Integer.parseInt(txtcod_empleado.getText()))){
-                JOptionPane.showMessageDialog(this, "Eliminado");
-                txtcod_empleado.setText("");
-                actualizarTabla();
-            }else {
-                JOptionPane.showMessageDialog(this, "El Empleado No se Encontro");
-            }
+                    if (ce.eliminarEmpleadoCodigo(Integer.parseInt(txtcod_empleado.getText()))) {
+                        JOptionPane.showMessageDialog(this, "Eliminado");
+                        txtcod_empleado.setText("");
+                        actualizarTabla();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El Empleado No se Encontro");
+                    }
 
-        }else{
-            JOptionPane.showMessageDialog(this, "El registro No fue Eliminado");
-        }
-        }else{
-                JOptionPane.showMessageDialog(this,"El usuario No existe!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "El registro No fue Eliminado");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El usuario No existe!");
             }
-        }else{
-            JOptionPane.showMessageDialog(this,"Debe Ingresar el codigo del empleado!","Advertencia!",JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el codigo del empleado!", "Advertencia!", JOptionPane.WARNING_MESSAGE);
         }
-            
+
 
     }//GEN-LAST:event_btneliminarActionPerformed
 
