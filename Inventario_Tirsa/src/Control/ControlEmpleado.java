@@ -94,7 +94,7 @@ public class ControlEmpleado {
         Object data[][] = new Object[1][3];
         ResultSet datos = null;
         String sql = "Select cod_empleado_persona, login_empleado, password_empleado from empleado "
-                + "where login_empleado = '" + login + "'";
+                + "where login_empleado = '" + login + "';";
         datos = p.ejecutarConsulta(sql);
 
         try {
