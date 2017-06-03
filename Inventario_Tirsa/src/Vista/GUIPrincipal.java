@@ -6,6 +6,7 @@
 package Vista;
 
 import Control.ControlCategorias;
+import Control.ControlFactura;
 import Control.ControlPersona;
 import Control.ControlProducto;
 import java.awt.HeadlessException;
@@ -130,11 +131,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnFacturar = new javax.swing.JButton();
+        btnAbono = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFacturacion = new javax.swing.JMenu();
         mnuCliente = new javax.swing.JMenu();
         btnInventario = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        mnuConsultarFactura = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         mnuEmpleado = new javax.swing.JMenuItem();
@@ -363,7 +367,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnFacturarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, -1));
+        jPanel1.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 120, -1));
+
+        btnAbono.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnAbono.setForeground(new java.awt.Color(51, 0, 102));
+        btnAbono.setText("Abonos");
+        btnAbono.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnAbono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbonoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, -1));
 
         mnuFacturacion.setText("Facturación ");
         mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -389,6 +404,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Reportes");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+
+        mnuConsultarFactura.setText("Consultar Factura ");
+        jMenu5.add(mnuConsultarFactura);
+
+        jMenuItem2.setText("Reporte de Ventas por Fecha");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Configuración");
@@ -627,7 +654,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tblProductosMousePressed
 
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
-        // TODO add your handling code here:
+        ControlFactura cf = new ControlFactura();
+        
     }//GEN-LAST:event_btnFacturarActionPerformed
 
     private void mnuEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEmpleadoActionPerformed
@@ -641,6 +669,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
         cl.setVisible(true);        
     }//GEN-LAST:event_mnuClienteMousePressed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void btnAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAbonoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -678,6 +714,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbono;
     private javax.swing.JButton btnAgregarProd;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProducto;
@@ -705,6 +742,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -716,6 +754,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblEmpleado;
     private javax.swing.JMenu mnuCliente;
+    private javax.swing.JMenuItem mnuConsultarFactura;
     private javax.swing.JMenuItem mnuEmpleado;
     private javax.swing.JMenu mnuFacturacion;
     private javax.swing.JMenu mnuSalir;
