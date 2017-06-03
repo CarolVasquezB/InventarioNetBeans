@@ -18,92 +18,98 @@ import javax.swing.JOptionPane;
  * @author CarolVasquez
  */
 public class ControlEmpleado {
-    
+
     Persistencia p = new Persistencia();
-    
-    public boolean insertarEmpleado(int codigoEmpleado, String loginEmpleado, String psswdEmpleado){
-        
+
+    public boolean insertarEmpleado(int codigoEmpleado, String loginEmpleado, String psswdEmpleado) {
+
         boolean inserto = false;
         String sql = "Insert into empleado (cod_empleado_persona, login_empleado, password_empleado) "
-                + "values ("+codigoEmpleado+", '"+loginEmpleado+"', '"+psswdEmpleado+"')";
+                + "values (" + codigoEmpleado + ", '" + loginEmpleado + "', '" + psswdEmpleado + "')";
         inserto = p.ejecutarDML(sql);
-        return inserto;        
-    } 
+        return inserto;
+    }
 
-    public boolean eliminarEmpleadoCodigo(int codigoEmpleado){
+    public boolean eliminarEmpleadoCodigo(int codigoEmpleado) {
         boolean elimino = false;
         String sql = "Delete from empleado where cod_empleado = " + codigoEmpleado;
         elimino = p.ejecutarDML(sql);
         return elimino;
-    }  
-    
-    public boolean actualizarEmpleado(int codigoEmpleado, String loginEmpleado, String psswdEmpleado){
+    }
+
+    public boolean actualizarEmpleado(int codigoEmpleado, String loginEmpleado, String psswdEmpleado) {
         boolean actualizo = false;
-        String sql = "Update empleado set login_empleado = '"+loginEmpleado+"', password_empleado = '"+psswdEmpleado+"' where cod_empleado_persona = "+codigoEmpleado;
+        String sql = "Update empleado set login_empleado = '" + loginEmpleado + "', password_empleado = '" + psswdEmpleado + "' where cod_empleado_persona = " + codigoEmpleado;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
-    }   
+    }
 
-    public int contarEmpleados(){
-        
+    public int contarEmpleados() {
+
         int numero = 0;
         String sql = "Select count(cod_empleado_persona) num from empleado";
         ResultSet res = p.ejecutarConsulta(sql);
-        
+
         try {
-          
-            while(res.next()){
+
+            while (res.next()) {
                 numero = res.getInt(1);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }
         return numero;
     }
-    
-    public Object[][] consultarEmpleadoCodigo(int codigo){
 
-        Object data[][] = new Object[this.contarEmpleados()][3];
+    public Object[][] consultarEmpleadoPersona(int codigo) {
+
+        Object data[][] = new Object[this.contarEmpleados()][8];
         ResultSet datos = null;
-        String sql = "Select cod_empleado_persona, login_empleado, password_empleado from empleado "
-                + "where cod_empleado = "+codigo;
+        String sql = "Select cod_empleado_persona, login_empleado, password_empleado,num_documento,nombres_persona,apellidos_persona,correo_persona,fecha_nac_persona from empleado "
+                + "inner join persona on(empleado.cod_empleado_persona=persona.cod_persona)"
+                + " where cod_empleado_persona = " + codigo + ";";
         datos = p.ejecutarConsulta(sql);
 
         try {
             int i = 0;
-            while(datos.next()){
+            while (datos.next()) {
                 data[i][0] = datos.getInt("cod_empleado_persona");
                 data[i][1] = datos.getString("login_empleado");
-                data[i][2] = datos.getString("password_empleado");                
+                data[i][2] = datos.getString("password_empleado");
+                data[i][3] = datos.getInt("num_documento");
+                data[i][4] = datos.getString("nombres_persona");
+                data[i][5] = datos.getString("apellidos_persona");
+                data[i][6] = datos.getString("correo_persona");
+                data[i][7] = datos.getString("fecha_nac_persona");
                 i++;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
-    }     
-    
-    public Object[][] consultarEmpleadoLogin(String login){
+    }
+
+    public Object[][] consultarEmpleadoLogin(String login) {
 
         Object data[][] = new Object[1][3];
         ResultSet datos = null;
         String sql = "Select cod_empleado_persona, login_empleado, password_empleado from empleado "
-                + "where login_empleado = '"+login+"'";
+                + "where login_empleado = '" + login + "'";
         datos = p.ejecutarConsulta(sql);
 
         try {
-            while(datos.next()){
+            while (datos.next()) {
                 data[0][0] = datos.getInt("cod_empleado_persona");
                 data[0][1] = datos.getString("login_empleado");
-                data[0][2] = datos.getString("password_empleado");   
+                data[0][2] = datos.getString("password_empleado");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
-    }  
-    
-    public Object[][] consultarEmpleado(){
+    }
+
+    public Object[][] consultarEmpleado() {
 
         Object data[][] = new Object[this.contarEmpleados()][3];
         ResultSet datos = null;
@@ -112,7 +118,7 @@ public class ControlEmpleado {
 
         try {
             int i = 0;
-            while(datos.next()){
+            while (datos.next()) {
                 data[i][0] = datos.getInt("cod_empleado_persona");
                 data[i][1] = datos.getString("login_empleado");
                 data[i][2] = datos.getString("password_empleado");
@@ -122,8 +128,8 @@ public class ControlEmpleado {
             Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
-    }    
-      
+    }
+
 //    public static void main(String[] args) {
 //        ControlEmpleado ce = new ControlEmpleado();        
 //        Object[][] dato = ce.consultarEmpleadoLogin("CarolVasquezB");

@@ -14,7 +14,7 @@ import java.sql.*;
 public class ConexionBD {
     static String bd = "inventario";
     static String login = "root";
-    static String password = "root";
+    static String password = "mysql";
     static String url = "jdbc:mysql://localhost/"+bd;
     
     Connection con = null;
