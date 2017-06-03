@@ -8,10 +8,13 @@ package Vista;
 import Control.ControlCategorias;
 import Control.ControlPersona;
 import Control.ControlProducto;
+import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,10 +28,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
     Object datosCliente[][] = null;
     Object datosProducto[][] = null;
     Object datosCategoria[][] = null;
-    Object productosAgregados[][] =  new Object[100][5];
+    Object productosAgregados[][] = null;
+    ArrayList<Object> prodAgreg = new ArrayList<Object>();
     DefaultTableModel dtm;
     DefaultComboBoxModel cbx;
-    int i=0;
+    int i = 0;
 
     String nombresColumnas[] = {"Codigo Producto", "Nombre", "Valor venta","Cantidad", "Categoría"};
    
@@ -38,11 +42,44 @@ public class GUIPrincipal extends javax.swing.JFrame {
         
     }
     
+    
+    public void ensayo(){
+       ControlCategorias cc = new ControlCategorias();
+        if(txtFactCodProducto.getText().length()>0 & txtFactNomProducto.getText().length()>0 && txtCantidad.getText().length()>0){
+            if(rbtnMaximo.isSelected() || rbtnMinimo.isSelected()){
+                if(rbtnMaximo.isSelected()){
+                    productosAgregados[0][0] = datosProducto[0][0];
+                    productosAgregados[0][1] = datosProducto[0][1];
+                    productosAgregados[0][2] = datosProducto[0][4];                   
+                    productosAgregados[0][3] = txtCantidad.getText(); 
+                    datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
+                    productosAgregados[0][4] = datosCategoria[0][1]; 
+                    prodAgreg.add(productosAgregados);                
+                }else{
+                    if(rbtnMinimo.isSelected()){                      
+                        productosAgregados[0][0] = datosProducto[0][0];
+                        productosAgregados[0][1] = datosProducto[0][1];
+                        productosAgregados[0][2] = datosProducto[0][7];                   
+                        productosAgregados[0][3] = txtCantidad.getText();
+                        datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
+                        productosAgregados[0][4] = datosCategoria[0][1];  
+                        prodAgreg.add(productosAgregados);
+                    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Debe selecionar el tipo de valor");           
+            }            
+        }else{
+            JOptionPane.showMessageDialog(this, "Ingrese todos los campos obligatorios (*)");
+        }        
+    }
+
     public void AgregarProductos(){      
         ControlCategorias cc = new ControlCategorias();
         if(txtFactCodProducto.getText().length()>0 & txtFactNomProducto.getText().length()>0 && txtCantidad.getText().length()>0){
             if(rbtnMaximo.isSelected() || rbtnMinimo.isSelected()){
                 if(rbtnMaximo.isSelected()){
+                    productosAgregados = new Object[100][5];
                     productosAgregados[i][0] = datosProducto[0][0];
                     productosAgregados[i][1] = datosProducto[0][1];
                     productosAgregados[i][2] = datosProducto[0][4];                   
@@ -51,7 +88,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     productosAgregados[i][4] = datosCategoria[0][1]; 
                     i++;
                 }else{
-                    if(rbtnMinimo.isSelected()){                      
+                    if(rbtnMinimo.isSelected()){       
+                        productosAgregados = new Object[100][5];                        
                         productosAgregados[i][0] = datosProducto[0][0];
                         productosAgregados[i][1] = datosProducto[0][1];
                         productosAgregados[i][2] = datosProducto[0][7];                   
@@ -122,6 +160,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         txtValorUnitario = new javax.swing.JTextField();
         calenFechaVenta = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
+        btnAgregarProd1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFacturacion = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -207,7 +246,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(txtFactCodProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 150, -1));
 
         txtFactNomProducto.setEditable(false);
-        jPanel1.add(txtFactNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 410, -1));
+        jPanel1.add(txtFactNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 290, -1));
 
         btnBuscarProducto.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnBuscarProducto.setForeground(new java.awt.Color(51, 0, 102));
@@ -218,7 +257,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnBuscarProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 90, 30));
+        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 90, 30));
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -252,7 +291,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 630, -1));
 
+        gatitosh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                gatitoshMousePressed(evt);
+            }
+        });
+
         tblProductos.setModel(dtm);
+        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblProductosMousePressed(evt);
+            }
+        });
         gatitosh.setViewportView(tblProductos);
 
         jPanel1.add(gatitosh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 699, 90));
@@ -299,7 +349,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnAgregarProdActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 220, 90, -1));
+        jPanel1.add(btnAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 120, -1));
 
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel10.setText("Nombre:");
@@ -308,13 +358,26 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel11.setText("Valor Unitario:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, -1, -1));
-        jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 90, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
+
+        txtValorUnitario.setEditable(false);
+        jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 90, -1));
         jPanel1.add(calenFechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 10, 110, -1));
 
         jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel12.setText("Fecha de Venta:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+
+        btnAgregarProd1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnAgregarProd1.setForeground(new java.awt.Color(51, 0, 102));
+        btnAgregarProd1.setText("Eliminar");
+        btnAgregarProd1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnAgregarProd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarProd1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregarProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 120, -1));
 
         mnuFacturacion.setText("Facturación ");
         mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -463,6 +526,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
         this.AgregarProductos();
         dtm = new DefaultTableModel(productosAgregados, nombresColumnas);
         tblProductos.setModel(dtm);
+        txtFactCodProducto.setText("");
+        txtFactNomProducto.setText("");
+        txtCantidad.setText("");
+        txtValorUnitario.setText("");
+        rbtnMaximo.setSelected(false);
+        rbtnMinimo.setSelected(false);
     }//GEN-LAST:event_btnAgregarProdActionPerformed
 
     private void rbtnMaximoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnMaximoMousePressed
@@ -487,6 +556,32 @@ public class GUIPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Seleccione un producto");
         }
     }//GEN-LAST:event_rbtnMinimoMousePressed
+
+    private void btnAgregarProd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProd1ActionPerformed
+        int filaseleccionada;
+            try{
+                filaseleccionada= tblProductos.getSelectedRow();
+                if (filaseleccionada==-1){
+                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila");
+                }else{
+                    DefaultTableModel modelotabla=(DefaultTableModel) tblProductos.getModel();
+                    txtFactCodProducto.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
+                    txtFactNomProducto.setText((String) modelotabla.getValueAt(filaseleccionada, 1));
+                    txtValorUnitario.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 2)));
+                    txtCantidad.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 3)));   
+                 }
+              }catch (HeadlessException ex){
+                    JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+              }     
+    }//GEN-LAST:event_btnAgregarProd1ActionPerformed
+
+    private void gatitoshMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gatitoshMousePressed
+        
+    }//GEN-LAST:event_gatitoshMousePressed
+
+    private void tblProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMousePressed
+       
+    }//GEN-LAST:event_tblProductosMousePressed
 
     /**
      * @param args the command line arguments
@@ -525,6 +620,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProd;
+    private javax.swing.JButton btnAgregarProd1;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JMenu btnInventario;
