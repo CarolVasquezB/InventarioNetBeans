@@ -90,7 +90,7 @@ public class GUIEmpleado extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Codigo Cliente");
+        jLabel1.setText("Codigo Empleado");
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -362,6 +362,7 @@ public class GUIEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnconsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsultarActionPerformed
+        if(!txtcod_cliente.getText().isEmpty()){
         int cod_cliente = Integer.parseInt(txtcod_cliente.getText());
         Object[][] data = ce.consultarEmpleadoPersona(cod_cliente);
         if (data[0][0] != null) {
@@ -384,6 +385,12 @@ public class GUIEmpleado extends javax.swing.JFrame {
             }
       
 
+        }else{
+             JOptionPane.showMessageDialog(this,"El cliente No se encuentra Registrado!","Advertencia",JOptionPane.INFORMATION_MESSAGE);
+        }
+        }else{
+            
+            JOptionPane.showMessageDialog(this,"Por favor Ingresa el codigo del cliente!","Advertencia",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnconsultarActionPerformed
 
