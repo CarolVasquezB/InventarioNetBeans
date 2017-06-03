@@ -129,16 +129,17 @@ public class GUIPrincipal extends javax.swing.JFrame {
         calenFechaVenta = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
+        btnFacturar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFacturacion = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnuCliente = new javax.swing.JMenu();
         btnInventario = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnuEmpleado = new javax.swing.JMenuItem();
         btncategorias = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
+        mnuSalir = new javax.swing.JMenu();
 
         jMenu3.setText("jMenu3");
 
@@ -151,6 +152,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jPanel1.setMaximumSize(new java.awt.Dimension(780, 500));
+        jPanel1.setMinimumSize(new java.awt.Dimension(780, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(780, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(51, 0, 51));
@@ -200,7 +204,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel6.setText("Total:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel7.setText("Cantidad:*");
@@ -244,16 +248,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jSeparator6.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 20, 190));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 20, 250));
 
         jSeparator7.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, 20, 180));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, 20, 240));
 
         jSeparator8.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 710, 10));
+        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 710, 10));
 
         jSeparator9.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
@@ -273,15 +277,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         gatitosh.setViewportView(tblProductos);
 
-        jPanel1.add(gatitosh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 699, 90));
+        jPanel1.add(gatitosh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 699, 120));
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel8.setText("Número Documento:*");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
         txtPagoTotal.setEditable(false);
-        jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 140, -1));
-        jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 100, 20));
+        jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 140, -1));
+
+        lblEmpleado.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
+        lblEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 150, 20));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel9.setText("Nombre:");
@@ -345,15 +352,31 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 120, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 120, -1));
+
+        btnFacturar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnFacturar.setForeground(new java.awt.Color(51, 0, 102));
+        btnFacturar.setText("Facturar");
+        btnFacturar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnFacturar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacturarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, -1));
 
         mnuFacturacion.setText("Facturación ");
         mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jMenuBar1.add(mnuFacturacion);
 
-        jMenu2.setText("Clientes");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuBar1.add(jMenu2);
+        mnuCliente.setText("Clientes");
+        mnuCliente.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mnuClienteMousePressed(evt);
+            }
+        });
+        jMenuBar1.add(mnuCliente);
 
         btnInventario.setText("Inventario");
         btnInventario.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -374,8 +397,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuItem1.setText("Roles");
         jMenu6.add(jMenuItem1);
 
-        jMenuItem2.setText("Empleados");
-        jMenu6.add(jMenuItem2);
+        mnuEmpleado.setText("Empleados");
+        mnuEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuEmpleadoActionPerformed(evt);
+            }
+        });
+        jMenu6.add(mnuEmpleado);
 
         btncategorias.setText("Categorías");
         btncategorias.addActionListener(new java.awt.event.ActionListener() {
@@ -387,14 +415,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu7.setText("Salir");
-        jMenu7.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+        mnuSalir.setText("Salir");
+        mnuSalir.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu7MouseClicked(evt);
+                mnuSalirMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu7);
+        jMenuBar1.add(mnuSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -402,11 +430,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -440,9 +468,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
-    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jMenu7MouseClicked
+    private void mnuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSalirMouseClicked
+        GUILoginUsuario em=new GUILoginUsuario();
+        this.setVisible(false);
+        em.setVisible(true); 
+    }//GEN-LAST:event_mnuSalirMouseClicked
 
     private void btnInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInventarioMouseClicked
         GUIProductos gp=new GUIProductos();
@@ -502,6 +532,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
         txtValorUnitario.setText("");
         rbtnMaximo.setSelected(false);
         rbtnMinimo.setSelected(false);
+        float sum=0;
+        for(int i=0; i<productosAgregados.length; i++){
+            if(productosAgregados[i][2]!=null){
+                sum=Float.parseFloat(String.valueOf(productosAgregados[i][2]))+sum;
+                System.out.println(sum);
+            }
+        }
+        txtPagoTotal.setText(String.valueOf(sum));
+        
     }//GEN-LAST:event_btnAgregarProdActionPerformed
 
     private void rbtnMaximoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnMaximoMousePressed
@@ -544,22 +583,33 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     if(res==JOptionPane.YES_OPTION){
                         for(int j=0; j<productosAgregados.length; j++){
                             if(txtFactCodProducto.getText().equals((String.valueOf(productosAgregados[j][0])))){
-                                productosAgregados[j][0] = productosAgregados[j+1][0];
-                                productosAgregados[j][1] = productosAgregados[j+1][1];
-                                productosAgregados[j][2] = productosAgregados[j+1][2];
-                                productosAgregados[j][3] = productosAgregados[j+1][3];
-                                productosAgregados[j][4] = productosAgregados[j+1][4];
-                                dtm = new DefaultTableModel(productosAgregados, nombresColumnas);
-                                tblProductos.setModel(dtm);
-                                txtFactCodProducto.setText("");
-                                txtFactNomProducto.setText("");
-                                txtCantidad.setText("");
-                                txtValorUnitario.setText("");
-                                rbtnMaximo.setSelected(false);
-                                rbtnMinimo.setSelected(false);
-                                i--;     
+                                for(int k=j; k<productosAgregados.length-1; k++){
+                                    productosAgregados[k][0] = productosAgregados[k+1][0];
+                                    productosAgregados[k][1] = productosAgregados[k+1][1];
+                                    productosAgregados[k][2] = productosAgregados[k+1][2];
+                                    productosAgregados[k][3] = productosAgregados[k+1][3];
+                                    productosAgregados[k][4] = productosAgregados[k+1][4];                                                                       
+                                }
+                                j=productosAgregados.length;
                             }
                         }
+                        dtm = new DefaultTableModel(productosAgregados, nombresColumnas);
+                        tblProductos.setModel(dtm);
+                        txtFactCodProducto.setText("");
+                        txtFactNomProducto.setText("");
+                        txtCantidad.setText("");
+                        txtValorUnitario.setText("");
+                        rbtnMaximo.setSelected(false);
+                        rbtnMinimo.setSelected(false);
+                        i--;  
+                                float sum=0;
+                        for(int i=0; i<productosAgregados.length; i++){
+                            if(productosAgregados[i][2]!=null){
+                                sum=Float.parseFloat(String.valueOf(productosAgregados[i][2]))+sum;
+                                System.out.println(sum);
+                            }
+                        }
+                        txtPagoTotal.setText(String.valueOf(sum));
                     }
                     
                  }
@@ -575,6 +625,22 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void tblProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMousePressed
        
     }//GEN-LAST:event_tblProductosMousePressed
+
+    private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFacturarActionPerformed
+
+    private void mnuEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEmpleadoActionPerformed
+        GUIEmpleado em=new GUIEmpleado();
+        this.setVisible(false);
+        em.setVisible(true);         
+    }//GEN-LAST:event_mnuEmpleadoActionPerformed
+
+    private void mnuClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuClienteMousePressed
+        GUICliente cl=new GUICliente();
+        this.setVisible(false);
+        cl.setVisible(true);        
+    }//GEN-LAST:event_mnuClienteMousePressed
 
     /**
      * @param args the command line arguments
@@ -616,6 +682,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnFacturar;
     private javax.swing.JMenu btnInventario;
     private javax.swing.JMenuItem btncategorias;
     private com.toedter.calendar.JDateChooser calenFechaVenta;
@@ -633,14 +700,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -651,7 +715,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblEmpleado;
+    private javax.swing.JMenu mnuCliente;
+    private javax.swing.JMenuItem mnuEmpleado;
     private javax.swing.JMenu mnuFacturacion;
+    private javax.swing.JMenu mnuSalir;
     private javax.swing.JRadioButton rbtnMaximo;
     private javax.swing.JRadioButton rbtnMinimo;
     private javax.swing.JTable tblProductos;
