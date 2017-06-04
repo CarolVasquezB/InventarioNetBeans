@@ -26,6 +26,7 @@ public class GUIEmpleado extends javax.swing.JFrame {
         Object[][] data = ce.consultarEmpleado();
         dtm = new DefaultTableModel(data, nombresColumnas);
         initComponents();
+        setLocationRelativeTo(null);
 
     }
 

@@ -358,11 +358,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         btnFacturar.setForeground(new java.awt.Color(51, 0, 102));
         btnFacturar.setText("Facturar");
         btnFacturar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnFacturar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFacturarActionPerformed(evt);
-            }
-        });
         jPanel1.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, -1));
 
         mnuFacturacion.setText("Facturación ");
@@ -625,10 +620,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void tblProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMousePressed
        
     }//GEN-LAST:event_tblProductosMousePressed
-
-    private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFacturarActionPerformed
 
     private void mnuEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEmpleadoActionPerformed
         GUIEmpleado em=new GUIEmpleado();

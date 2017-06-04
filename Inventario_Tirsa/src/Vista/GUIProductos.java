@@ -53,6 +53,7 @@ public class GUIProductos extends javax.swing.JFrame {
         cbx = new DefaultComboBoxModel(aux);
         dtm = new DefaultTableModel(data, nombresColumnas);
         initComponents();
+        setLocationRelativeTo(null);
 
     }
 

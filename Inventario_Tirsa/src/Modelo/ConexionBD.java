@@ -5,7 +5,10 @@
  */
 
 package Modelo;
+import Control.ControlReporte;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,6 +39,23 @@ public class ConexionBD {
         }
     }
     
+     public CallableStatement llamado_procedimiento_Reporte(){
+            
+              CallableStatement cst=null;
+        try {
+          
+            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root","mysql");
+           cst = con.prepareCall("{call Reporte_Fechas (?,?,?,?,?,?,?,?)}");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cst;
+           
+    }
+    
+    
+    
     public Connection getConnection(){
         return con;
     }
@@ -48,4 +68,5 @@ public class ConexionBD {
         ConexionBD cBD = new ConexionBD();
         cBD.getConnection();
     }
+    
 }
