@@ -203,7 +203,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 0, 102));
         jLabel5.setText("Facturación");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 220, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 220, -1));
 
         jLabel4.setBackground(new java.awt.Color(51, 0, 51));
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -336,11 +336,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         txtValorUnitario.setEditable(false);
         jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 90, -1));
-        jPanel1.add(calenFechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(621, 10, 130, -1));
+        jPanel1.add(calenFechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 130, -1));
 
         jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jLabel12.setText("Fecha de Venta:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+        jLabel12.setText("Fecha de Venta:*");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         btnEliminar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(51, 0, 102));
