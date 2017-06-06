@@ -9,6 +9,7 @@ import Modelo.ConexionBD;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -33,9 +34,9 @@ public class ControlReporte {
             
              data = new Object[5][5];
 
-            cst.setString(1,fecha_inicial);
-            cst.setString(2,fecha_final);
-            cst.registerOutParameter(3, java.sql.Types.INTEGER);
+            cst.setString("fecha_factura1",fecha_inicial);
+            cst.setString("fecha_factura2",fecha_final);
+            cst.registerOutParameter("total", java.sql.Types.INTEGER);
 //            cst.registerOutParameter(4, java.sql.Types.FLOAT);
 //            cst.registerOutParameter(5, java.sql.Types.DATE);
 //            cst.registerOutParameter(6, java.sql.Types.INTEGER);
@@ -43,7 +44,8 @@ public class ControlReporte {
 //            cst.registerOutParameter(8, java.sql.Types.INTEGER);
             
             rs=cst.executeQuery();
-           
+           int num_fac=cst.getInt("total");
+            System.out.println(""+num_fac);
              try {
             int i = 0;
             while (rs.next()) {
@@ -64,6 +66,25 @@ public class ControlReporte {
             Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
         }
 return data;
+    }
+    
+    public int total_facturas(String fecha_inicial,String fecha_final){
+        int num=0;
+          
+        try {
+            CallableStatement cst=null;
+            //PreparedStatement cst;
+            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root","mysql");                     
+            cst = con.prepareCall("{call Reporte_Fechas(?,?,?)}");
+             cst.setString(1,fecha_inicial);
+            cst.setString(2,fecha_final);           
+            cst.executeQuery();             
+            num = cst.getInt("total");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+            return num;
     }
 
 }

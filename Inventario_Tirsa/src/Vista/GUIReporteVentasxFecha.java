@@ -68,7 +68,6 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
             }
         });
 
-        tblfacturas.setModel(dtm);
         jScrollPane1.setViewportView(tblfacturas);
 
         jLabel3.setText("Ganancia Total");
@@ -164,10 +163,14 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
 
                 if (txtfechainicial.getDate() != null && txtfechafinal.getDate()!=null ) {
                     fecha_inicial = dateFormat.format(txtfechainicial.getDate());
-                    fecha_final = dateFormat.format(txtfechainicial.getDate());
+                    fecha_final = dateFormat.format(txtfechafinal.getDate());
                     Object[][]data=cr.Generar_reporte(fecha_inicial,fecha_final);   
                     dtm = new DefaultTableModel(data, nombresColumnas);
-                    
+                    for (int i = 0; i < data.length; i++) {
+                        System.out.println(data[i][0]+" "+data[i][1]+" "+data[i][2]+" "+data[i][3]+" "+data[i][4]);
+                        
+                    }
+                    System.out.println("el numero de faturas entre"+fecha_inicial+"y"+fecha_final+ " es "+cr.total_facturas(fecha_inicial, fecha_final));
                 } else {
                     JOptionPane.showMessageDialog(this, "Debe ingrear ambas fechas para generar el Reporte!", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }

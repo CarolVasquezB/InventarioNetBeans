@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * @author 1061785255
  */
 public class Persistencia {
-    ConexionBD cBD = null;
+   public  ConexionBD cBD = null;
     
     public boolean ejecutarDML(String sql){
         boolean ejecuto = false;
