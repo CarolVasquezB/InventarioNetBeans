@@ -99,7 +99,7 @@ public class ControlDetalleFactura {
     }        
     
     public Object[][] cantidadProductos(int codProducto){
-        Object data[][] = new Object[this.contarDetalleFactura()][5];
+        Object data[][] = new Object[1][2];
         ResultSet datos = null;
         String sql = "Select cod_producto, sum(cantidad_producto) suma from detalle_factura  where cod_producto = "+codProducto;
         datos = p.ejecutarConsulta(sql);

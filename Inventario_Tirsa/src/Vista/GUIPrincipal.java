@@ -11,6 +11,7 @@ import Control.ControlFactura;
 import Control.ControlPersona;
 import Control.ControlProducto;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.management.Query.gt;
 import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -34,7 +36,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     Object datosCategoria[][] = null;
     Object productosAgregados[][] = new Object[20][5];
     DefaultTableModel dtm;
-    DefaultComboBoxModel cbx;
     int j = 1;
     int i = 0;
 
@@ -127,6 +128,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Ingrese todos los campos obligatorios (*)");
         }
+        System.out.println(i);
     }    
     
     /**
@@ -271,6 +273,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtFactCodProductoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFactCodProductoKeyTyped(evt);
+            }
         });
         jPanel1.add(txtFactCodProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 150, -1));
 
@@ -345,8 +350,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel9.setText("Nombre:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
-
-        txtFactApeCliente.setEditable(false);
         jPanel1.add(txtFactApeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 190, -1));
 
         grpValor.add(rbtnMaximo);
@@ -715,6 +718,24 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     }
                 }
                 JOptionPane.showMessageDialog(this, "Factura realizada exitosamente");
+                txtFactCodProducto.setText("");
+                txtFactNomProducto.setText("");
+                txtFactApeCliente.setText("");
+                txtFactNomCliente.setText("");
+                txtFactDocCliente.setText("");
+                txtCantidad.setText("");
+                txtValorUnitario.setText("");
+                rbtnMaximo.setSelected(false);
+                rbtnMinimo.setSelected(false);
+                datosCliente = null;
+                datosProducto = null;
+                datosCategoria = null;
+                productosAgregados = new Object[20][5];
+                DefaultTableModel dtm;                
+                dtm = new DefaultTableModel(productosAgregados, nombresColumnas);
+                tblProductos.setModel(dtm);
+                j = 1;
+                i = 0;
             }else{
                 JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos obligatorios, incluyendo productos");           
             }            
@@ -737,7 +758,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuClienteMousePressed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        GUIReporteVentasxFecha rv=new GUIReporteVentasxFecha();
+        this.setVisible(false);
+        rv.setVisible(true);          
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void btnAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonoActionPerformed
@@ -770,6 +793,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
                   JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
             }     
     }//GEN-LAST:event_tblProductosMousePressed
+
+    private void txtFactCodProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFactCodProductoKeyTyped
+     
+    }//GEN-LAST:event_txtFactCodProductoKeyTyped
 
     /**
      * @param args the command line arguments
