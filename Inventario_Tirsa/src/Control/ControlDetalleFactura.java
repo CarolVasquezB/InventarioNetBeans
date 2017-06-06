@@ -97,4 +97,21 @@ public class ControlDetalleFactura {
         }
         return data;
     }        
+    
+    public Object[][] cantidadProductos(int codProducto){
+        Object data[][] = new Object[this.contarDetalleFactura()][5];
+        ResultSet datos = null;
+        String sql = "Select cod_producto, sum(cantidad_producto) suma from detalle_factura  where cod_producto = "+codProducto;
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            while(datos.next()){
+                data[0][0] = datos.getInt("cod_producto");
+                data[0][1] = datos.getInt("suma");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
 }

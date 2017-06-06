@@ -48,34 +48,82 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     public void AgregarProductos(){      
         ControlCategorias cc = new ControlCategorias();
+        ControlDetalleFactura dfc = new ControlDetalleFactura();
+        int suma=0;
         if(txtFactCodProducto.getText().length()>0 & txtFactNomProducto.getText().length()>0 && txtCantidad.getText().length()>0){
-            if(rbtnMaximo.isSelected() || rbtnMinimo.isSelected()){
-                if(rbtnMaximo.isSelected()){                 
-                    productosAgregados[i][0] = datosProducto[0][0];
-                    productosAgregados[i][1] = datosProducto[0][1];
-                    float cantxvalor = Float.parseFloat(String.valueOf(datosProducto[0][4]))*Integer.parseInt(txtCantidad.getText());
-                    productosAgregados[i][2] = cantxvalor;                   
-                    productosAgregados[i][3] = txtCantidad.getText(); 
-                    datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
-                    productosAgregados[i][4] = datosCategoria[0][1]; 
-                    btnAgregarProd.setEnabled(true);
-                    i++;                      
-                }else{
-                    if(rbtnMinimo.isSelected()){                        
+         
+            for(int i=0; i<productosAgregados.length; i++){
+                if(productosAgregados[i][0]!=null && String.valueOf(productosAgregados[i][0]).equals(txtFactCodProducto.getText())){
+                    suma=Integer.parseInt(String.valueOf(productosAgregados[i][3]))+suma;
+                }
+            }
+            Object cantidadProducto[][] = dfc.cantidadProductos(Integer.parseInt(txtFactCodProducto.getText()));
+            if((suma+Integer.parseInt(txtCantidad.getText())+Integer.parseInt(String.valueOf(cantidadProducto[0][1])))
+                    <=Integer.parseInt(String.valueOf(datosProducto[0][5]))){
+                if(rbtnMaximo.isSelected() || rbtnMinimo.isSelected()){
+                    if(rbtnMaximo.isSelected()){                 
                         productosAgregados[i][0] = datosProducto[0][0];
                         productosAgregados[i][1] = datosProducto[0][1];
-                        float cantxvalor = Float.parseFloat(String.valueOf(datosProducto[0][7]))*Integer.parseInt(txtCantidad.getText());
-                        productosAgregados[i][2] = cantxvalor;                         
-                        productosAgregados[i][3] = txtCantidad.getText();
+                        float cantxvalor = Float.parseFloat(String.valueOf(datosProducto[0][4]))*Integer.parseInt(txtCantidad.getText());
+                        productosAgregados[i][2] = cantxvalor;                   
+                        productosAgregados[i][3] = txtCantidad.getText(); 
                         datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
-                        productosAgregados[i][4] = datosCategoria[0][1];  
+                        productosAgregados[i][4] = datosCategoria[0][1]; 
                         btnAgregarProd.setEnabled(true);
-                        i++;                      
+                        i++;              
+                        
+                        float sum=0;
+                        for(int i=0; i<productosAgregados.length; i++){
+                            if(productosAgregados[i][2]!=null){
+                                sum=Float.parseFloat(String.valueOf(productosAgregados[i][2]))+sum;
+                                System.out.println(sum);
+                            }
+                        }
+                        txtPagoTotal.setText(String.valueOf(sum));                       
+                        dtm = new DefaultTableModel(productosAgregados, nombresColumnas);
+                        tblProductos.setModel(dtm);
+                        txtFactCodProducto.setText("");
+                        txtFactNomProducto.setText("");
+                        txtCantidad.setText("");
+                        txtValorUnitario.setText("");
+                        rbtnMaximo.setSelected(false);
+                        rbtnMinimo.setSelected(false);
+                    }else{
+                        if(rbtnMinimo.isSelected()){                        
+                            productosAgregados[i][0] = datosProducto[0][0];
+                            productosAgregados[i][1] = datosProducto[0][1];
+                            float cantxvalor = Float.parseFloat(String.valueOf(datosProducto[0][7]))*Integer.parseInt(txtCantidad.getText());
+                            productosAgregados[i][2] = cantxvalor;                         
+                            productosAgregados[i][3] = txtCantidad.getText();
+                            datosCategoria = cc.consultarCategoriaCodigo((int) datosProducto[0][6]);
+                            productosAgregados[i][4] = datosCategoria[0][1];  
+                            btnAgregarProd.setEnabled(true);                        
+                            i++;                      
+                            
+                            float sum=0;
+                            for(int i=0; i<productosAgregados.length; i++){
+                                if(productosAgregados[i][2]!=null){
+                                    sum=Float.parseFloat(String.valueOf(productosAgregados[i][2]))+sum;
+                                    System.out.println(sum);
+                                }
+                            }
+                            txtPagoTotal.setText(String.valueOf(sum));                       
+                            dtm = new DefaultTableModel(productosAgregados, nombresColumnas);
+                            tblProductos.setModel(dtm);
+                            txtFactCodProducto.setText("");
+                            txtFactNomProducto.setText("");
+                            txtCantidad.setText("");
+                            txtValorUnitario.setText("");
+                            rbtnMaximo.setSelected(false);
+                            rbtnMinimo.setSelected(false);                            
+                        }
                     }
-                }
+                }else{
+                    JOptionPane.showMessageDialog(this, "Debe selecionar el tipo de valor");           
+                }         
             }else{
-                JOptionPane.showMessageDialog(this, "Debe selecionar el tipo de valor");           
-            }            
+                JOptionPane.showMessageDialog(this, "El producto ha excedido la cantidad del inventario");  
+            }      
         }else{
             JOptionPane.showMessageDialog(this, "Ingrese todos los campos obligatorios (*)");
         }
@@ -203,7 +251,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 0, 102));
         jLabel5.setText("Facturación");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 220, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 220, -1));
 
         jLabel4.setBackground(new java.awt.Color(51, 0, 51));
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -273,6 +321,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 630, -1));
 
         tblProductos.setModel(dtm);
+        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblProductosMousePressed(evt);
+            }
+        });
         gatitosh.setViewportView(tblProductos);
 
         jPanel1.add(gatitosh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 699, 120));
@@ -285,13 +338,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 140, -1));
 
         lblEmpleado.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
-        lblEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmpleado.setForeground(new java.awt.Color(51, 0, 153));
         lblEmpleado.setText("1");
-        jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 150, 20));
+        jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 150, 20));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel9.setText("Nombre:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+
+        txtFactApeCliente.setEditable(false);
         jPanel1.add(txtFactApeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 190, -1));
 
         grpValor.add(rbtnMaximo);
@@ -452,11 +507,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
         );
 
         pack();
@@ -545,24 +600,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnAgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProdActionPerformed
-        this.AgregarProductos();
-        dtm = new DefaultTableModel(productosAgregados, nombresColumnas);
-        tblProductos.setModel(dtm);
-        txtFactCodProducto.setText("");
-        txtFactNomProducto.setText("");
-        txtCantidad.setText("");
-        txtValorUnitario.setText("");
-        rbtnMaximo.setSelected(false);
-        rbtnMinimo.setSelected(false);
-        float sum=0;
-        for(int i=0; i<productosAgregados.length; i++){
-            if(productosAgregados[i][2]!=null){
-                sum=Float.parseFloat(String.valueOf(productosAgregados[i][2]))+sum;
-                System.out.println(sum);
-            }
-        }
-        txtPagoTotal.setText(String.valueOf(sum));
-        
+        this.AgregarProductos();      
     }//GEN-LAST:event_btnAgregarProdActionPerformed
 
     private void rbtnMaximoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnMaximoMousePressed
@@ -590,12 +628,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int filaseleccionada;
+        DefaultTableModel modelotabla=(DefaultTableModel) tblProductos.getModel();
             try{
                 filaseleccionada= tblProductos.getSelectedRow();
-                if (filaseleccionada==-1){
-                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila");
+                if (filaseleccionada==-1 || modelotabla.getValueAt(filaseleccionada, 0)==null){
+                    JOptionPane.showMessageDialog(null, "Elija un producto");
+                    txtFactCodProducto.setText("");
+                    txtFactNomProducto.setText("");
+                    txtCantidad.setText("");
+                    txtValorUnitario.setText("");
+                    rbtnMaximo.setSelected(false);
+                    rbtnMinimo.setSelected(false);
                 }else{
-                    DefaultTableModel modelotabla=(DefaultTableModel) tblProductos.getModel();
                     txtFactCodProducto.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
                     txtFactNomProducto.setText((String) modelotabla.getValueAt(filaseleccionada, 1));
                     txtValorUnitario.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 2)));
@@ -645,7 +689,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         ControlDetalleFactura cdt = new ControlDetalleFactura();
         Object datos[][] = cf.consultarCodMaxFactura();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        String fecha = dateFormat.format(calenFechaVenta.getDate());
+        String fecha = null;
+        
+        if(calenFechaVenta.getDate()!=null){
+           fecha = dateFormat.format(calenFechaVenta.getDate());            
+        }
         int cod_fact;
         String prod = String.valueOf(productosAgregados[0][0]);
         
@@ -654,21 +702,26 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }else{
             cod_fact = 1;
         }
-   
-        if(fecha!=null && lblEmpleado.getText().length()>0 && txtFactDocCliente.getText().length()>0 && prod!=null){        
-            cf.insertarFactura(cod_fact, Float.parseFloat(txtPagoTotal.getText()), fecha, Integer.parseInt(String.valueOf(datosCliente[0][0]))
-                    , Integer.parseInt(lblEmpleado.getText()));  
-            for(int i=0; i<productosAgregados.length; i++){
-                if(productosAgregados[i][0]!=null){
-                    cdt.insertarDetalleFactura(cod_fact, Integer.parseInt(String.valueOf(productosAgregados[i][0])), Integer.parseInt(String.valueOf(productosAgregados[i][3])), Float.parseFloat(String.valueOf(productosAgregados[i][2])));
-                }else{
-                    i=productosAgregados.length;
+        
+        try{
+            if(fecha!=null && lblEmpleado.getText().length()>0 && datosCliente[0][0].toString()!=null && prod!=null){        
+                cf.insertarFactura(cod_fact, Float.parseFloat(txtPagoTotal.getText()), fecha, Integer.parseInt(String.valueOf(datosCliente[0][0]))
+                        , Integer.parseInt(lblEmpleado.getText()));  
+                for(int i=0; i<productosAgregados.length; i++){
+                    if(productosAgregados[i][0]!=null){
+                        cdt.insertarDetalleFactura(cod_fact, Integer.parseInt(String.valueOf(productosAgregados[i][0])), Integer.parseInt(String.valueOf(productosAgregados[i][3])), Float.parseFloat(String.valueOf(productosAgregados[i][2])));
+                    }else{
+                        i=productosAgregados.length;
+                    }
                 }
-            }
-            JOptionPane.showMessageDialog(this, "Factura realizada exitosamente");
-        }else{
-            JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos obligatorios");           
+                JOptionPane.showMessageDialog(this, "Factura realizada exitosamente");
+            }else{
+                JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos obligatorios, incluyendo productos");           
+            }            
+        }catch(NullPointerException npe){
+             JOptionPane.showMessageDialog(this, "Ingrese un Cliente");
         }
+        
     }//GEN-LAST:event_btnFacturarActionPerformed
 
     private void mnuEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEmpleadoActionPerformed
@@ -692,6 +745,31 @@ public class GUIPrincipal extends javax.swing.JFrame {
         abon.setVisible(true);
         this.setVisible(false);    
     }//GEN-LAST:event_btnAbonoActionPerformed
+
+    private void tblProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMousePressed
+        int filaseleccionada;
+        DefaultTableModel modelotabla=(DefaultTableModel) tblProductos.getModel();
+            try{
+                filaseleccionada= tblProductos.getSelectedRow();
+                if (filaseleccionada==-1 || modelotabla.getValueAt(filaseleccionada, 0)==null){
+                    JOptionPane.showMessageDialog(null, "Elija un producto");
+                    txtFactCodProducto.setText("");
+                    txtFactNomProducto.setText("");
+                    txtCantidad.setText("");
+                    txtValorUnitario.setText("");
+                    rbtnMaximo.setSelected(false);
+                    rbtnMinimo.setSelected(false);
+                }else{
+                    txtFactCodProducto.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
+                    txtFactNomProducto.setText((String) modelotabla.getValueAt(filaseleccionada, 1));
+                    txtValorUnitario.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 2)));
+                    txtCantidad.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 3))); 
+                    btnAgregarProd.setEnabled(false);                    
+                }
+            }catch (HeadlessException ex){
+                  JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+            }     
+    }//GEN-LAST:event_tblProductosMousePressed
 
     /**
      * @param args the command line arguments
