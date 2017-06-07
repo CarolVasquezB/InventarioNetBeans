@@ -198,6 +198,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         mnuEmpleado = new javax.swing.JMenuItem();
         btncategorias = new javax.swing.JMenuItem();
+        mnuDesbloquear = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenu();
 
         jMenu3.setText("jMenu3");
@@ -486,7 +487,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Configuración");
+        jMenu6.setText("Administrar");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
         jMenuItem1.setText("Roles");
@@ -512,6 +513,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu6.add(btncategorias);
+
+        mnuDesbloquear.setText("Desbloqueo Empleados");
+        mnuDesbloquear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuDesbloquearActionPerformed(evt);
+            }
+        });
+        jMenu6.add(mnuDesbloquear);
 
         jMenuBar1.add(jMenu6);
 
@@ -829,6 +838,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         rol.setVisible(true); 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void mnuDesbloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDesbloquearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuDesbloquearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -906,6 +919,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmpleado;
     private javax.swing.JMenu mnuCliente;
     private javax.swing.JMenuItem mnuConsultarFactura;
+    private javax.swing.JMenuItem mnuDesbloquear;
     private javax.swing.JMenuItem mnuEmpleado;
     private javax.swing.JMenu mnuFacturacion;
     private javax.swing.JMenu mnuSalir;

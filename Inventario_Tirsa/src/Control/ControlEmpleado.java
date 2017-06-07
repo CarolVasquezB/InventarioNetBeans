@@ -91,9 +91,9 @@ public class ControlEmpleado {
 
     public Object[][] consultarEmpleadoLogin(String login) {
 
-        Object data[][] = new Object[1][3];
+        Object data[][] = new Object[1][5];
         ResultSet datos = null;
-        String sql = "Select cod_empleado_persona, login_empleado, password_empleado from empleado "
+        String sql = "Select cod_empleado_persona, login_empleado, password_empleado, num_accesos, bloqueado from empleado "
                 + "where login_empleado = '" + login + "';";
         datos = p.ejecutarConsulta(sql);
 
@@ -102,6 +102,8 @@ public class ControlEmpleado {
                 data[0][0] = datos.getInt("cod_empleado_persona");
                 data[0][1] = datos.getString("login_empleado");
                 data[0][2] = datos.getString("password_empleado");
+                data[0][3] = datos.getInt("num_accesos");
+                data[0][4] = datos.getString("bloqueado");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,6 +131,20 @@ public class ControlEmpleado {
         }
         return data;
     }
+    
+    public boolean actualizarAccesos(int codigoEmpleado, int accesos) {
+        boolean actualizo = false;
+        String sql = "Update empleado set num_accesos=" + accesos + " where cod_empleado_persona = " + codigoEmpleado;
+        actualizo = p.ejecutarDML(sql);
+        return actualizo;
+    }  
+    
+    public boolean actualizarAccesosBloqueo(int codigoEmpleado, int accesos, String bloqueo) {
+        boolean actualizo = false;
+        String sql = "Update empleado set num_accesos=" + accesos + ", bloqueado= '"+ bloqueo +" where cod_empleado_persona = " + codigoEmpleado;
+        actualizo = p.ejecutarDML(sql);
+        return actualizo;
+    }      
 
 //    public static void main(String[] args) {
 //        ControlEmpleado ce = new ControlEmpleado();        

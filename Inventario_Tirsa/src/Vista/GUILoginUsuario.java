@@ -13,13 +13,22 @@ import javax.swing.JOptionPane;
  * @author CarolVasquez
  */
 public class GUILoginUsuario extends javax.swing.JFrame {
-
+    ControlEmpleado ce = new ControlEmpleado();
+    Object dato[][] = null;
     /**
      * Creates new form GUILoginUsuario
      */
     public GUILoginUsuario() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    public void sumarAccesos(){
+        if(dato[0][3]!=null){
+            ce.actualizarAccesos(Integer.parseInt(String.valueOf(dato[0][0])), Integer.parseInt(String.valueOf(dato[0][3]))+1);   
+        }else{
+            ce.actualizarAccesos(Integer.parseInt(String.valueOf(dato[0][0])), 1);
+        }                   
     }
 
     /**
@@ -82,18 +91,22 @@ public class GUILoginUsuario extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         if(txtUsuarioLogin.getText().length()>0 & PswContraseñaLogin.getText().length()>0){
-            ControlEmpleado ce = new ControlEmpleado();
             GUIPrincipal facturacion = new GUIPrincipal();
-            Object dato[][] = ce.consultarEmpleadoLogin(txtUsuarioLogin.getText());
+            dato = ce.consultarEmpleadoLogin(txtUsuarioLogin.getText());
             if(dato[0][0]==null){
                 JOptionPane.showMessageDialog(this, "El usuario no existe");
             }else{
-                if(dato[0][2].equals(PswContraseñaLogin.getText())){
-                    facturacion.setVisible(true);
-                    facturacion.obtenerEmpleado(dato[0][0].toString());
-                    this.setVisible(false);    
+                if(String.valueOf(dato[0][4]).equals("null") || String.valueOf(dato[0][4]).equals("F")){
+                    if(dato[0][2].equals(PswContraseñaLogin.getText())){
+                        facturacion.setVisible(true);
+                        facturacion.obtenerEmpleado(dato[0][0].toString());
+                        this.setVisible(false);    
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");   
+                        this.sumarAccesos();
+                        }                    
                 }else{
-                    JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");               
+                    JOptionPane.showMessageDialog(this, "El usuario se encuentra bloqueado, comuníquede con el Administrador"); 
                 }
             }            
         }else{

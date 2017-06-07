@@ -206,8 +206,6 @@ public class GUIRoles extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");
         }
-
-            
     }//GEN-LAST:event_btnActualRolActionPerformed
 
     private void btnGuardRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardRolActionPerformed
@@ -234,7 +232,17 @@ public class GUIRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarRol1ActionPerformed
 
     private void btnElimRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnElimRolActionPerformed
-        // TODO add your handling code here:
+        if(txtCodRol.getText().length()>0 && txtNomRol.getText().length()>0){
+            if(cr.eliminarRol(Integer.parseInt(txtCodRol.getText()))){
+                JOptionPane.showMessageDialog(this, "Rol eliminado");
+                data = cr.consultarRol();
+                this.actualizarTabla();
+            }else{
+                JOptionPane.showMessageDialog(this, "Revise la información diligenciada");
+            }            
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");
+        }        
     }//GEN-LAST:event_btnElimRolActionPerformed
 
     private void btnBuscRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscRolActionPerformed
