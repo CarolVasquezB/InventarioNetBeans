@@ -132,10 +132,10 @@ public class ControlReporte {
 
             
             
-            PreparedStatement ps = cBD.getConnection().prepareStatement("select total_ventas_en_facturas('');");
+            PreparedStatement ps = cBD.getConnection().prepareStatement("select total_ventas_en_facturas();");
 
             ResultSet rs = ps.executeQuery();
-
+            rs.next();
             total = rs.getFloat(1);
 
         } catch (SQLException ex) {
