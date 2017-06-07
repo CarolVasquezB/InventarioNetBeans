@@ -5,8 +5,10 @@
  */
 package Vista;
 
+import Control.ControlAbonos;
 import Control.ControlFactura;
 import Control.ControlPersona;
+import java.awt.HeadlessException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,12 +22,12 @@ public class GUIAbonos extends javax.swing.JFrame {
     Object datosCliente[][] = null;
     Object datosFactura[][] = null;
     DefaultTableModel dtm;
-    String nombresColumnas[] = {"Codigo Factura", "Valor de Venta", "Fecha de Venta", "Vendedor"};
+    String nombresColumnas[] = {"Codigo Factura", "Valor de Venta", "Fecha de Venta", "Vendedor", "Abonos"};
     /**
      * Creates new form GUIAbonos
      */
     public GUIAbonos() {
-        initComponents();
+        dtm = new DefaultTableModel(datosFactura, nombresColumnas);        
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -74,24 +76,31 @@ public class GUIAbonos extends javax.swing.JFrame {
         tblFacturas.setModel(dtm);
         jScrollPane1.setViewportView(tblFacturas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 760, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 760, 100));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel2.setText("Abono:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
         jPanel1.add(txtAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 96, -1));
 
+        btnAbono.setBackground(new java.awt.Color(204, 204, 204));
         btnAbono.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnAbono.setForeground(new java.awt.Color(51, 0, 102));
+        btnAbono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/abonar.png"))); // NOI18N
         btnAbono.setText("Realizar Abono");
         btnAbono.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(btnAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
+        btnAbono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbonoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, 40));
 
         jLabel4.setBackground(new java.awt.Color(51, 0, 51));
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 51));
         jLabel4.setText("Facturas");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,6 +109,12 @@ public class GUIAbonos extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel8.setText("Número Documento:*");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        txtFactDocCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFactDocClienteKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtFactDocCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 150, -1));
         jPanel1.add(txtFactNomCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, -1));
 
@@ -112,9 +127,10 @@ public class GUIAbonos extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 100, -1));
         jPanel1.add(txtFactApeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 190, -1));
 
-        btnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscarCliente.setBackground(new java.awt.Color(204, 204, 204));
         btnBuscarCliente.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnBuscarCliente.setForeground(new java.awt.Color(51, 0, 102));
+        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/buscar.png"))); // NOI18N
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -123,7 +139,7 @@ public class GUIAbonos extends javax.swing.JFrame {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 90, 30));
+        jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 120, 40));
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,7 +148,7 @@ public class GUIAbonos extends javax.swing.JFrame {
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 730, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 730, 10));
 
         jSeparator5.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,7 +161,9 @@ public class GUIAbonos extends javax.swing.JFrame {
         jLabel5.setText("Abonos");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 150, -1));
 
+        btnVolver.setBackground(new java.awt.Color(204, 204, 204));
         btnVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/atras.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +171,7 @@ public class GUIAbonos extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 130, 40));
 
         jLabel6.setBackground(new java.awt.Color(51, 0, 51));
         jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -208,6 +226,7 @@ public class GUIAbonos extends javax.swing.JFrame {
                 txtFactApeCliente.setText((String) datosCliente[0][3]);
                 datosFactura = cf.consultarFacturaAbonos(Integer.parseInt(String.valueOf(datosCliente[0][0])));
                 dtm = new DefaultTableModel(datosFactura, nombresColumnas);
+                tblFacturas.setModel(dtm);
             }
         }else{
             JOptionPane.showMessageDialog(this, "Ingrese un parámetro de búsqueda");
@@ -220,6 +239,57 @@ public class GUIAbonos extends javax.swing.JFrame {
         this.setVisible(false);
         gpr.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void txtFactDocClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFactDocClienteKeyReleased
+        txtFactNomCliente.setText("");
+        txtFactApeCliente.setText("");
+        datosFactura = null;
+        dtm = new DefaultTableModel(datosFactura, nombresColumnas);
+        tblFacturas.setModel(dtm);
+    }//GEN-LAST:event_txtFactDocClienteKeyReleased
+
+    private void btnAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonoActionPerformed
+        ControlAbonos ca = new ControlAbonos();
+        int filaseleccionada;
+        int codAbono;
+        Object datos[][] = ca.consultarCodMaxAbonos();
+        
+        if(datos[0][0]!=null){
+            codAbono = Integer.parseInt(String.valueOf(datos[0][0]))+1;
+        }else{
+            codAbono = 1;
+        }
+        
+        DefaultTableModel modelotabla=(DefaultTableModel) tblFacturas.getModel();
+            try{
+                filaseleccionada= tblFacturas.getSelectedRow();
+                if (filaseleccionada==-1 || modelotabla.getValueAt(filaseleccionada, 0)==null){
+                }else{
+                    int codFactura = Integer.parseInt(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
+                    float valorFactura = Float.parseFloat(String.valueOf(modelotabla.getValueAt(filaseleccionada, 1)));
+                    float abonosRealizados = Float.parseFloat(String.valueOf(modelotabla.getValueAt(filaseleccionada, 4)));
+                    float valorAbono = Float.parseFloat(txtAbono.getText());
+                    
+                    if(valorAbono+abonosRealizados <= valorFactura){
+                        int res = JOptionPane.showConfirmDialog(this, "Está seguro que desea realizar el abono por valor de: " + txtAbono.getText(), "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                        if(res==JOptionPane.YES_OPTION){
+                            ca.insertarAbono(codAbono, valorAbono, codFactura);
+                            JOptionPane.showMessageDialog(this, "Se ha realizado el abono exitosamente");
+                        }else{
+                            txtFactNomCliente.setText("");
+                            txtFactApeCliente.setText("");
+                            datosFactura = null;
+                            dtm = new DefaultTableModel(datosFactura, nombresColumnas);
+                            tblFacturas.setModel(dtm);                            
+                        }                       
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Ha excedido el valor de la compra");
+                    }                   
+                 }
+              }catch (HeadlessException ex){
+                    JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+              }             
+    }//GEN-LAST:event_btnAbonoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -221,6 +221,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
         jLabel1.setText("Producto");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+
+        txtFactDocCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFactDocClienteKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtFactDocCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -232,6 +238,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 100, -1));
         jPanel1.add(txtFactNomCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 200, -1));
 
+        btnBuscarCliente.setBackground(new java.awt.Color(204, 204, 204));
         btnBuscarCliente.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnBuscarCliente.setForeground(new java.awt.Color(51, 0, 102));
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/buscar.png"))); // NOI18N
@@ -282,6 +289,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         txtFactNomProducto.setEditable(false);
         jPanel1.add(txtFactNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 390, -1));
 
+        btnBuscarProducto.setBackground(new java.awt.Color(204, 204, 204));
         btnBuscarProducto.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnBuscarProducto.setForeground(new java.awt.Color(51, 0, 102));
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/buscar.png"))); // NOI18N
@@ -427,6 +435,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 120, 40));
 
+        btnAbono.setBackground(new java.awt.Color(204, 204, 204));
         btnAbono.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnAbono.setForeground(new java.awt.Color(51, 0, 102));
         btnAbono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/abonar.png"))); // NOI18N
@@ -803,6 +812,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private void txtFactCodProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFactCodProductoKeyTyped
      
     }//GEN-LAST:event_txtFactCodProductoKeyTyped
+
+    private void txtFactDocClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFactDocClienteKeyReleased
+        txtFactNomCliente.setText("");
+        txtFactApeCliente.setText("");
+    }//GEN-LAST:event_txtFactDocClienteKeyReleased
 
     /**
      * @param args the command line arguments

@@ -23,13 +23,12 @@ import java.util.logging.Logger;
 public class ControlAbonos {
  Persistencia p = new Persistencia();
     
-    public boolean insertarAbono(int cod_abono,float valor_abono,String fecha_abono){
+    public boolean insertarAbono(int cod_abono, float valor_abono, int cod_factura){
         
         boolean inserto = false;
 
-        String sql = "Insert into abonos(cod_abono,valor_abono,fecha_abono "+")"
-                + " values("+cod_abono+","+valor_abono+",'"+fecha_abono+"');";
-
+        String sql = "Insert into abonos(cod_abono, valor_abono, cod_factura "+")"
+                + " values("+cod_abono+","+valor_abono+",'"+cod_factura+"');";
         inserto = p.ejecutarDML(sql);
         return inserto;        
     } 
@@ -120,48 +119,20 @@ public class ControlAbonos {
         return data;
     }
     
-//    public static void main(String[] args) {
-//        ControlAbonos ca = new ControlAbonos(); 
-//        Date date = new Date();
-//
-//    DateFormat fecha_hora = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-//    String fechayhora=fecha_hora.format(date);
-//        boolean inserto=ca.insertarAbono(344,30000,fechayhora);
-//        if (inserto) {
-//            System.out.println("inserto...");
-//        }
-//        else{
-//            System.out.println("error...");
-//    }
-//}
-    
-//        boolean elimino=ca.eliminarAbono(654);
-//        if (elimino) {
-//            System.out.println("eliminado");
-//        }else{
-//            System.out.println("error...");
-//        }
-
-        
-//        boolean actualizo=ca.actualizarAbono(654,20000);
-//        if(actualizo){
-//            System.out.println("actualizo...");
-//        }else{
-//            System.out.println("error...");
-//        }
-        
-//        
-//        int aux=ca.contarAbonos();
-//        System.out.println("el numero de abonos es : "+aux);
-//        
-//        
- 
-        
-        //Prueba
-//        Object[][] dato = ca.consultarAbonos();        
-//        for (int i = 0; i < ca.contarAbonos(); i++) {
-//                System.out.println("Codigo abono: "+ dato[i][0]+ " valor : "+dato[i][1]);
-//        }
-//    }
+    public Object[][] consultarCodMaxAbonos() {
+        ResultSet datos = null;
+        Object data[][] = new Object[1][1];
+        String sql = "select max(cod_abono) num from abonos";
+        int num=0;
+        datos = p.ejecutarConsulta(sql);
+        try {
+            while (datos.next()) {
+                data[0][0] = datos.getString("num");    
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
     
 }
