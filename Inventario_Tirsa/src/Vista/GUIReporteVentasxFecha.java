@@ -5,7 +5,6 @@
  */
 package Vista;
 
-
 import Control.ControlReporte;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,18 +17,19 @@ import javax.swing.table.DefaultTableModel;
  * @author David
  */
 public class GUIReporteVentasxFecha extends javax.swing.JFrame {
-    ControlReporte cr=new ControlReporte();
+
+    ControlReporte cr = new ControlReporte();
     /**
      * Creates new form GUIReporteVentasxFecha
      */
     DefaultTableModel dtm;
-     String nombresColumnas[] = {"codigo factura","valor total factura","fecha_factura","codigo cliente","codigo Empleado"};
+    String nombresColumnas[] = {"codigo factura", "valor total factura", "fecha_factura", "codigo cliente", "codigo Empleado"};
 
     public GUIReporteVentasxFecha() {
-        
-        dtm=new DefaultTableModel();
+
+        dtm = new DefaultTableModel();
         initComponents();
-        
+
     }
 
     /**
@@ -91,16 +91,6 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtganancia, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(btngenerarReporte)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(txtnum_facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -109,7 +99,17 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtfechafinal, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtfechafinal, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(btngenerarReporte)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(txtnum_facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -170,29 +170,38 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btngenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngenerarReporteActionPerformed
-         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-                String fecha_inicial;
-                String fecha_final;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+       
+        Object info[][]= null;
+        String fecha_inicial = dateFormat.format(txtfechainicial.getDate());
+        String fecha_final = dateFormat.format(txtfechafinal.getDate());
+        
+        if (txtfechainicial.getDate()!=null && txtfechafinal.getDate()!=null) {
+            if (fecha_inicial.equals(fecha_final)) {
+                JOptionPane.showMessageDialog(this, "Las fechas deben ser distintas!");
+            } else if (!fecha_inicial.equals(fecha_final)) {
+                 
+                info = cr.total_facturas(fecha_inicial, fecha_final);
+              
+            } 
 
-                if (txtfechainicial.getDate() != null && txtfechafinal.getDate()!=null ) {
-                    fecha_inicial = dateFormat.format(txtfechainicial.getDate());
-                    fecha_final = dateFormat.format(txtfechafinal.getDate());
-                    //Object[][]data=cr.Generar_reporte(fecha_inicial,fecha_final);   
+            //Object[][]data=cr.Generar_reporte(fecha_inicial,fecha_final);   
 //                    dtm = new DefaultTableModel(data, nombresColumnas);
 //                    for (int i = 0; i < data.length; i++) {
 //                        System.out.println(data[i][0]+" "+data[i][1]+" "+data[i][2]+" "+data[i][3]+" "+data[i][4]);
 //                        
 //                    }
-                    Object info[][]=cr.total_facturas(fecha_inicial, fecha_final);
-                    txtnum_facturas.setText(info[0][0].toString());
-                    txtganancia.setText(info[0][1].toString());
-                    
-                    txtnum_facturas.setEditable(false);
-                    txtganancia.setEditable(false);
-                    System.out.println("el numero de faturas entre "+fecha_inicial+" y "+fecha_final+ " es "+info[0][0]+" total ventas "+info[0][1]);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Debe ingrear ambas fechas para generar el Reporte!", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                }
+            if (info!= null) {
+                txtnum_facturas.setText(info[0][0].toString());
+                txtganancia.setText(info[0][1].toString());
+                txtnum_facturas.setEditable(false);
+                txtganancia.setEditable(false);
+                System.out.println("el numero de faturas entre " + fecha_inicial + " y " + fecha_final + " es " + info[0][0] + " total ventas " + info[0][1]);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingrear ambas fechas para generar el Reporte!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btngenerarReporteActionPerformed
 
     /**
