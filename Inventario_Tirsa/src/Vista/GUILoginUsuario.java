@@ -38,7 +38,7 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         PswContraseñaLogin = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(570, 350));
@@ -69,8 +69,12 @@ public class GUILoginUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 140, 160));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 350));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/LogoTirsa.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 160, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/FondoLogin.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -136,8 +140,8 @@ public class GUILoginUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtUsuarioLogin;
     // End of variables declaration//GEN-END:variables
