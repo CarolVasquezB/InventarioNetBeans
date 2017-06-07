@@ -50,17 +50,18 @@ public class GUILoginUsuario extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel2.setText("Contraseña:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, 20));
         getContentPane().add(txtUsuarioLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel4.setText("Usuario:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
-        getContentPane().add(PswContraseñaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 120, -1));
+        getContentPane().add(PswContraseñaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 120, -1));
 
         btnEntrar.setBackground(new java.awt.Color(204, 204, 204));
         btnEntrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         btnEntrar.setForeground(new java.awt.Color(102, 0, 102));
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/login.png"))); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
