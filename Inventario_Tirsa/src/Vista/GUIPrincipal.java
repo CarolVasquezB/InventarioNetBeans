@@ -490,6 +490,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu6.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
         jMenuItem1.setText("Roles");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem1);
 
         mnuEmpleado.setText("Empleados");
@@ -817,6 +822,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
         txtFactNomCliente.setText("");
         txtFactApeCliente.setText("");
     }//GEN-LAST:event_txtFactDocClienteKeyReleased
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        GUIRoles rol=new GUIRoles();
+        this.setVisible(false);
+        rol.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
