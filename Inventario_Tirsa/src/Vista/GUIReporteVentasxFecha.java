@@ -178,7 +178,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         
         if (txtfechainicial.getDate()!=null && txtfechafinal.getDate()!=null) {
             if (fecha_inicial.equals(fecha_final)) {
-                JOptionPane.showMessageDialog(this, "Las fechas deben ser distintas!");
+                info=cr.total_facturas(fecha_inicial);
             } else if (!fecha_inicial.equals(fecha_final)) {
                  
                 info = cr.total_facturas(fecha_inicial, fecha_final);
@@ -197,6 +197,8 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                 txtnum_facturas.setEditable(false);
                 txtganancia.setEditable(false);
                 System.out.println("el numero de faturas entre " + fecha_inicial + " y " + fecha_final + " es " + info[0][0] + " total ventas " + info[0][1]);
+            }else{
+                JOptionPane.showMessageDialog(this, "No se encontraron registros\npara generar el Reporte!", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } else {

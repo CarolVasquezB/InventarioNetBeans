@@ -73,16 +73,16 @@ public class ControlReporte {
         Object data[][] = null;
         try {
             CallableStatement cst = null;
-            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "root");
-            cst = con.prepareCall("{call Reporte_Fechas(?,?,?,?)}");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "mysql");
+            cst = con.prepareCall("{call Reporte_Fechas_Intervalo(?,?,?,?)}");
             cst.setString(1, fecha_inicial);
             cst.setString(2, fecha_final);
             cst.executeQuery();
             num = cst.getInt("total");
             total = cst.getFloat("sum_total_facturas");
-            if (num != 0 && total!=0) {
+            if (num != 0 && total != 0) {
                 data = new Object[1][2];
-                data[0][0] = num;               
+                data[0][0] = num;
                 data[0][1] = total;
             }
 
@@ -93,4 +93,31 @@ public class ControlReporte {
         return data;
     }
 
+    public Object[][] total_facturas(String fecha) {
+        int num = 0;
+        float total = 0;
+        Object data[][] = null;
+        try {
+            CallableStatement cst = null;
+            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "mysql");
+            cst = con.prepareCall("{call Reporte_Fecha_unitaria(?,?,?)}");
+            cst.setString(1, fecha);
+
+            cst.executeQuery();
+            
+            total = cst.getFloat("total");
+            num = cst.getInt("num_fac");
+
+            if (num != 0 && total != 0) {
+                data = new Object[1][2];
+                data[0][0] = num;
+                data[0][1] = total;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return data;
+    }
 }
