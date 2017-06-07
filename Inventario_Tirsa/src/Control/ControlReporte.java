@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,7 @@ import java.util.logging.Logger;
 public class ControlReporte {
 
     Connection con = null;
+    ConexionBD cBD;
 //    
 //
 //    public Object[][] Generar_reporte(String fecha_inicial, String fecha_final) {
@@ -104,7 +106,7 @@ public class ControlReporte {
             cst.setString(1, fecha);
 
             cst.executeQuery();
-            
+
             total = cst.getFloat("total");
             num = cst.getInt("num_fac");
 
@@ -119,5 +121,27 @@ public class ControlReporte {
         }
 
         return data;
+    }
+
+    public float total_facturas() {
+
+        float total = 0;
+        cBD = new ConexionBD();
+
+        try {
+
+            
+            
+            PreparedStatement ps = cBD.getConnection().prepareStatement("select total_ventas_en_facturas('');");
+
+            ResultSet rs = ps.executeQuery();
+
+            total = rs.getFloat(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return total;
     }
 }
