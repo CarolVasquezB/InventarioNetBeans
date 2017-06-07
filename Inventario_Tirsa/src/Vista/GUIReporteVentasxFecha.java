@@ -86,7 +86,11 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 204));
         jLabel2.setText("Fecha Final");
 
+        btngenerarReporte.setBackground(new java.awt.Color(204, 204, 204));
+        btngenerarReporte.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
+        btngenerarReporte.setForeground(new java.awt.Color(0, 0, 255));
         btngenerarReporte.setText("Generar Reporte");
+        btngenerarReporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btngenerarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btngenerarReporteActionPerformed(evt);
@@ -140,7 +144,11 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
 
         jLabel7.setText("Total ventas diaria");
 
+        btntotal_ventas.setBackground(new java.awt.Color(204, 204, 204));
+        btntotal_ventas.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
+        btntotal_ventas.setForeground(new java.awt.Color(0, 0, 255));
         btntotal_ventas.setText("Total Ventas");
+        btntotal_ventas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btntotal_ventas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btntotal_ventasActionPerformed(evt);
@@ -220,7 +228,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -236,7 +244,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
@@ -261,6 +269,8 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                     System.out.println("el numero de faturas el dia " + fecha_inicial + " es " + info[0][0] + " total ventas " + info[0][1]);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se encontraron registros\npara generar el Reporte!", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                    txtfechainicial.setDate(null);
+                    txtfechafinal.setDate(null);
                 }
             } else if (!fecha_inicial.equals(fecha_final)) {
 
@@ -274,10 +284,14 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                     System.out.println("el numero de faturas entre " + fecha_inicial + " y " + fecha_final + " es " + info[0][0] + " total ventas " + info[0][1]);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se encontraron registros\npara generar el Reporte!", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                    txtfechainicial.setDate(null);
+                    txtfechafinal.setDate(null);
                 }
 
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontraron registros\npara generar el Reporte!", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                txtfechainicial.setDate(null);
+                txtfechafinal.setDate(null);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingrear ambas fechas para generar el Reporte!", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -286,10 +300,10 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
     }//GEN-LAST:event_btngenerarReporteActionPerformed
 
     private void btntotal_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntotal_ventasActionPerformed
-       float total_ventas=cr.total_facturas();
+        float total_ventas = cr.total_facturas();
         txttotal_general.setEditable(false);
         txttotal_general.setText(String.valueOf(total_ventas));
-
+        txttotal_general.setEditable(false);
     }//GEN-LAST:event_btntotal_ventasActionPerformed
 
     /**

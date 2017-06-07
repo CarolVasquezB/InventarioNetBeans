@@ -31,9 +31,8 @@ public class ControlReporte {
 //        Object[][] data = null;
 //        try {
 //
-//            CallableStatement cst = null;
-//            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "mysql");
-//            cst = con.prepareCall("{call Reporte_Fechas (?,?,?,?,?)}");
+//           ResultSet rs;
+//            cst = con.prepareCall("{call consultar_facturas_reporte (?,?)}");
 //
 //            //data = new Object[5][5];
 //
@@ -129,9 +128,6 @@ public class ControlReporte {
         cBD = new ConexionBD();
 
         try {
-
-            
-            
             PreparedStatement ps = cBD.getConnection().prepareStatement("select total_ventas_en_facturas();");
 
             ResultSet rs = ps.executeQuery();
