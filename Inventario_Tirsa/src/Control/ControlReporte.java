@@ -73,7 +73,7 @@ public class ControlReporte {
         Object data[][]=null;
         try {
             CallableStatement cst = null;            
-            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "mysql");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "root");
             cst = con.prepareCall("{call Reporte_Fechas(?,?,?,?)}");
             cst.setString(1, fecha_inicial);
             cst.setString(2, fecha_final);            

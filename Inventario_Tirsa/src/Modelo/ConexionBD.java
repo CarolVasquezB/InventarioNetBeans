@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class ConexionBD {
     static String bd = "inventario";
     static String login = "root";
-    static String password = "mysql";
+    static String password = "root";
     static String url = "jdbc:mysql://localhost/"+bd;
     
     Connection con = null;
