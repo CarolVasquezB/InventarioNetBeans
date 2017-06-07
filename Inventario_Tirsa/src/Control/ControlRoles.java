@@ -40,7 +40,7 @@ public boolean insertarRol(int cod_rol,String nombre_rol){
     
      
     
-    public boolean actualizarRol(int cod_rol,String nombre_rol){
+    public boolean actualizarRol(int cod_rol, String nombre_rol){
         boolean actualizo = false;
         
         String sql = "Update rol set "
@@ -68,7 +68,7 @@ public boolean insertarRol(int cod_rol,String nombre_rol){
     
     public Object[][] consultarRol(int codigo){
 
-        Object data[][] = new Object[this.contarRoles()][2];
+        Object data[][] = new Object[1][2];
         ResultSet datos = null;
         String sql = "Select cod_rol,nombre_rol from rol "
                 + "where cod_rol = "+codigo;
@@ -88,8 +88,47 @@ public boolean insertarRol(int cod_rol,String nombre_rol){
         return data;
     }     
       
+    public Object[][] consultarRolTodos(int codigo, String nombre){
+
+        Object data[][] = new Object[1][2];
+        ResultSet datos = null;
+        String sql = "Select cod_rol,nombre_rol from rol "
+                + "where cod_rol = "+codigo+ "& nombre_rol= '"+nombre+"'";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            while(datos.next()){
+                data[0][0] = datos.getInt("cod_rol");
+                data[0][1] = datos.getString("nombre_rol");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlRoles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }    
     
-    
+    public Object[][] consultarRolNombre(String nombre){
+
+        Object data[][] = new Object[1][2];
+        ResultSet datos = null;
+        String sql = "Select cod_rol,nombre_rol from rol "
+                + "where nombre_rol= '"+nombre+"'";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while(datos.next()){
+                data[i][0] = datos.getInt("cod_rol");
+                data[i][1] = datos.getString("nombre_rol");
+                
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlRoles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }    
+        
     public Object[][] consultarRol(){
 
         Object data[][] = new Object[this.contarRoles()][2];

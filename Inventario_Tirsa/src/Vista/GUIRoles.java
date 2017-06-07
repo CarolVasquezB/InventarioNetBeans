@@ -6,7 +6,8 @@
 package Vista;
 
 import Control.ControlRoles;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,20 +17,20 @@ import javax.swing.table.DefaultTableModel;
 public class GUIRoles extends javax.swing.JFrame {
 
     DefaultTableModel dtm;
+    Object[][] data = null;
     ControlRoles cr = new ControlRoles();
     String nombresColumnas[] = {"Codigo Rol", "Nombre Rol"};
     
     public GUIRoles() {
+        data = cr.consultarRol();
+        dtm = new DefaultTableModel(data, nombresColumnas);  
         initComponents();
         setLocationRelativeTo(null);
     }
     
     public void actualizarTabla() {
-        Object data[][] = cr.consultarRol();
         dtm = new DefaultTableModel(data, nombresColumnas);
         tblRoles.setModel(dtm);
-        //validate();
-        //repaint();
     }
 
     /**
@@ -89,6 +90,12 @@ public class GUIRoles extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel2.setText("Nombre:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, 20));
+
+        txtCodRol.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodRolKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtCodRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 80, -1));
 
         btnVolver.setBackground(new java.awt.Color(204, 204, 204));
@@ -145,6 +152,11 @@ public class GUIRoles extends javax.swing.JFrame {
         jPanel1.add(btnElimRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 140, 40));
 
         tblRoles.setModel(dtm);
+        tblRoles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblRolesMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblRoles);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 510, 120));
@@ -183,11 +195,38 @@ public class GUIRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnActualRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualRolActionPerformed
+        if(txtCodRol.getText().length()>0 && txtNomRol.getText().length()>0){
+            if(cr.actualizarRol(Integer.parseInt(txtCodRol.getText()), txtNomRol.getText())){
+                JOptionPane.showMessageDialog(this, "Rol actualizado satisfactoriamente");
+                data = cr.consultarRol();
+                this.actualizarTabla();
+            }else{
+                JOptionPane.showMessageDialog(this, "Revise la información diligenciada");
+            }            
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");
+        }
 
+            
     }//GEN-LAST:event_btnActualRolActionPerformed
 
     private void btnGuardRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardRolActionPerformed
-
+        if(txtCodRol.getText().length()>0 && txtNomRol.getText().length()>0){
+            if(cr.insertarRol(Integer.parseInt(txtCodRol.getText()), txtNomRol.getText())){
+                JOptionPane.showMessageDialog(this, "Rol creado satisfactoriamente");
+                data = cr.consultarRol();
+                this.actualizarTabla();
+            }else{
+                JOptionPane.showMessageDialog(this, "El código del Rol ya existe");
+                txtCodRol.enable(true);
+                data = cr.consultarRol();
+                this.actualizarTabla();                
+                txtCodRol.setText("");
+                txtNomRol.setText("");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe ingresar todos los campos obligatorios");
+        }
     }//GEN-LAST:event_btnGuardRolActionPerformed
 
     private void btnBuscarRol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRol1ActionPerformed
@@ -199,11 +238,60 @@ public class GUIRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_btnElimRolActionPerformed
 
     private void btnBuscRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscRolActionPerformed
-       ControlRoles cr = new ControlRoles();
-       if(txtCodRol.getText().length()>0 && txtNomRol.getText().length()>0){
-           cr.consultarRol(Integer.parseInt(txtCodRol.getText()));
+        txtCodRol.enable(true);
+        ControlRoles cr = new ControlRoles();
+       if(txtCodRol.getText().length()>0 || txtNomRol.getText().length()>0){
+            if(txtCodRol.getText().length()>0 && txtNomRol.getText().length()>0){
+                data = cr.consultarRolTodos(Integer.parseInt(txtCodRol.getText()), txtNomRol.getText());
+                this.actualizarTabla();
+            }else{
+                if(txtCodRol.getText().length()>0 && txtNomRol.getText().length()==0){
+                    data = cr.consultarRol(Integer.parseInt(txtCodRol.getText()));
+                 }else{
+                    if(txtCodRol.getText().length()==0 && txtNomRol.getText().length()>0){
+                        data = cr.consultarRolNombre(txtNomRol.getText());
+                    }
+                }     
+            }           
+       }else{
+           JOptionPane.showMessageDialog(this, "Ingrese un cliente");
        }
+       
+         if(data[0][0]==null){
+             JOptionPane.showMessageDialog(this, "El Rol no Existe");
+                txtNomRol.setText("");
+                txtCodRol.setText("");              
+         }else{
+             txtCodRol.setText(String.valueOf(data[0][0]));
+             txtNomRol.setText((String) data[0][1]);
+             this.actualizarTabla();
+         } 
+       
     }//GEN-LAST:event_btnBuscRolActionPerformed
+
+    private void txtCodRolKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodRolKeyReleased
+        txtNomRol.setText("");
+        data = cr.consultarRol();
+        txtCodRol.enable(true);
+        this.actualizarTabla();
+    }//GEN-LAST:event_txtCodRolKeyReleased
+
+    private void tblRolesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRolesMousePressed
+        int filaseleccionada;
+        DefaultTableModel modelotabla=(DefaultTableModel) tblRoles.getModel();
+           try{
+                filaseleccionada= tblRoles.getSelectedRow();
+                if (filaseleccionada==-1 || modelotabla.getValueAt(filaseleccionada, 0)==null){
+                    JOptionPane.showMessageDialog(null, "Elija un Rol");
+                }else{
+                    txtCodRol.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
+                    txtCodRol.enable(false);
+                    txtNomRol.setText((String) modelotabla.getValueAt(filaseleccionada, 1));   
+                 }
+              }catch (HeadlessException ex){
+                    JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+              }        
+    }//GEN-LAST:event_tblRolesMousePressed
 
     /**
      * @param args the command line arguments
