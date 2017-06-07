@@ -209,7 +209,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(780, 500));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 239, 239));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jPanel1.setMaximumSize(new java.awt.Dimension(780, 500));
         jPanel1.setMinimumSize(new java.awt.Dimension(780, 500));
@@ -232,7 +232,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 100, -1));
         jPanel1.add(txtFactNomCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 200, -1));
 
-        btnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarCliente.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnBuscarCliente.setForeground(new java.awt.Color(51, 0, 102));
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/buscar.png"))); // NOI18N
@@ -244,7 +243,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(627, 90, -1, 30));
+        jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 120, 40));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -264,11 +263,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel6.setText("Total:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel7.setText("Cantidad:*");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, -1, -1));
 
         txtFactCodProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -281,10 +280,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(txtFactCodProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 150, -1));
 
         txtFactNomProducto.setEditable(false);
-        jPanel1.add(txtFactNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 290, -1));
+        jPanel1.add(txtFactNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 390, -1));
 
         btnBuscarProducto.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnBuscarProducto.setForeground(new java.awt.Color(51, 0, 102));
+        btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/buscar.png"))); // NOI18N
         btnBuscarProducto.setText("Buscar");
         btnBuscarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -292,7 +292,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnBuscarProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 90, 30));
+        jPanel1.add(btnBuscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 120, 40));
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -341,7 +341,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
         txtPagoTotal.setEditable(false);
-        jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 140, -1));
+        jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 140, -1));
 
         lblEmpleado.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
         lblEmpleado.setForeground(new java.awt.Color(255, 255, 255));
@@ -351,7 +351,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel9.setText("Nombre:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, -1));
-        jPanel1.add(txtFactApeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 190, -1));
+        jPanel1.add(txtFactApeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 180, -1));
 
         grpValor.add(rbtnMaximo);
         rbtnMaximo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -373,47 +373,51 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(rbtnMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
 
+        btnAgregarProd.setBackground(new java.awt.Color(204, 204, 204));
         btnAgregarProd.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnAgregarProd.setForeground(new java.awt.Color(51, 0, 102));
-        btnAgregarProd.setText("Agregar");
+        btnAgregarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/agregar.png"))); // NOI18N
         btnAgregarProd.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnAgregarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProdActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 120, -1));
+        jPanel1.add(btnAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, 60, 40));
 
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel10.setText("Nombre:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
-        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 60, -1));
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 60, -1));
 
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel11.setText("Valor Unitario:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
 
         txtValorUnitario.setEditable(false);
-        jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 90, -1));
+        jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 60, -1));
         jPanel1.add(calenFechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 130, -1));
 
         jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel12.setText("Fecha de Venta:*");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
+        btnEliminar.setBackground(new java.awt.Color(204, 204, 204));
         btnEliminar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(51, 0, 102));
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/elimin.png"))); // NOI18N
         btnEliminar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 120, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 60, 40));
 
+        btnFacturar.setBackground(new java.awt.Color(204, 204, 204));
         btnFacturar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnFacturar.setForeground(new java.awt.Color(51, 0, 102));
+        btnFacturar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/facturar.png"))); // NOI18N
         btnFacturar.setText("Facturar");
         btnFacturar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnFacturar.addActionListener(new java.awt.event.ActionListener() {
@@ -421,10 +425,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnFacturarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 120, -1));
+        jPanel1.add(btnFacturar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 120, 40));
 
         btnAbono.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnAbono.setForeground(new java.awt.Color(51, 0, 102));
+        btnAbono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/abonar.png"))); // NOI18N
         btnAbono.setText("Abonos");
         btnAbono.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnAbono.addActionListener(new java.awt.event.ActionListener() {
@@ -432,7 +437,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnAbonoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, -1));
+        jPanel1.add(btnAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, 40));
 
         mnuFacturacion.setText("Facturación ");
         mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -515,7 +520,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
