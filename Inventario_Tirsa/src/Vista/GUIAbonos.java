@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.ControlFactura;
 import Control.ControlPersona;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -17,9 +18,9 @@ import javax.swing.table.DefaultTableModel;
 public class GUIAbonos extends javax.swing.JFrame {
 
     Object datosCliente[][] = null;
+    Object datosFactura[][] = null;
     DefaultTableModel dtm;
-    DefaultComboBoxModel cbx;
-    String nombresColumnas[] = {"Codigo Factura", "Valor venta", "Fecha de Venta", "Vendedor"};
+    String nombresColumnas[] = {"Codigo Factura", "Valor de Venta", "Fecha de Venta", "Vendedor"};
     /**
      * Creates new form GUIAbonos
      */
@@ -40,10 +41,10 @@ public class GUIAbonos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblFacturas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        txtAbono = new javax.swing.JTextField();
+        btnAbono = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
@@ -57,44 +58,34 @@ public class GUIAbonos extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        btnvolver5 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(570, 350));
         setMinimumSize(new java.awt.Dimension(570, 350));
 
-        jPanel1.setBackground(new java.awt.Color(248, 238, 238));
+        jPanel1.setBackground(new java.awt.Color(250, 246, 246));
         jPanel1.setMaximumSize(new java.awt.Dimension(780, 500));
         jPanel1.setMinimumSize(new java.awt.Dimension(780, 500));
         jPanel1.setPreferredSize(new java.awt.Dimension(780, 500));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        tblFacturas.setModel(dtm);
+        jScrollPane1.setViewportView(tblFacturas);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 760, 100));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel2.setText("Abono:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 96, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
+        jPanel1.add(txtAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 96, -1));
 
-        jButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 0, 102));
-        jButton2.setText("Generar Abono");
-        jButton2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, -1, -1));
+        btnAbono.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnAbono.setForeground(new java.awt.Color(51, 0, 102));
+        btnAbono.setText("Realizar Abono");
+        btnAbono.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.add(btnAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(51, 0, 51));
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -154,15 +145,15 @@ public class GUIAbonos extends javax.swing.JFrame {
         jLabel5.setText("Abonos");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 150, -1));
 
-        btnvolver5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
-        btnvolver5.setText("Volver");
-        btnvolver5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        btnvolver5.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnvolver5ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnvolver5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(51, 0, 51));
         jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -188,6 +179,7 @@ public class GUIAbonos extends javax.swing.JFrame {
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         ControlPersona cp = new ControlPersona();
+        ControlFactura cf = new ControlFactura();
         if(txtFactDocCliente.getText().length()>0 || txtFactNomCliente.getText().length()>0 || txtFactApeCliente.getText().length()>0){
             if(txtFactDocCliente.getText().length()>0 && txtFactNomCliente.getText().length()>0 && txtFactApeCliente.getText().length()>0){
                 datosCliente = cp.consultarPersonaTodos(Integer.parseInt(txtFactDocCliente.getText()),
@@ -214,6 +206,8 @@ public class GUIAbonos extends javax.swing.JFrame {
                 txtFactDocCliente.setText(String.valueOf(datosCliente[0][1]));
                 txtFactNomCliente.setText((String) datosCliente[0][2]);
                 txtFactApeCliente.setText((String) datosCliente[0][3]);
+                datosFactura = cf.consultarFacturaAbonos(Integer.parseInt(String.valueOf(datosCliente[0][0])));
+                dtm = new DefaultTableModel(datosFactura, nombresColumnas);
             }
         }else{
             JOptionPane.showMessageDialog(this, "Ingrese un parámetro de búsqueda");
@@ -221,11 +215,11 @@ public class GUIAbonos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
-    private void btnvolver5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolver5ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         GUIPrincipal gpr = new GUIPrincipal();
         this.setVisible(false);
         gpr.setVisible(true);
-    }//GEN-LAST:event_btnvolver5ActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,14 +257,9 @@ public class GUIAbonos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbono;
     private javax.swing.JButton btnBuscarCliente;
-    private javax.swing.JButton btnvolver;
-    private javax.swing.JButton btnvolver1;
-    private javax.swing.JButton btnvolver2;
-    private javax.swing.JButton btnvolver3;
-    private javax.swing.JButton btnvolver4;
-    private javax.swing.JButton btnvolver5;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -284,8 +273,8 @@ public class GUIAbonos extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tblFacturas;
+    private javax.swing.JTextField txtAbono;
     private javax.swing.JTextField txtFactApeCliente;
     private javax.swing.JTextField txtFactDocCliente;
     private javax.swing.JTextField txtFactNomCliente;

@@ -124,7 +124,28 @@ public class ControlFactura {
         return data;
     }
 
-//    public static void main(String[] args) {
-//
-//    }
+    public Object[][] consultarFacturaAbonos(int codCliente) {
+
+        Object data[][] = new Object[this.contarFacturas()][5];
+        ResultSet datos = null;
+        String sql = "Select f.cod_factura, f.valor_factura, f.fecha_factura, p.nombres_persona \n" +
+                        "FROM inventario.factura f inner join persona p \n" +
+                        "on (p.cod_persona=f.cod_empleado) where cod_cliente=" + codCliente;
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while (datos.next()) {
+                data[i][0] = datos.getInt("cod_factura");
+                data[i][1] = datos.getFloat("valor_factura");
+                data[i][2] = datos.getString("fecha_factura");
+                data[i][3] = datos.getInt("cod_cliente");
+                data[i][4] = datos.getInt("cod_empleado");
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
 }

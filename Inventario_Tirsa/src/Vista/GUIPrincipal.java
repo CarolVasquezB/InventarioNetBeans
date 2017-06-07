@@ -209,7 +209,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(780, 500));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 239, 239));
+        jPanel1.setBackground(new java.awt.Color(250, 246, 246));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jPanel1.setMaximumSize(new java.awt.Dimension(780, 500));
         jPanel1.setMinimumSize(new java.awt.Dimension(780, 500));
@@ -383,7 +383,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnAgregarProdActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, 60, 40));
+        jPanel1.add(btnAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 60, 40));
 
         jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel10.setText("Nombre:");
@@ -412,7 +412,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 60, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, 60, 40));
 
         btnFacturar.setBackground(new java.awt.Color(204, 204, 204));
         btnFacturar.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
