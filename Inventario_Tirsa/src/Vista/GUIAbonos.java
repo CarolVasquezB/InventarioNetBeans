@@ -19,7 +19,7 @@ public class GUIAbonos extends javax.swing.JFrame {
     Object datosCliente[][] = null;
     DefaultTableModel dtm;
     DefaultComboBoxModel cbx;
-    String nombresColumnas[] = {"Codigo Producto", "Nombre", "Valor venta","Cantidad", "Categoría"};
+    String nombresColumnas[] = {"Codigo Factura", "Valor venta", "Fecha de Venta", "Vendedor"};
     /**
      * Creates new form GUIAbonos
      */
@@ -57,12 +57,14 @@ public class GUIAbonos extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
+        btnvolver5 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(570, 350));
         setMinimumSize(new java.awt.Dimension(570, 350));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(248, 238, 238));
         jPanel1.setMaximumSize(new java.awt.Dimension(780, 500));
         jPanel1.setMinimumSize(new java.awt.Dimension(780, 500));
         jPanel1.setPreferredSize(new java.awt.Dimension(780, 500));
@@ -81,43 +83,43 @@ public class GUIAbonos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 760, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 760, 100));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel2.setText("Abono:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 96, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, -1, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 96, -1));
 
         jButton2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 0, 102));
         jButton2.setText("Generar Abono");
         jButton2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(51, 0, 51));
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel4.setText("Cliente");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jLabel4.setText("Facturas");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 670, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 670, 10));
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel8.setText("Número Documento:*");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
-        jPanel1.add(txtFactDocCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 150, -1));
-        jPanel1.add(txtFactNomCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 200, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel1.add(txtFactDocCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 150, -1));
+        jPanel1.add(txtFactNomCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, -1));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel9.setText("Nombre:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel3.setText("Apellido:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 100, -1));
-        jPanel1.add(txtFactApeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 190, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 100, -1));
+        jPanel1.add(txtFactApeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 190, -1));
 
         btnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarCliente.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
@@ -130,27 +132,43 @@ public class GUIAbonos extends javax.swing.JFrame {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 90, 30));
+        jPanel1.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 90, 30));
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 80, 20, 60));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 20, 60));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 730, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 730, 10));
 
         jSeparator5.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 20, 60));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 20, 60));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 0, 102));
         jLabel5.setText("Abonos");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 150, -1));
+
+        btnvolver5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
+        btnvolver5.setText("Volver");
+        btnvolver5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btnvolver5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvolver5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnvolver5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jLabel6.setBackground(new java.awt.Color(51, 0, 51));
+        jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel6.setText("Cliente");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,6 +221,12 @@ public class GUIAbonos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
+    private void btnvolver5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolver5ActionPerformed
+        GUIPrincipal gpr = new GUIPrincipal();
+        this.setVisible(false);
+        gpr.setVisible(true);
+    }//GEN-LAST:event_btnvolver5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,11 +264,18 @@ public class GUIAbonos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnvolver;
+    private javax.swing.JButton btnvolver1;
+    private javax.swing.JButton btnvolver2;
+    private javax.swing.JButton btnvolver3;
+    private javax.swing.JButton btnvolver4;
+    private javax.swing.JButton btnvolver5;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
