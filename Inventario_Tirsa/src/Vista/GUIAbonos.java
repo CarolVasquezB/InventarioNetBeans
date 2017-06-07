@@ -249,46 +249,70 @@ public class GUIAbonos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFactDocClienteKeyReleased
 
     private void btnAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbonoActionPerformed
-        ControlAbonos ca = new ControlAbonos();
-        int filaseleccionada;
-        int codAbono;
-        Object datos[][] = ca.consultarCodMaxAbonos();
-        
-        if(datos[0][0]!=null){
-            codAbono = Integer.parseInt(String.valueOf(datos[0][0]))+1;
-        }else{
-            codAbono = 1;
-        }
-        
-        DefaultTableModel modelotabla=(DefaultTableModel) tblFacturas.getModel();
-            try{
-                filaseleccionada= tblFacturas.getSelectedRow();
-                if (filaseleccionada==-1 || modelotabla.getValueAt(filaseleccionada, 0)==null){
+        try{
+            if(txtAbono.getText().length()>0){
+                ControlAbonos ca = new ControlAbonos();
+                int filaseleccionada;
+                int codAbono;
+                float abonosRealizados;
+                Object datos[][] = ca.consultarCodMaxAbonos();
+
+                if(datos[0][0]!=null){
+                    codAbono = Integer.parseInt(String.valueOf(datos[0][0]))+1;
                 }else{
-                    int codFactura = Integer.parseInt(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
-                    float valorFactura = Float.parseFloat(String.valueOf(modelotabla.getValueAt(filaseleccionada, 1)));
-                    float abonosRealizados = Float.parseFloat(String.valueOf(modelotabla.getValueAt(filaseleccionada, 4)));
-                    float valorAbono = Float.parseFloat(txtAbono.getText());
-                    
-                    if(valorAbono+abonosRealizados <= valorFactura){
-                        int res = JOptionPane.showConfirmDialog(this, "Está seguro que desea realizar el abono por valor de: " + txtAbono.getText(), "Advertencia", JOptionPane.INFORMATION_MESSAGE);
-                        if(res==JOptionPane.YES_OPTION){
-                            ca.insertarAbono(codAbono, valorAbono, codFactura);
-                            JOptionPane.showMessageDialog(this, "Se ha realizado el abono exitosamente");
-                        }else{
-                            txtFactNomCliente.setText("");
-                            txtFactApeCliente.setText("");
-                            datosFactura = null;
-                            dtm = new DefaultTableModel(datosFactura, nombresColumnas);
-                            tblFacturas.setModel(dtm);                            
-                        }                       
+                    codAbono = 1;
+                }
+
+                DefaultTableModel modelotabla=(DefaultTableModel) tblFacturas.getModel();
+                try{
+                    filaseleccionada= tblFacturas.getSelectedRow();
+                    if (filaseleccionada==-1 || modelotabla.getValueAt(filaseleccionada, 0)==null){
+                        JOptionPane.showMessageDialog(this, "Debe Seleccionar una Factura");
                     }else{
-                        JOptionPane.showMessageDialog(this, "Ha excedido el valor de la compra");
-                    }                   
-                 }
-              }catch (HeadlessException ex){
-                    JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
-              }             
+                        int codFactura = Integer.parseInt(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
+                        float valorFactura = Float.parseFloat(String.valueOf(modelotabla.getValueAt(filaseleccionada, 1)));
+                        try{
+                            abonosRealizados = Float.parseFloat(String.valueOf(modelotabla.getValueAt(filaseleccionada, 4)));                       
+                        }catch(NumberFormatException FE){
+                            abonosRealizados=0;
+                        }
+
+                        float valorAbono = Float.parseFloat(txtAbono.getText());
+
+                        if(valorAbono+abonosRealizados <= valorFactura){
+                            int res = JOptionPane.showConfirmDialog(this, "Está seguro que desea realizar el abono por valor de: " + txtAbono.getText(), "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                            if(res==JOptionPane.YES_OPTION){
+                                ca.insertarAbono(codAbono, valorAbono, codFactura);
+                                JOptionPane.showMessageDialog(this, "Se ha realizado el abono exitosamente");
+                                txtFactNomCliente.setText("");
+                                txtFactApeCliente.setText("");
+                                datosFactura = null;
+                                dtm = new DefaultTableModel(datosFactura, nombresColumnas);
+                                tblFacturas.setModel(dtm); 
+                                Object datosCliente[][] = null;
+                                Object datosFactura[][] = null;
+                            }else{
+                                txtFactNomCliente.setText("");
+                                txtFactApeCliente.setText("");
+                                datosFactura = null;
+                                dtm = new DefaultTableModel(datosFactura, nombresColumnas);
+                                tblFacturas.setModel(dtm);  
+                                Object datosCliente[][] = null;
+                                Object datosFactura[][] = null;
+                            }                       
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Ha excedido el valor de la compra");
+                        }                   
+                     }
+                }catch (HeadlessException ex){
+                      JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+                }                        
+            }else{
+                JOptionPane.showMessageDialog(this, "Debe elegir una factura y diligenciar el valor del abono");
+            }            
+        }catch(NumberFormatException EX){
+            JOptionPane.showMessageDialog(this, "Ingrese un cliente");
+        }
     }//GEN-LAST:event_btnAbonoActionPerformed
 
     /**
