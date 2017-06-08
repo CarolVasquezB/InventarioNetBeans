@@ -63,6 +63,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Recursos/reporte.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Reporte de Ventas por Fecha"/>
               </Properties>
               <Events>

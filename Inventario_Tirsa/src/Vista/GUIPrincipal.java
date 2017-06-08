@@ -494,6 +494,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(mnuConsultarFactura);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/reporte.png"))); // NOI18N
         jMenuItem2.setText("Reporte de Ventas por Fecha");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
