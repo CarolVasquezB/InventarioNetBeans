@@ -113,48 +113,22 @@ public boolean insertarEmpleado_Rol(int cod_empleado_rol,int cod_empleado_person
         return data;
     }
     
-//    public static void main(String[] args) {
-//        ControlEmpleado_Rol er=new ControlEmpleado_Rol();
-//
-////        boolean inserto=er.insertarEmpleado_Rol(145,1,1);
-////        if (inserto) {
-////            System.out.println("inserto...");
-////            //JOptionPane.showMessageDialog(null,"se inserto correctamente!","Confirmacion",JOptionPane.INFORMATION_MESSAGE);
-////            
-////        }
-////        else{
-////            System.out.println("error...");
-////    }
-//    
-//    
-////        boolean elimino=er.eliminarEmpleado_Rol(145);
-////        if (elimino) {
-////            System.out.println("eliminado");
-////        }else{
-////            System.out.println("error...");
-////        }
-//    
-////        
-////        boolean actualizo=er.actualizarEmpleado_Rol(145,2,23);
-////        if(actualizo){
-////            System.out.println("actualizo...");
-////        }else{
-////            System.out.println("error...");
-////        }
-//   
-//        
-//        
-////        int aux=er.contarEmpleado_Roles();
-////        System.out.println("el numero de empleados_roles es : "+aux);
-////         }
-//    
-// 
-//       
-//        //Prueba
-////        Object[][] dato = er.consultarRol();
-////        for (int i = 0; i < er.contarEmpleado_Roles(); i++) {
-////                System.out.println("Codigo empleado_rol: "+ dato[i][0]+ " cod empleado persona: "+dato[i][1]+" rol "+dato[i][2]);
-////        }
-//  }
-    //}
+    public Object[][] consultarRolEmpleado(int codEmpleado){
+
+        Object data[][] = new Object[1][3];
+        ResultSet datos = null;
+        String sql = "Select * from empleado_rol where cod_empleado_persona="+ codEmpleado+";";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            while(datos.next()){
+                data[0][0] = datos.getInt("cod_empleado_rol");
+                data[0][1] = datos.getInt("cod_empleado_persona");
+                data[0][2] = datos.getInt("cod_rol");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlEmpleado_Rol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
 }

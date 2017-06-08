@@ -61,6 +61,23 @@ public class ControlEmpleado {
         return numero;
     }
 
+    public int contarEmpleadosBloqueados() {
+
+        int numero = 0;
+        String sql = "Select count(cod_empleado_persona) num from empleado where bloqueado = 'T'";
+        ResultSet res = p.ejecutarConsulta(sql);
+
+        try {
+
+            while (res.next()) {
+                numero = res.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return numero;
+    }
+        
     public Object[][] consultarEmpleadoPersona(int codigo) {
 
         Object data[][] = new Object[this.contarEmpleados()][8];
@@ -91,9 +108,9 @@ public class ControlEmpleado {
 
     public Object[][] consultarEmpleadoLogin(String login) {
 
-        Object data[][] = new Object[1][5];
+        Object data[][] = new Object[1][4];
         ResultSet datos = null;
-        String sql = "Select cod_empleado_persona, login_empleado, password_empleado, num_accesos, bloqueado from empleado "
+        String sql = "Select cod_empleado_persona, login_empleado, password_empleado, bloqueado from empleado "
                 + "where login_empleado = '" + login + "';";
         datos = p.ejecutarConsulta(sql);
 
@@ -102,8 +119,7 @@ public class ControlEmpleado {
                 data[0][0] = datos.getInt("cod_empleado_persona");
                 data[0][1] = datos.getString("login_empleado");
                 data[0][2] = datos.getString("password_empleado");
-                data[0][3] = datos.getInt("num_accesos");
-                data[0][4] = datos.getString("bloqueado");
+                data[0][3] = datos.getString("bloqueado");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,19 +148,47 @@ public class ControlEmpleado {
         return data;
     }
     
-    public boolean actualizarAccesos(int codigoEmpleado, int accesos) {
-        boolean actualizo = false;
-        String sql = "Update empleado set num_accesos=" + accesos + " where cod_empleado_persona = " + codigoEmpleado;
-        actualizo = p.ejecutarDML(sql);
-        return actualizo;
+    public boolean insertarAcceso(int codigoEmpleado, int num_intentos) {
+        boolean inserto = false;
+        String sql = "Insert into historial_accesos (num_intentos, cod_empleado) "
+                + "values (" + num_intentos + ", " + codigoEmpleado + ")";
+        inserto = p.ejecutarDML(sql);
+        return inserto;
     }  
     
-    public boolean actualizarAccesosBloqueo(int codigoEmpleado, int accesos, String bloqueo) {
+    public Object[][] consultarEmpleadoBloqueado() {
+
+        Object data[][] = new Object[this.contarEmpleadosBloqueados()][2];
+        ResultSet datos = null;
+        String sql = "Select cod_empleado_persona, login_empleado from empleado where bloqueado = 'T'";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while (datos.next()) {
+                data[i][0] = datos.getInt("cod_empleado_persona");
+                data[i][1] = datos.getString("login_empleado");
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlCategorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
+    
+    public boolean DesbloquearUsuario(int codigoEmpleado, String bloqueo) {
         boolean actualizo = false;
-        String sql = "Update empleado set num_accesos=" + accesos + ", bloqueado= '"+ bloqueo +" where cod_empleado_persona = " + codigoEmpleado;
+        String sql = "Update empleado set bloqueado= '"+ bloqueo +"' where cod_empleado_persona = " + codigoEmpleado;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }      
+    
+    public boolean eliminarHistorial(int codigoEmpleado){
+        boolean elimino = false;
+        String sql = "Delete from historial_accesos where cod_empleado = " + codigoEmpleado+";";
+        elimino = p.ejecutarDML(sql);
+        return elimino;        
+    }
 
     //public Object[][] consul
 //    public static void main(String[] args) {

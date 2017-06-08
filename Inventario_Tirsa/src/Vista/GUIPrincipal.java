@@ -42,9 +42,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
     String nombresColumnas[] = {"Codigo Producto", "Nombre", "Valor venta","Cantidad", "Categoría"};
    
   
-    public void obtenerEmpleado(String codEmpleado){
-        lblEmpleado.setText(codEmpleado);
-        
+    public void obtenerEmpleadoyRol(String codEmpleado, String codRol){
+        lblRol.setText(codRol);
+        lblEmpleado.setText(codEmpleado);     
     }
 
     public void AgregarProductos(){      
@@ -137,6 +137,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
     public GUIPrincipal() {
         dtm = new DefaultTableModel(datosProducto, nombresColumnas);
         initComponents();
+        if(lblRol.getText().equals("1")){
+            mnuAdministrar.setVisible(true);
+        }else{
+            mnuAdministrar.setVisible(false);
+        }
+        
         setLocationRelativeTo(null);
     }
 
@@ -187,6 +193,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnFacturar = new javax.swing.JButton();
         btnAbono = new javax.swing.JButton();
+        lblRol = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuFacturacion = new javax.swing.JMenu();
         mnuCliente = new javax.swing.JMenu();
@@ -194,7 +201,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         mnuConsultarFactura = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        mnuAdministrar = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         mnuEmpleado = new javax.swing.JMenuItem();
         btncategorias = new javax.swing.JMenuItem();
@@ -353,9 +360,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(txtPagoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 140, -1));
 
         lblEmpleado.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
-        lblEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmpleado.setForeground(new java.awt.Color(252, 250, 250));
         lblEmpleado.setText("1");
-        jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 150, 20));
+        jPanel1.add(lblEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 150, 20));
 
         jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jLabel9.setText("Nombre:");
@@ -449,6 +456,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(btnAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, 40));
 
+        lblRol.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
+        lblRol.setForeground(new java.awt.Color(255, 51, 102));
+        lblRol.setText("1");
+        jPanel1.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 150, 20));
+
         mnuFacturacion.setText("Facturación ");
         mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jMenuBar1.add(mnuFacturacion);
@@ -475,6 +487,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
         mnuConsultarFactura.setText("Consultar Factura ");
+        mnuConsultarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuConsultarFacturaActionPerformed(evt);
+            }
+        });
         jMenu5.add(mnuConsultarFactura);
 
         jMenuItem2.setText("Reporte de Ventas por Fecha");
@@ -487,8 +504,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Administrar");
-        jMenu6.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        mnuAdministrar.setText("Administrar");
+        mnuAdministrar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
         jMenuItem1.setText("Roles");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -496,7 +513,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem1);
+        mnuAdministrar.add(jMenuItem1);
 
         mnuEmpleado.setText("Empleados");
         mnuEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -504,7 +521,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 mnuEmpleadoActionPerformed(evt);
             }
         });
-        jMenu6.add(mnuEmpleado);
+        mnuAdministrar.add(mnuEmpleado);
 
         btncategorias.setText("Categorías");
         btncategorias.addActionListener(new java.awt.event.ActionListener() {
@@ -512,7 +529,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btncategoriasActionPerformed(evt);
             }
         });
-        jMenu6.add(btncategorias);
+        mnuAdministrar.add(btncategorias);
 
         mnuDesbloquear.setText("Desbloqueo Empleados");
         mnuDesbloquear.addActionListener(new java.awt.event.ActionListener() {
@@ -520,9 +537,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 mnuDesbloquearActionPerformed(evt);
             }
         });
-        jMenu6.add(mnuDesbloquear);
+        mnuAdministrar.add(mnuDesbloquear);
 
-        jMenuBar1.add(jMenu6);
+        jMenuBar1.add(mnuAdministrar);
 
         mnuSalir.setText("Salir");
         mnuSalir.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -596,7 +613,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btncategoriasActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-       ControlPersona cp = new ControlPersona();
+        ControlPersona cp = new ControlPersona();
        if(txtFactDocCliente.getText().length()>0 || txtFactNomCliente.getText().length()>0 || txtFactApeCliente.getText().length()>0){
             if(txtFactDocCliente.getText().length()>0 && txtFactNomCliente.getText().length()>0 && txtFactApeCliente.getText().length()>0){
                 datosCliente = cp.consultarPersonaTodos(Integer.parseInt(txtFactDocCliente.getText()), 
@@ -839,8 +856,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void mnuDesbloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDesbloquearActionPerformed
-        // TODO add your handling code here:
+        GUIDesbloqueoEmpleados desb=new GUIDesbloqueoEmpleados();
+        this.setVisible(false);
+        desb.setVisible(true); 
     }//GEN-LAST:event_mnuDesbloquearActionPerformed
+
+    private void mnuConsultarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultarFacturaActionPerformed
+        GUIAbonos abon = new GUIAbonos();
+        abon.setVisible(true);
+        this.setVisible(false);          
+    }//GEN-LAST:event_mnuConsultarFacturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -869,7 +894,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the form */        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUIPrincipal().setVisible(true);
@@ -903,7 +928,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -917,6 +941,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblEmpleado;
+    private javax.swing.JLabel lblRol;
+    private javax.swing.JMenu mnuAdministrar;
     private javax.swing.JMenu mnuCliente;
     private javax.swing.JMenuItem mnuConsultarFactura;
     private javax.swing.JMenuItem mnuDesbloquear;

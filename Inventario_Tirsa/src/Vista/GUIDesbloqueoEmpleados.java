@@ -7,6 +7,7 @@ package Vista;
 
 import Control.ControlEmpleado;
 import Control.ControlRoles;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,15 +19,22 @@ public class GUIDesbloqueoEmpleados extends javax.swing.JFrame {
 
     DefaultTableModel dtm;
     Object[][] data = null;
+    Object[][] userSeleccionado = new Object[1][2];
     ControlEmpleado ce = new ControlEmpleado();
-    String nombresColumnas[] = {"Nombre Usuario", "Bloqueado"};
+    String nombresColumnas[] = {"Codigo Empleado", "Nombre de Usuario"};
     /**
      * Creates new form GUIDesbloqueoEmpleados
      */
     public GUIDesbloqueoEmpleados() {
-        data = ce.consultarEmpleado();
+        data = ce.consultarEmpleadoBloqueado();
         dtm = new DefaultTableModel(data, nombresColumnas);  
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public void actualizarTabla() {
+        dtm = new DefaultTableModel(data, nombresColumnas);
+        tblBloqueados.setModel(dtm);
     }
 
     /**
@@ -73,7 +81,7 @@ public class GUIDesbloqueoEmpleados extends javax.swing.JFrame {
         btnDesbloquear.setBackground(new java.awt.Color(204, 204, 204));
         btnDesbloquear.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         btnDesbloquear.setForeground(new java.awt.Color(51, 0, 102));
-        btnDesbloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/eliminar.png"))); // NOI18N
+        btnDesbloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/desbloquear.png"))); // NOI18N
         btnDesbloquear.setText("Desbloquear");
         btnDesbloquear.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnDesbloquear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -121,34 +129,31 @@ public class GUIDesbloqueoEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnDesbloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesbloquearActionPerformed
-//        if(txtCodRol.getText().length()>0 && txtNomRol.getText().length()>0){
-//            if(cr.eliminarRol(Integer.parseInt(txtCodRol.getText()))){
-//                JOptionPane.showMessageDialog(this, "Rol eliminado");
-//                data = cr.consultarRol();
-//                this.actualizarTabla();
-//            }else{
-//                JOptionPane.showMessageDialog(this, "Revise la información diligenciada");
-//            }
-//        }else{
-//            JOptionPane.showMessageDialog(this, "Debe seleccionar un rol");
-//        }
+        if(userSeleccionado[0][0]!=null){
+            ce.DesbloquearUsuario(Integer.parseInt(String.valueOf(userSeleccionado[0][0])), "F");
+            ce.eliminarHistorial(Integer.parseInt(String.valueOf(userSeleccionado[0][0])));
+            userSeleccionado = null;
+            this.actualizarTabla();
+            JOptionPane.showMessageDialog(this, "Usuario desbloqueado exitosamente!!");            
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un usuario");
+        }
     }//GEN-LAST:event_btnDesbloquearActionPerformed
 
     private void tblBloqueadosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBloqueadosMousePressed
-//        int filaseleccionada;
-//        DefaultTableModel modelotabla=(DefaultTableModel) tblBloqueados.getModel();
-//        try{
-//            filaseleccionada= tblBloqueados.getSelectedRow();
-//            if (filaseleccionada==-1 || modelotabla.getValueAt(filaseleccionada, 0)==null){
-//                JOptionPane.showMessageDialog(null, "Elija un Rol");
-//            }else{
-//                txtCodRol.setText(String.valueOf(modelotabla.getValueAt(filaseleccionada, 0)));
-//                txtCodRol.enable(false);
-//                txtNomRol.setText((String) modelotabla.getValueAt(filaseleccionada, 1));
-//            }
-//        }catch (HeadlessException ex){
-//            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
-//        }
+        int filaseleccionada;
+        DefaultTableModel modelotabla=(DefaultTableModel) tblBloqueados.getModel();
+        try{
+            filaseleccionada= tblBloqueados.getSelectedRow();
+            if (filaseleccionada==-1 || modelotabla.getValueAt(filaseleccionada, 0)==null){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un usuario");
+            }else{
+                userSeleccionado[0][0] = Integer.parseInt((String.valueOf(modelotabla.getValueAt(filaseleccionada, 0))));
+                userSeleccionado[0][1] = (String.valueOf(modelotabla.getValueAt(filaseleccionada, 1)));
+            }
+        }catch (HeadlessException ex){
+            JOptionPane.showMessageDialog(null, "Error: "+ex+"\nInténtelo nuevamente", " .::Error En la Operacion::." ,JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_tblBloqueadosMousePressed
 
     /**

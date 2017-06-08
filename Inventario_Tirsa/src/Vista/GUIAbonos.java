@@ -158,8 +158,8 @@ public class GUIAbonos extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 0, 102));
-        jLabel5.setText("Abonos");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 18, 150, 40));
+        jLabel5.setText("Consultar Facturas /Abonos");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 18, 540, 40));
 
         btnVolver.setBackground(new java.awt.Color(204, 204, 204));
         btnVolver.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
