@@ -219,9 +219,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(250, 246, 246));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jPanel1.setMaximumSize(new java.awt.Dimension(780, 500));
-        jPanel1.setMinimumSize(new java.awt.Dimension(780, 500));
-        jPanel1.setPreferredSize(new java.awt.Dimension(780, 500));
+        jPanel1.setMaximumSize(new java.awt.Dimension(780, 550));
+        jPanel1.setMinimumSize(new java.awt.Dimension(780, 550));
+        jPanel1.setPreferredSize(new java.awt.Dimension(780, 550));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(51, 0, 51));
@@ -457,7 +457,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.add(btnAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, 40));
 
         lblRol.setFont(new java.awt.Font("Tempus Sans ITC", 1, 12)); // NOI18N
-        lblRol.setForeground(new java.awt.Color(255, 51, 102));
+        lblRol.setForeground(new java.awt.Color(255, 255, 255));
         lblRol.setText("1");
         jPanel1.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 150, 20));
 
@@ -474,6 +474,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(mnuCliente);
 
+        btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/list.png"))); // NOI18N
         btnInventario.setText("Inventario");
         btnInventario.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         btnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -486,6 +487,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu5.setText("Reportes");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
+        mnuConsultarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/buscar.png"))); // NOI18N
         mnuConsultarFactura.setText("Consultar Factura ");
         mnuConsultarFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -508,6 +510,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         mnuAdministrar.setText("Administrar");
         mnuAdministrar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/people.png"))); // NOI18N
         jMenuItem1.setText("Roles");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -557,11 +560,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

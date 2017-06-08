@@ -76,7 +76,7 @@ public class GUICategorias extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(734, 430));
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(0), "Informacion Categorias", 0, 0, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Informacion Categorias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(0, 102, 204))); // NOI18N
 
         txtcod_categoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -170,7 +170,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Registro de las categorias", 0, 0, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(0, 102, 204))); // NOI18N
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Registro de las categorias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tempus Sans ITC", 1, 14), new java.awt.Color(0, 102, 204))); // NOI18N
 
         tblcategorias.setModel(dtm);
         jScrollPane1.setViewportView(tblcategorias);
