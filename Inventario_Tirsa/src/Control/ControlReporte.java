@@ -171,9 +171,10 @@ public class ControlReporte {
         int num = 0;
         float total = 0;
         Object data[][] = null;
+         cBD = new ConexionBD();
         try {
             CallableStatement cst = null;
-            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "mysql");
+            con = cBD.getConnection();
             cst = con.prepareCall("{call Reporte_Fecha_unitaria(?,?,?)}");
             cst.setString(1, fecha);
 
