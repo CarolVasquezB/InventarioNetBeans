@@ -37,11 +37,11 @@ public class ControlReporte {
         try {
             int i = 0;
             while (datos.next()) {
-                data[0][0] = datos.getInt("cod_factura");
-                data[0][1] = datos.getFloat("valor_factura");
-                data[0][2] = datos.getDate("fecha_factura");
-                data[0][3] = datos.getInt("cod_cliente");
-                data[0][4] = datos.getInt("cod_empleado");
+                data[i][0] = datos.getInt("cod_factura");
+                data[i][1] = datos.getFloat("valor_factura");
+                data[i][2] = datos.getDate("fecha_factura");
+                data[i][3] = datos.getInt("cod_cliente");
+                data[i][4] = datos.getInt("cod_empleado");
                 i++;
             }
         } catch (SQLException ex) {

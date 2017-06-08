@@ -6,12 +6,12 @@
 package Control;
 
 import Modelo.Persistencia;
-import Vista.GUIPrincipal;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class ControlEmpleado {
 
     Persistencia p = new Persistencia();
-
+    
     public boolean insertarEmpleado(int codigoEmpleado, String loginEmpleado, String psswdEmpleado) {
 
         boolean inserto = false;
@@ -146,6 +146,7 @@ public class ControlEmpleado {
         return actualizo;
     }      
 
+    //public Object[][] consul
 //    public static void main(String[] args) {
 //        ControlEmpleado ce = new ControlEmpleado();        
 //        Object[][] dato = ce.consultarEmpleadoLogin("CarolVasquezB");

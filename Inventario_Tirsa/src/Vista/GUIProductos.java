@@ -91,7 +91,7 @@ public class GUIProductos extends javax.swing.JFrame {
 
     public int Conseguir_cod_categoria() {
         int aux = cbxcategoria.getSelectedItem().toString().indexOf("-");
-        Object data[][] = ca.consultarCategoriaNombre(cbxcategoria.getSelectedItem().toString().substring(aux + 1, cbxcategoria.getSelectedItem().toString().length()));;
+        //Object data[][] = ca.consultarCategoriaNombre(cbxcategoria.getSelectedItem().toString().substring(aux + 1, cbxcategoria.getSelectedItem().toString().length()));;
 
         String cadena = String.valueOf(cbxcategoria.getSelectedItem().toString().substring(0, aux));
         int numero = Integer.parseInt(cadena);
