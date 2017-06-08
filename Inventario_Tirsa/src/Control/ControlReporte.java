@@ -31,7 +31,7 @@ public class ControlReporte {
     public Object[][] Consultar_facturas_reporte_diario(String fecha_inicial) {
         Object data[][] = new Object[this.contar_facturas_reporte(fecha_inicial)][5];
         ResultSet datos = null;
-        String sql = "select cod_factura,valor_factura,fecha_factura,cod_cliente,cod_empleado from factura where fecha_factura='" + fecha_inicial + "';";
+        String sql = "select cod_factura,valor_factura,fecha_factura,nombres_persona,apellidos_persona,cod_empleado from factura join persona where fecha_factura='" + fecha_inicial + "' and factura.cod_cliente=persona.cod_persona;";
         datos = p.ejecutarConsulta(sql);
 
         try {
@@ -40,7 +40,7 @@ public class ControlReporte {
                 data[i][0] = datos.getInt("cod_factura");
                 data[i][1] = datos.getFloat("valor_factura");
                 data[i][2] = datos.getDate("fecha_factura");
-                data[i][3] = datos.getInt("cod_cliente");
+                data[i][3] = datos.getString("nombres_persona") + " " + datos.getString("apellidos_persona");
                 data[i][4] = datos.getInt("cod_empleado");
                 i++;
             }
