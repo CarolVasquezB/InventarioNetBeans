@@ -839,7 +839,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void mnuDesbloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDesbloquearActionPerformed
-        // TODO add your handling code here:
+        GUIDesbloqueoEmpleados desb=new GUIDesbloqueoEmpleados();
+        this.setVisible(false);
+        desb.setVisible(true); 
     }//GEN-LAST:event_mnuDesbloquearActionPerformed
 
     /**

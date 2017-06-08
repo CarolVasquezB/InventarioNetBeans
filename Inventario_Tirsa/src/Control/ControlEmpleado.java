@@ -64,7 +64,7 @@ public class ControlEmpleado {
     public int contarEmpleadosBloqueados() {
 
         int numero = 0;
-        String sql = "Select count(cod_empleado_persona) num from empleado where bloqueado = 'F'";
+        String sql = "Select count(cod_empleado_persona) num from empleado where bloqueado = 'T'";
         ResultSet res = p.ejecutarConsulta(sql);
 
         try {
@@ -160,7 +160,7 @@ public class ControlEmpleado {
 
         Object data[][] = new Object[this.contarEmpleadosBloqueados()][2];
         ResultSet datos = null;
-        String sql = "Select * from empleado";
+        String sql = "Select cod_empleado_persona, login_empleado from empleado where bloqueado = 'T'";
         datos = p.ejecutarConsulta(sql);
 
         try {
@@ -176,12 +176,19 @@ public class ControlEmpleado {
         return data;
     }
     
-    public boolean actualizarBloqueo(int codigoEmpleado, String bloqueo) {
+    public boolean DesbloquearUsuario(int codigoEmpleado, String bloqueo) {
         boolean actualizo = false;
-        String sql = "Update empleado set bloqueado= '"+ bloqueo +" where cod_empleado_persona = " + codigoEmpleado;
+        String sql = "Update empleado set bloqueado= '"+ bloqueo +"' where cod_empleado_persona = " + codigoEmpleado;
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }      
+    
+    public boolean eliminarHistorial(int codigoEmpleado){
+        boolean elimino = false;
+        String sql = "Delete from historial_accesos where cod_empleado = " + codigoEmpleado+";";
+        elimino = p.ejecutarDML(sql);
+        return elimino;        
+    }
 
 //    public static void main(String[] args) {
 //        ControlEmpleado ce = new ControlEmpleado();        
