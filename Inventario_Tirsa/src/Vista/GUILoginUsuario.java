@@ -22,14 +22,6 @@ public class GUILoginUsuario extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
-    public void sumarAccesos(){
-        if(dato[0][3]!=null){
-            ce.actualizarAccesos(Integer.parseInt(String.valueOf(dato[0][0])), Integer.parseInt(String.valueOf(dato[0][3]))+1);   
-        }else{
-            ce.actualizarAccesos(Integer.parseInt(String.valueOf(dato[0][0])), 1);
-        }                   
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,17 +88,17 @@ public class GUILoginUsuario extends javax.swing.JFrame {
             if(dato[0][0]==null){
                 JOptionPane.showMessageDialog(this, "El usuario no existe");
             }else{
-                if(String.valueOf(dato[0][4]).equals("null") || String.valueOf(dato[0][4]).equals("F")){
+                if(String.valueOf(dato[0][3]).equals("T")){
+                    JOptionPane.showMessageDialog(this, "El usuario se encuentra bloqueado, comuníquede con el Administrador"); 
+                }else{
                     if(dato[0][2].equals(PswContraseñaLogin.getText())){
                         facturacion.setVisible(true);
                         facturacion.obtenerEmpleado(dato[0][0].toString());
                         this.setVisible(false);    
                     }else{
                         JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");   
-                        this.sumarAccesos();
-                        }                    
-                }else{
-                    JOptionPane.showMessageDialog(this, "El usuario se encuentra bloqueado, comuníquede con el Administrador"); 
+                        ce.insertarAcceso(Integer.parseInt(String.valueOf(dato[0][0])), 1);   
+                    }         
                 }
             }            
         }else{
