@@ -26,10 +26,11 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
     String nombresColumnas[] = {"codigo factura", "valor total factura", "fecha_factura", "nombre cliente", "codigo Empleado"};
 
     public GUIReporteVentasxFecha() {
-        dtm = new DefaultTableModel(null,nombresColumnas);
+        dtm = new DefaultTableModel(null, nombresColumnas);
         initComponents();
         setLocationRelativeTo(null);
-        
+        txtreporteintervalo.setVisible(false);
+        txtreportediario.setVisible(false);
 
     }
 
@@ -60,6 +61,10 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         txttotal_venta_fecha = new javax.swing.JTextField();
         btntotal_ventas = new javax.swing.JButton();
         txttotal_general = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtpromedio = new javax.swing.JTextField();
+        txtreporteintervalo = new javax.swing.JLabel();
+        txtreportediario = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnvolver = new javax.swing.JButton();
 
@@ -70,7 +75,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         tblfacturas.setModel(dtm);
         jScrollPane1.setViewportView(tblfacturas);
 
-        jLabel3.setText("Total en ventas intervalo Fechas");
+        jLabel3.setText("Total en ventas en intervalo Fechas");
 
         txttotal_intervalo_fechas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -156,36 +161,60 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Promedio Ventas");
+
+        txtreporteintervalo.setBackground(new java.awt.Color(255, 255, 255));
+        txtreporteintervalo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        txtreporteintervalo.setForeground(new java.awt.Color(0, 0, 204));
+
+        txtreportediario.setBackground(new java.awt.Color(255, 255, 255));
+        txtreportediario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        txtreportediario.setForeground(new java.awt.Color(0, 0, 204));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txttotal_intervalo_fechas)
-                            .addComponent(txttotal_venta_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(txtnum_facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(txttotal_general, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btntotal_ventas)))))
-                .addGap(0, 17, Short.MAX_VALUE))
+                                .addComponent(txttotal_intervalo_fechas))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txttotal_venta_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtreportediario, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtreporteintervalo, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addComponent(txtnum_facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtpromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txttotal_general, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btntotal_ventas)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 39, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,30 +223,40 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtreporteintervalo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txttotal_intervalo_fechas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(9, 9, 9)
+                        .addComponent(txtreportediario, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txttotal_venta_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtnum_facturas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(btntotal_ventas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txttotal_general, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtnum_facturas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(btntotal_ventas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txttotal_general, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(txtpromedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39))
         );
 
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 36)); // NOI18N
@@ -238,16 +277,16 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnvolver)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(110, 110, 110)
                         .addComponent(jLabel4)
                         .addGap(239, 239, 239))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))))
+                        .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +297,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                     .addComponent(btnvolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,8 +322,13 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                     txttotal_venta_fecha.setEditable(false);
                     txttotal_intervalo_fechas.setEditable(false);
                     txttotal_intervalo_fechas.setText("");
-                    Object[][]data=cr.Consultar_facturas_reporte_diario(fecha_inicial);
-                    dtm=new DefaultTableModel(data,nombresColumnas);
+                    Object[][] data = cr.Consultar_facturas_reporte_diario(fecha_inicial);
+                    txtreportediario.setVisible(true);
+                    txtreporteintervalo.setVisible(false);
+                    txtreportediario.setText("Reporte de ventas del dia "+fecha_inicial );
+                    float promedio = cr.obtener_promedio(fecha_inicial);
+                    txtpromedio.setText(String.valueOf(promedio));
+                    dtm = new DefaultTableModel(data, nombresColumnas);
                     tblfacturas.setModel(dtm);
                     System.out.println("el numero de faturas el dia " + fecha_inicial + " es " + info[0][0] + " total ventas " + info[0][1]);
                 } else {
@@ -295,12 +339,20 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
             } else if (!fecha_inicial.equals(fecha_final)) {
 
                 info = cr.total_facturas(fecha_inicial, fecha_final);
-                Object[][] facturas = cr.Consultar_Facturas_Reporte(fecha_inicial, fecha_final);
-                dtm = new DefaultTableModel(facturas, nombresColumnas);
-                tblfacturas.setModel(dtm);
+
                 if (info != null) {
+                    Object[][] facturas = cr.Consultar_Facturas_Reporte(fecha_inicial, fecha_final);
+                    txtreporteintervalo.setVisible(true);
+                    txtreportediario.setVisible(false);
+                    txtreporteintervalo.setText("Reporte de ventas del dia "+fecha_inicial +" hasta el dia "+fecha_final);
+                    float promedio = cr.obtener_promedio(fecha_inicial, fecha_final);
+                    txtpromedio.setText(String.valueOf(promedio));
+                    dtm = new DefaultTableModel(facturas, nombresColumnas);
+                    tblfacturas.setModel(dtm);
+
                     txtnum_facturas.setText(info[0][0].toString());
                     txttotal_intervalo_fechas.setText(info[0][1].toString());
+                    txtpromedio.setEditable(false);
                     txtnum_facturas.setEditable(false);
                     txttotal_intervalo_fechas.setEditable(false);
                     txttotal_venta_fecha.setEditable(false);
@@ -331,7 +383,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
     }//GEN-LAST:event_btntotal_ventasActionPerformed
 
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
-        GUIPrincipal gp=new GUIPrincipal();
+        GUIPrincipal gp = new GUIPrincipal();
         this.setVisible(false);
         gp.setVisible(true);
     }//GEN-LAST:event_btnvolverActionPerformed
@@ -382,6 +434,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -389,6 +442,9 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser txtfechafinal;
     private com.toedter.calendar.JDateChooser txtfechainicial;
     private javax.swing.JTextField txtnum_facturas;
+    private javax.swing.JTextField txtpromedio;
+    private javax.swing.JLabel txtreportediario;
+    private javax.swing.JLabel txtreporteintervalo;
     private javax.swing.JTextField txttotal_general;
     private javax.swing.JTextField txttotal_intervalo_fechas;
     private javax.swing.JTextField txttotal_venta_fecha;

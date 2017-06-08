@@ -62,7 +62,7 @@ public class ControlReporte {
                 data[i][0] = datos.getInt("cod_factura");
                 data[i][1] = datos.getFloat("valor_factura");
                 data[i][2] = datos.getDate("fecha_factura");
-                data[i][3] = datos.getString("nombres_persona")+" "+datos.getString("apellidos_persona");
+                data[i][3] = datos.getString("nombres_persona") + " " + datos.getString("apellidos_persona");
                 data[i][4] = datos.getInt("cod_empleado");
                 i++;
             }
@@ -71,6 +71,41 @@ public class ControlReporte {
             Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
+    }
+
+    public float obtener_promedio(String fecha_inicial,String fecha_final) {
+        float promedio = 0;
+         cBD = new ConexionBD();
+
+        try {
+            PreparedStatement ps = cBD.getConnection().prepareStatement("select promedio_intervalo_fechas(?,?);");
+            ps.setString(1,fecha_inicial);
+             ps.setString(2, fecha_final);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            promedio = rs.getFloat(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return promedio;
+    }
+     public float obtener_promedio(String fecha) {
+        float promedio = 0;
+         cBD = new ConexionBD();
+
+        try {
+            PreparedStatement ps = cBD.getConnection().prepareStatement("select promedio_fecha_unitaria(?);");
+            ps.setString(1,fecha);
+            
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            promedio = rs.getFloat(1);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return promedio;
     }
 
     public int contar_facturas_reporte(String fecha_inicial, String fecha_final) {
@@ -113,7 +148,6 @@ public class ControlReporte {
         try {
             CallableStatement cst = null;
             con = cBD.getConnection();
-            //con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "mysql");
             cst = con.prepareCall("{call Reporte_Fechas_Intervalo(?,?,?,?)}");
             cst.setString(1, fecha_inicial);
             cst.setString(2, fecha_final);
