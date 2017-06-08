@@ -23,12 +23,13 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
      * Creates new form GUIReporteVentasxFecha
      */
     DefaultTableModel dtm;
-    String nombresColumnas[] = {"codigo factura", "valor total factura", "fecha_factura", "codigo cliente", "codigo Empleado"};
+    String nombresColumnas[] = {"codigo factura", "valor total factura", "fecha_factura", "nombre cliente", "codigo Empleado"};
 
     public GUIReporteVentasxFecha() {
-
-        dtm = new DefaultTableModel();
+        dtm = new DefaultTableModel(null,nombresColumnas);
         initComponents();
+        setLocationRelativeTo(null);
+        
 
     }
 
@@ -60,11 +61,13 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         btntotal_ventas = new javax.swing.JButton();
         txttotal_general = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        btnvolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
+        tblfacturas.setModel(dtm);
         jScrollPane1.setViewportView(tblfacturas);
 
         jLabel3.setText("Total en ventas intervalo Fechas");
@@ -162,33 +165,33 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txttotal_intervalo_fechas)
-                                .addComponent(txttotal_venta_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(31, 31, 31)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(46, 46, 46)
-                                    .addComponent(txtnum_facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(24, 24, 24)
-                                    .addComponent(txttotal_general, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btntotal_ventas))))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(125, 125, 125)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txttotal_intervalo_fechas)
+                            .addComponent(txttotal_venta_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(txtnum_facturas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(txttotal_general, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btntotal_ventas)))))
                 .addGap(0, 17, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,28 +226,41 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Generar Reporte");
 
+        btnvolver.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        btnvolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/atras.png"))); // NOI18N
+        btnvolver.setText("Volver");
+        btnvolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnvolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(239, 239, 239))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))))
+                        .addGap(53, 53, 53))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(btnvolver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,12 +276,18 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
             String fecha_final = dateFormat.format(txtfechafinal.getDate());
             if (fecha_inicial.equals(fecha_final)) {
                 info = cr.total_facturas(fecha_inicial);
+
                 if (info != null) {
+
                     txtnum_facturas.setText(info[0][0].toString());
                     txttotal_venta_fecha.setText(info[0][1].toString());
                     txtnum_facturas.setEditable(false);
                     txttotal_venta_fecha.setEditable(false);
                     txttotal_intervalo_fechas.setEditable(false);
+                    txttotal_intervalo_fechas.setText("");
+                    Object[][]data=cr.Consultar_facturas_reporte_diario(fecha_inicial);
+                    dtm=new DefaultTableModel(data,nombresColumnas);
+                    tblfacturas.setModel(dtm);
                     System.out.println("el numero de faturas el dia " + fecha_inicial + " es " + info[0][0] + " total ventas " + info[0][1]);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se encontraron registros\npara generar el Reporte!", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
@@ -275,12 +297,16 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
             } else if (!fecha_inicial.equals(fecha_final)) {
 
                 info = cr.total_facturas(fecha_inicial, fecha_final);
+                Object[][] facturas = cr.Consultar_Facturas_Reporte(fecha_inicial, fecha_final);
+                dtm = new DefaultTableModel(facturas, nombresColumnas);
+                tblfacturas.setModel(dtm);
                 if (info != null) {
                     txtnum_facturas.setText(info[0][0].toString());
                     txttotal_intervalo_fechas.setText(info[0][1].toString());
                     txtnum_facturas.setEditable(false);
                     txttotal_intervalo_fechas.setEditable(false);
                     txttotal_venta_fecha.setEditable(false);
+                    txttotal_venta_fecha.setText("");
                     System.out.println("el numero de faturas entre " + fecha_inicial + " y " + fecha_final + " es " + info[0][0] + " total ventas " + info[0][1]);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se encontraron registros\npara generar el Reporte!", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
@@ -305,6 +331,12 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         txttotal_general.setText(String.valueOf(total_ventas));
         txttotal_general.setEditable(false);
     }//GEN-LAST:event_btntotal_ventasActionPerformed
+
+    private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
+        GUIPrincipal gp=new GUIPrincipal();
+        this.setVisible(false);
+        gp.setVisible(true);
+    }//GEN-LAST:event_btnvolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,6 +376,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btngenerarReporte;
     private javax.swing.JButton btntotal_ventas;
+    private javax.swing.JButton btnvolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

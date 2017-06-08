@@ -6,6 +6,7 @@
 package Control;
 
 import Modelo.ConexionBD;
+import Modelo.Persistencia;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,56 +26,94 @@ public class ControlReporte {
 
     Connection con = null;
     ConexionBD cBD;
-//    
-//
-//    public Object[][] Generar_reporte(String fecha_inicial, String fecha_final) {
-//        Object[][] data = null;
-//        try {
-//
-//           ResultSet rs;
-//            cst = con.prepareCall("{call consultar_facturas_reporte (?,?)}");
-//
-//            //data = new Object[5][5];
-//
-//            cst.setString("fecha_factura1", fecha_inicial);
-//            cst.setString("fecha_factura2", fecha_final);
-//            cst.registerOutParameter("total", java.sql.Types.INTEGER);
-////            cst.registerOutParameter(4, java.sql.Types.FLOAT);
-////            cst.registerOutParameter(5, java.sql.Types.DATE);
-////            cst.registerOutParameter(6, java.sql.Types.INTEGER);
-////            cst.registerOutParameter(7, java.sql.Types.INTEGER);
-////            cst.registerOutParameter(8, java.sql.Types.INTEGER);
-//
-//           cst.executeQuery();
-//            int num_fac = cst.getInt("total");
-//            System.out.println("" + num_fac);
-////            try {
-////                int i = 0;
-////                while (rs.next()) {
-////                    data[i][0] = rs.getInt("cod_factura");
-////                    data[i][1] = rs.getFloat("valor_factura");
-////                    data[i][2] = rs.getDate("fecha_factura");
-////                    data[i][3] = rs.getInt("cod_cliente");
-////                    data[i][4] = rs.getInt("cod_empleado");
-////                    i++;
-////                }
-////            } catch (SQLException ex) {
-////                Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return data;
-//    }
+    Persistencia p = new Persistencia();
+
+    public Object[][] Consultar_facturas_reporte_diario(String fecha_inicial) {
+        Object data[][] = new Object[this.contar_facturas_reporte(fecha_inicial)][5];
+        ResultSet datos = null;
+        String sql = "select cod_factura,valor_factura,fecha_factura,cod_cliente,cod_empleado from factura where fecha_factura='" + fecha_inicial + "';";
+        datos = p.ejecutarConsulta(sql);
+
+        try {
+            int i = 0;
+            while (datos.next()) {
+                data[0][0] = datos.getInt("cod_factura");
+                data[0][1] = datos.getFloat("valor_factura");
+                data[0][2] = datos.getDate("fecha_factura");
+                data[0][3] = datos.getInt("cod_cliente");
+                data[0][4] = datos.getInt("cod_empleado");
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
+
+    public Object[][] Consultar_Facturas_Reporte(String fecha_inicial, String fecha_final) {
+        Object[][] data = new Object[this.contar_facturas_reporte(fecha_inicial, fecha_final)][5];
+        cBD = new ConexionBD();
+        try {
+            ResultSet datos = null;
+            String sql = "select cod_factura,valor_factura,fecha_factura,nombres_persona,apellidos_persona,cod_empleado from factura join persona where fecha_factura BETWEEN '" + fecha_inicial + "' and '" + fecha_final + "'and factura.cod_cliente=persona.cod_persona;";
+            datos = p.ejecutarConsulta(sql);
+            int i = 0;
+            while (datos.next()) {
+                data[i][0] = datos.getInt("cod_factura");
+                data[i][1] = datos.getFloat("valor_factura");
+                data[i][2] = datos.getDate("fecha_factura");
+                data[i][3] = datos.getString("nombres_persona")+" "+datos.getString("apellidos_persona");
+                data[i][4] = datos.getInt("cod_empleado");
+                i++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
+
+    public int contar_facturas_reporte(String fecha_inicial, String fecha_final) {
+        int num_fac = 0;
+        ResultSet datos = null;
+        String sql = "select count(cod_factura) from factura where fecha_factura BETWEEN '" + fecha_inicial + "' and '" + fecha_final + "';";
+        datos = p.ejecutarConsulta(sql);
+        try {
+
+            while (datos.next()) {
+                num_fac = datos.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return num_fac;
+    }
+
+    public int contar_facturas_reporte(String fecha_inicial) {
+        int num_fac = 0;
+        ResultSet datos = null;
+        String sql = "select count(cod_factura) from factura where fecha_factura='" + fecha_inicial + "';";
+        datos = p.ejecutarConsulta(sql);
+        try {
+
+            while (datos.next()) {
+                num_fac = datos.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return num_fac;
+    }
 
     public Object[][] total_facturas(String fecha_inicial, String fecha_final) {
         int num = 0;
         float total = 0;
+        cBD = new ConexionBD();
         Object data[][] = null;
         try {
             CallableStatement cst = null;
-            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "mysql");
+            con = cBD.getConnection();
+            //con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root", "mysql");
             cst = con.prepareCall("{call Reporte_Fechas_Intervalo(?,?,?,?)}");
             cst.setString(1, fecha_inicial);
             cst.setString(2, fecha_final);

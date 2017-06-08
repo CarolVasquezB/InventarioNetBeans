@@ -38,21 +38,7 @@ public class ConexionBD {
             System.out.println(e.toString());
         }
     }
-    
-     public CallableStatement llamado_procedimiento_Reporte(){
-            
-              CallableStatement cst=null;
-        try {
-          
-            con = DriverManager.getConnection("jdbc:mysql://localhost/inventario", "root","mysql");
-           cst = con.prepareCall("{call Reporte_Fechas (?,?,?,?,?,?,?,?)}");
-        } catch (SQLException ex) {
-            Logger.getLogger(ControlReporte.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return cst;
-           
-    }
+   
     
     
     
