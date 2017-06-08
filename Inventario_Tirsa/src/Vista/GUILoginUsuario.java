@@ -6,6 +6,7 @@
 package Vista;
 
 import Control.ControlEmpleado;
+import Control.ControlEmpleado_Rol;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class GUILoginUsuario extends javax.swing.JFrame {
     ControlEmpleado ce = new ControlEmpleado();
+    ControlEmpleado_Rol cer = new ControlEmpleado_Rol();
     Object dato[][] = null;
     /**
      * Creates new form GUILoginUsuario
@@ -21,6 +23,10 @@ public class GUILoginUsuario extends javax.swing.JFrame {
     public GUILoginUsuario() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    public void cosultarRol(int codEmpleado){
+        
     }
 
     /**
@@ -92,8 +98,9 @@ public class GUILoginUsuario extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "El usuario se encuentra bloqueado, comuníquede con el Administrador"); 
                 }else{
                     if(dato[0][2].equals(PswContraseñaLogin.getText())){
+                        Object[][] rol = cer.consultarRolEmpleado(Integer.parseInt(String.valueOf(dato[0][0])));
                         facturacion.setVisible(true);
-                        facturacion.obtenerEmpleado(dato[0][0].toString());
+                        facturacion.obtenerEmpleadoyRol(dato[0][0].toString(), rol[0][2].toString());
                         this.setVisible(false);    
                     }else{
                         JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");   
