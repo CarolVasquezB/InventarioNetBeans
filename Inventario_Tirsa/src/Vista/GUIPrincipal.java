@@ -217,7 +217,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(780, 500));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(250, 246, 246));
+        jPanel1.setBackground(new java.awt.Color(253, 241, 241));
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jPanel1.setMaximumSize(new java.awt.Dimension(780, 550));
         jPanel1.setMinimumSize(new java.awt.Dimension(780, 550));
