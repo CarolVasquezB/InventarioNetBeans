@@ -195,7 +195,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         btnAbono = new javax.swing.JButton();
         lblRol = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnuFacturacion = new javax.swing.JMenu();
         mnuCliente = new javax.swing.JMenu();
         btnInventario = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -461,10 +460,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         lblRol.setText("1");
         jPanel1.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 150, 20));
 
-        mnuFacturacion.setText("Facturación ");
-        mnuFacturacion.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jMenuBar1.add(mnuFacturacion);
-
+        mnuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/group (1).png"))); // NOI18N
         mnuCliente.setText("Clientes");
         mnuCliente.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         mnuCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -474,7 +470,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(mnuCliente);
 
-        btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/list.png"))); // NOI18N
+        btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/list (1).png"))); // NOI18N
         btnInventario.setText("Inventario");
         btnInventario.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         btnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -484,6 +480,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenuBar1.add(btnInventario);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/analytics.png"))); // NOI18N
         jMenu5.setText("Reportes");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
@@ -507,6 +504,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        mnuAdministrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/settings.png"))); // NOI18N
         mnuAdministrar.setText("Administrar");
         mnuAdministrar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
@@ -545,6 +543,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAdministrar);
 
+        mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/exit (2).png"))); // NOI18N
         mnuSalir.setText("Salir");
         mnuSalir.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         mnuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -953,7 +952,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuConsultarFactura;
     private javax.swing.JMenuItem mnuDesbloquear;
     private javax.swing.JMenuItem mnuEmpleado;
-    private javax.swing.JMenu mnuFacturacion;
     private javax.swing.JMenu mnuSalir;
     private javax.swing.JRadioButton rbtnMaximo;
     private javax.swing.JRadioButton rbtnMinimo;

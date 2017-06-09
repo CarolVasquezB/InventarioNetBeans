@@ -15,16 +15,11 @@
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="mnuFacturacion">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Facturaci&#xf3;n "/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="3"/>
-            </Property>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="mnuCliente">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/group (1).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Clientes"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="3"/>
@@ -37,7 +32,7 @@
         <Menu class="javax.swing.JMenu" name="btnInventario">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Recursos/list.png"/>
+              <Image iconType="3" name="/Recursos/list (1).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Inventario"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -50,6 +45,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/analytics.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Reportes"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="3"/>
@@ -82,6 +80,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuAdministrar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/settings.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Administrar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="3"/>
@@ -127,6 +128,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuSalir">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/exit (2).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="3"/>
