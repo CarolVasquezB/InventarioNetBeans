@@ -21,12 +21,12 @@ public class ControlEmpleado_Rol {
 Persistencia p = new Persistencia();
     
     
-public boolean insertarEmpleado_Rol(int cod_empleado_rol,int cod_empleado_persona,int cod_rol){
+public boolean insertarEmpleado_Rol(int cod_empleado_persona,int cod_rol){
         
         boolean inserto = false;
 
-        String sql = "Insert into empleado_rol(cod_empleado_rol,cod_empleado_persona,cod_rol "+")"
-                + "values("+cod_empleado_rol+","+cod_empleado_persona+","+cod_rol+");";
+        String sql = "Insert into empleado_rol(cod_empleado_persona,cod_rol "+")"
+                + "values("+cod_empleado_persona+","+cod_rol+");";
 
         inserto = p.ejecutarDML(sql);
         return inserto;        

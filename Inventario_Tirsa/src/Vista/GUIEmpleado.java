@@ -214,7 +214,7 @@ public class GUIEmpleado extends javax.swing.JFrame {
         jLabel9.setText("Confirmar Contraseña");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
         jPanel2.add(txtconfirmacionPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 228, -1));
-        jPanel2.add(txtfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 110, -1));
+        jPanel2.add(txtfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 140, -1));
 
         cbxroles.setModel(cbx);
         jPanel2.add(cbxroles, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 228, -1));
@@ -315,7 +315,7 @@ public class GUIEmpleado extends javax.swing.JFrame {
                 if (password.equals(confirmcionPassword)) {
                     if (cp.insertarPersona(codigo, num_doc, nombres, apellidos, correo, fecha)) {
                         if (ce.insertarEmpleado(codigo, usuario, password)) {                            
-                            if(cer.insertarEmpleado_Rol(codigo+1, codigo, this.Conseguir_cod_Rol())){
+                            if(cer.insertarEmpleado_Rol(codigo, this.Conseguir_cod_Rol())){
                             JOptionPane.showMessageDialog(this, "Guardado Exitosamente!", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
                             limpiar();
                             actualizarTabla();
