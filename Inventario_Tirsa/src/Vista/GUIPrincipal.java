@@ -508,7 +508,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         mnuAdministrar.setText("Administrar");
         mnuAdministrar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/people.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/user.png"))); // NOI18N
         jMenuItem1.setText("Roles");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -517,6 +517,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         mnuAdministrar.add(jMenuItem1);
 
+        mnuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/multiple-users-silhouette.png"))); // NOI18N
         mnuEmpleado.setText("Empleados");
         mnuEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -525,6 +526,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         mnuAdministrar.add(mnuEmpleado);
 
+        btncategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/settings-for-categories.png"))); // NOI18N
         btncategorias.setText("Categorías");
         btncategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -533,6 +535,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         mnuAdministrar.add(btncategorias);
 
+        mnuDesbloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/login_1.png"))); // NOI18N
         mnuDesbloquear.setText("Desbloqueo Empleados");
         mnuDesbloquear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

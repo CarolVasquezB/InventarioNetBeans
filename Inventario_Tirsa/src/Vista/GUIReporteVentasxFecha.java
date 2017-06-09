@@ -63,10 +63,10 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtpromedio = new javax.swing.JTextField();
         txtreporteintervalo = new javax.swing.JLabel();
-        txtreportediario = new javax.swing.JLabel();
         btnvolver = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txttotal_general = new javax.swing.JTextField();
+        txtreportediario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,11 +76,11 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         tblfacturas.setModel(dtm);
         jScrollPane1.setViewportView(tblfacturas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 680, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 720, 130));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel3.setText("Total en ventas en intervalo Fechas");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, -1, -1));
 
         txttotal_intervalo_fechas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txttotal_intervalo_fechas.addActionListener(new java.awt.event.ActionListener() {
@@ -88,22 +88,24 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                 txttotal_intervalo_fechasActionPerformed(evt);
             }
         });
-        jPanel1.add(txttotal_intervalo_fechas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, 100, 20));
+        jPanel1.add(txttotal_intervalo_fechas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, 100, 20));
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel5.setText("Numero de Facturas Encontradas");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 450, -1, -1));
 
         txtnum_facturas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(txtnum_facturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 440, 90, 20));
+        jPanel1.add(txtnum_facturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 450, 90, 20));
 
         jPanel2.setBackground(new java.awt.Color(253, 241, 241));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/calendar.png"))); // NOI18N
         jLabel1.setText("Fecha Inicial");
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/calendar.png"))); // NOI18N
         jLabel2.setText("Fecha Final");
 
         btngenerarReporte.setBackground(new java.awt.Color(204, 204, 204));
@@ -145,7 +147,7 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(257, 257, 257)
                         .addComponent(btngenerarReporte)))
-                .addGap(0, 175, Short.MAX_VALUE))
+                .addGap(0, 207, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,12 +167,12 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 106, 680, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 106, 720, -1));
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel7.setText("Total ventas diaria");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
-        jPanel1.add(txttotal_venta_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, 100, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, -1, -1));
+        jPanel1.add(txttotal_venta_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, 100, -1));
 
         btntotal_ventas.setBackground(new java.awt.Color(204, 204, 204));
         btntotal_ventas.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
@@ -182,22 +184,17 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
                 btntotal_ventasActionPerformed(evt);
             }
         });
-        jPanel1.add(btntotal_ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, -1, -1));
+        jPanel1.add(btntotal_ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 510, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel8.setText("Promedio Ventas");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 470, -1, -1));
-        jPanel1.add(txtpromedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 90, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 480, -1, -1));
+        jPanel1.add(txtpromedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, 90, -1));
 
         txtreporteintervalo.setBackground(new java.awt.Color(255, 255, 255));
         txtreporteintervalo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         txtreporteintervalo.setForeground(new java.awt.Color(0, 0, 204));
-        jPanel1.add(txtreporteintervalo, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 550, 406, 15));
-
-        txtreportediario.setBackground(new java.awt.Color(255, 255, 255));
-        txtreportediario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        txtreportediario.setForeground(new java.awt.Color(0, 0, 204));
-        jPanel1.add(txtreportediario, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 624, 287, 17));
+        jPanel1.add(txtreporteintervalo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 406, 15));
 
         btnvolver.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btnvolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/atras.png"))); // NOI18N
@@ -213,7 +210,11 @@ public class GUIReporteVentasxFecha extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Reporte Facturas");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
-        jPanel1.add(txttotal_general, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, 83, -1));
+        jPanel1.add(txttotal_general, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 550, 83, -1));
+
+        txtreportediario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        txtreportediario.setForeground(new java.awt.Color(0, 0, 204));
+        jPanel1.add(txtreportediario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 330, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
